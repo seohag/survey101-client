@@ -1,18 +1,24 @@
 import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
-const useUserStore = create((set) => ({
-  isLoggedIn: false,
-  user: {},
-  setIsLoggedIn: (isLoggedIn) =>
-    set({
-      isLoggedIn,
+const useUserIdStore = create(
+  persist(
+    (set) => ({
+      isLoggedIn: false,
+      user: {},
+      userId: null,
+      setIsLoggedIn: (isLoggedIn) =>
+        set({
+          isLoggedIn,
+        }),
+      setUser: (user) => set({ user }),
+      setUserId: (userId) => set(() => ({ userId })),
     }),
-  setUser: (user) => set({ user }),
-}));
+    {
+      name: "userIdStorage",
+      storage: createJSONStorage(() => sessionStorage),
+    },
+  ),
+);
 
-const logChanges = (state) => console.log("State changed:", state);
-
-const unsubscribe = useUserStore.subscribe(logChanges);
-// unsubscribe();
-
-export default useUserStore;
+export default useUserIdStore;

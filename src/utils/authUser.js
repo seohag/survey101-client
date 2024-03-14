@@ -1,12 +1,7 @@
-import axios from "axios";
+import fetchData from "./axios";
 
 async function authUser() {
-  const response = await axios.get(
-    `${import.meta.env.VITE_BASE_URL}/auth/check`,
-    {
-      withCredentials: true,
-    },
-  );
+  const response = await fetchData("get", "/auth/check");
 
   return response.data;
 }
