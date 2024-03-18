@@ -39,6 +39,7 @@ module.exports = {
     "react/self-closing-comp": "off",
     "react/react-in-jsx-scope": "off",
     "react/no-unknown-property": "off",
+    "react/prop-types": "off",
     "react/jsx-filename-extension": ["warn", { extensions: [".js", ".jsx"] }],
     "no-param-reassign": 0,
     "no-underscore-dangle": "off",

@@ -16,14 +16,14 @@ function useGetSurveys() {
     }
   }
 
-  const { data: surveys = [] } = useQuery({
+  const { data: surveys = [], isLoading } = useQuery({
     queryKey: ["surveys"],
     queryFn: getSurveyList,
     refetchOnWindowFocus: false,
     staleTime: 60 * 3000,
   });
 
-  return { surveys };
+  return { surveys, isLoading };
 }
 
 export default useGetSurveys;

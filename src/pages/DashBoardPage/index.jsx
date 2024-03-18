@@ -7,11 +7,14 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import useGoogleLogOut from "../../apis/useGoogleLogout";
 import useGetSurveys from "../../apis/useGetSurveys";
 
+import Loading from "../../components/shared/Loading";
+
 function DashBoardPage() {
   const handleLogOut = useGoogleLogOut();
   const navigate = useNavigate();
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const { surveys, isLoading } = useGetSurveys();
 
   function toggleSearchVisibility() {
     setIsSearchVisible(!isSearchVisible);
@@ -41,13 +44,15 @@ function DashBoardPage() {
     return () => clearTimeout(timeout);
   }, [searchTerm]);
 
-  const { surveys } = useGetSurveys();
-
   function filterSurveys(survey) {
     return survey.title.toLowerCase().includes(searchTerm.toLocaleLowerCase());
   }
 
   const filteredSurveys = surveys.filter(filterSurveys);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -81,7 +86,7 @@ function DashBoardPage() {
           type="text"
           placeholder="설문 검색"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(event) => setSearchTerm(event.target.value)}
           className={`border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none overflow-hidden transition-all duration-300 ${
             isSearchVisible
               ? "h-10 opacity-100"
@@ -92,7 +97,7 @@ function DashBoardPage() {
       <section className="flex items-center justify-center mt-8">
         <button
           className="cursor-pointer bg-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-105"
-          onClick={() => navigate("/editor")}
+          onClick={() => navigate("/editor/new-form")}
         >
           <span className="text-xl font-semibold">설문 생성하기</span>
         </button>
