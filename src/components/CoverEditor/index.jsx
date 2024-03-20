@@ -1,6 +1,8 @@
 import { useState } from "react";
 import CoverStylePreview from "../CoverStylePreview";
 
+import { validateInput } from "../../utils/utils";
+
 function CoverEditor({ coverData, setCoverData, styleData }) {
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -28,6 +30,15 @@ function CoverEditor({ coverData, setCoverData, styleData }) {
       });
       setErrorMessage("");
     } else {
+      const newValue = value.trim();
+      const validateMessage = validateInput(name, newValue);
+
+      if (validateMessage) {
+        setErrorMessage(validateMessage);
+        return;
+      }
+
+      setErrorMessage("");
       setCoverData({
         ...coverData,
         [name]: value,

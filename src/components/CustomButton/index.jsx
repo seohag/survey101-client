@@ -1,4 +1,4 @@
-import getBrightness from "../../utils/getBrightness";
+import { getBrightness } from "../../utils/utils";
 
 function CustomButton({ text, themeColor, buttonShape }) {
   const buttonBrightness = getBrightness(themeColor);

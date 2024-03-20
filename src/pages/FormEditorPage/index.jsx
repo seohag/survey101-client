@@ -1,11 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import FormEditorHeader from "../../components/Header";
 import CoverEditor from "../../components/CoverEditor";
 import StyleEditor from "../../components/StyleEditor";
 import QuestionEditor from "../../components/QuestionEditor";
+import EndingEditor from "../../components/EndingEditor";
 
 function FormEditorPage() {
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
   const [activeSection, setActiveSection] = useState("cover");
   const [coverData, setCoverData] = useState({
     title: "설문지",
@@ -17,6 +30,10 @@ function FormEditorPage() {
     themeColor: "#000000",
     buttonShape: "rounded",
     animation: "fade",
+  });
+  const [endingData, setEndingData] = useState({
+    title: "제출 완료",
+    content: "결과에 대한 내용을 입력해주세요",
   });
   const [questions, setQuestions] = useState([]);
 
@@ -47,6 +64,14 @@ function FormEditorPage() {
           <QuestionEditor
             questions={questions}
             setQuestions={setQuestions}
+            styleData={styleData}
+          />
+        );
+      case "ending":
+        return (
+          <EndingEditor
+            endingData={endingData}
+            setEndingData={setEndingData}
             styleData={styleData}
           />
         );

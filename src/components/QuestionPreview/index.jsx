@@ -165,7 +165,6 @@ function QuestionPreview({ questions, styleData, selectedQuestionId }) {
                 </div>
               </div>
             )}
-
             {selectedQuestion.questionType === "selectInput" && (
               <div className="mt-4 flex flex-col items-center">
                 <select className="w-full p-2 border border-gray-300 rounded">
