@@ -20,10 +20,10 @@ function StyleEditor({ coverData, styleData, setStyleData }) {
 
       <section className="w-3/5 p-4">
         <div className="bg-white rounded-lg shadow-lg p-4 mb-4 text-center">
-          <h2 className="text-lg font-bold mb-2">Edit Survey Style</h2>
+          <h2 className="text-lg font-bold mb-2">설문 스타일 편집</h2>
           <div className="form-group mb-4">
             <label htmlFor="themeColor" className="block mb-2">
-              Theme Color:
+              테마 색상
               <input
                 type="color"
                 id="themeColor"
@@ -34,13 +34,13 @@ function StyleEditor({ coverData, styleData, setStyleData }) {
                     target: { name: "themeColor", value: event.target.value },
                   })
                 }
-                className="w-full p-2 border border-gray-300 rounded"
+                className="w-full border border-gray-300 rounded"
               />
             </label>
           </div>
           <div className="form-group mb-4">
             <label htmlFor="buttonShape" className="block mb-2">
-              Button Shape:
+              버튼 모양
               <select
                 id="buttonShape"
                 name="buttonShape"
@@ -48,15 +48,15 @@ function StyleEditor({ coverData, styleData, setStyleData }) {
                 onChange={handleStyleChange}
                 className="w-full p-2 border border-gray-300 rounded"
               >
-                <option value="rounded">Rounded</option>
-                <option value="square">Square</option>
-                <option value="rounded-full">Rounded Full</option>
+                <option value="rounded">둥근</option>
+                <option value="square">각진</option>
+                <option value="rounded-full">완전 둥근</option>
               </select>
             </label>
           </div>
           <div className="form-group mb-4">
             <label htmlFor="animation" className="block mb-2">
-              Animation:
+              애니메이션
               <select
                 id="animation"
                 name="animation"

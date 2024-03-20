@@ -1,22 +1,32 @@
 function AddQuestionPopup({ handleClosePopup, handleAddQuestion }) {
+  function handleClickOutside(event) {
+    if (event.target.classList.contains("modal-background")) {
+      handleClosePopup();
+    }
+  }
+
   return (
-    <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center">
+    <div
+      className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center modal-background"
+      onClick={handleClickOutside}
+      role="presentation"
+    >
       <div className="bg-white p-4 rounded-lg w-80 max-h-96 overflow-y-auto">
-        <h3 className="text-lg font-bold mb-4">Add Question</h3>
+        <h3 className="text-lg font-bold mb-4">질문 추가</h3>
         <div>
           <h4 className="text-md font-bold mb-2">선택</h4>
           <div className="flex flex-col mb-4">
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
-              onClick={() => handleAddQuestion("text")}
+              onClick={() => handleAddQuestion("textChoice")}
             >
-              Text
+              텍스트
             </button>
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
-              onClick={() => handleAddQuestion("image")}
+              onClick={() => handleAddQuestion("imageChoice")}
             >
-              Image
+              이미지
             </button>
           </div>
         </div>
@@ -27,55 +37,55 @@ function AddQuestionPopup({ handleClosePopup, handleAddQuestion }) {
               className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
               onClick={() => handleAddQuestion("textInput")}
             >
-              Text Input
+              텍스트 입력
             </button>
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
               onClick={() => handleAddQuestion("emailInput")}
             >
-              Email Input
+              이메일 입력
             </button>
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
               onClick={() => handleAddQuestion("phoneInput")}
             >
-              Phone Input
+              전화번호 입력
             </button>
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
               onClick={() => handleAddQuestion("numberInput")}
             >
-              Number Input
+              숫자 입력
             </button>
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
               onClick={() => handleAddQuestion("timeInput")}
             >
-              Time Input
+              시간 입력
             </button>
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
               onClick={() => handleAddQuestion("dateInput")}
             >
-              Date Input
+              날짜 입력
             </button>
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
-              onClick={() => handleAddQuestion("slider")}
+              onClick={() => handleAddQuestion("rangeInput")}
             >
-              Slider
+              슬라이더
             </button>
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
-              onClick={() => handleAddQuestion("star")}
+              onClick={() => handleAddQuestion("radioInput")}
             >
-              Star Rating
+              별점
             </button>
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
-              onClick={() => handleAddQuestion("dropdown")}
+              onClick={() => handleAddQuestion("selectInput")}
             >
-              Dropdown
+              드롭다운
             </button>
           </div>
         </div>
@@ -83,7 +93,7 @@ function AddQuestionPopup({ handleClosePopup, handleAddQuestion }) {
           className="bg-red-500 text-white px-4 py-2 rounded mt-4"
           onClick={handleClosePopup}
         >
-          Close
+          닫기
         </button>
       </div>
     </div>

@@ -1,14 +1,32 @@
+import { useState } from "react";
 import CoverStylePreview from "../CoverStylePreview";
 
 function CoverEditor({ coverData, setCoverData, styleData }) {
+  const [errorMessage, setErrorMessage] = useState("");
+
   function handleCoverChange(event) {
     const { name, value, files } = event.target;
 
     if (files) {
+      const file = files[0];
+      const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+      const maxSize = 5 * 1024 * 1024;
+
+      if (!allowedTypes.includes(file.type)) {
+        setErrorMessage("지원되는 이미지 형식은 JPEG 또는 PNG입니다.");
+        return;
+      }
+
+      if (file.size > maxSize) {
+        setErrorMessage("파일 크기는 5MB 이하로 제한됩니다.");
+        return;
+      }
+
       setCoverData({
         ...coverData,
-        [name]: files[0],
+        [name]: file,
       });
+      setErrorMessage("");
     } else {
       setCoverData({
         ...coverData,
@@ -16,6 +34,7 @@ function CoverEditor({ coverData, setCoverData, styleData }) {
       });
     }
   }
+
   return (
     <div className="flex">
       <section className="w-2/5 p-4">
@@ -27,56 +46,70 @@ function CoverEditor({ coverData, setCoverData, styleData }) {
 
       <section className="w-3/5 p-4">
         <div className="bg-white rounded-lg shadow-lg p-4 mb-4 text-center">
-          <h2 className="text-lg font-bold mb-2">Edit Survey</h2>
+          {errorMessage && (
+            <div className="text-red-500 mb-4">{errorMessage}</div>
+          )}
+
+          <h2 className="text-lg font-bold mb-2">설문 커버 편집</h2>
           <div className="form-group mb-4">
             <label htmlFor="title" className="block mb-2">
-              Title:
               <input
                 type="text"
                 id="title"
                 name="title"
                 value={coverData.title}
                 onChange={handleCoverChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className="w-full p-2 border border-gray-300 rounded text-center"
+                placeholder="제목"
               />
             </label>
           </div>
 
           <div className="form-group mb-4">
             <label htmlFor="subtitle" className="block mb-2">
-              Subtitle:
               <input
                 type="text"
                 id="subtitle"
                 name="subtitle"
                 value={coverData.subtitle}
                 onChange={handleCoverChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className="w-full p-2 border border-gray-300 rounded text-center"
+                placeholder="부제목(선택)"
               />
             </label>
           </div>
-          <div className="form-group mb-4">
-            <label htmlFor="coverImage" className="block mb-2">
-              Cover Image:
-              <input
-                type="file"
-                id="coverImage"
-                name="coverImage"
-                onChange={handleCoverChange}
-                className="w-full border border-gray-300 rounded"
-              />
-            </label>
-          </div>
+
+          <label htmlFor="coverImage" className="block mb-2 cursor-pointer">
+            <div className="w-23 h-48 border border-gray-300 rounded flex justify-center items-center">
+              {coverData.coverImage ? (
+                <img
+                  src={URL.createObjectURL(coverData.coverImage)}
+                  alt="CoverImage"
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <span>커버 이미지 선택</span>
+              )}
+            </div>
+            <input
+              type="file"
+              id="coverImage"
+              name="coverImage"
+              onChange={handleCoverChange}
+              className="hidden"
+            />
+          </label>
+
           <div className="form-group mb-4">
             <label htmlFor="startButtonText" className="block mb-2">
-              Start Button Text:
               <input
                 type="text"
                 id="startButtonText"
                 name="startButtonText"
                 value={coverData.startButtonText}
                 onChange={handleCoverChange}
-                className="w-full p-2 border border-gray-300 rounded"
+                className="w-full p-2 border border-gray-300 rounded text-center"
+                placeholder="설문 시작하기 버튼 수정"
               />
             </label>
           </div>

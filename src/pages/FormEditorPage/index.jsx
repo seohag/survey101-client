@@ -44,7 +44,11 @@ function FormEditorPage() {
         );
       case "question":
         return (
-          <QuestionEditor questions={questions} setQuestions={setQuestions} />
+          <QuestionEditor
+            questions={questions}
+            setQuestions={setQuestions}
+            styleData={styleData}
+          />
         );
       default:
         return null;
