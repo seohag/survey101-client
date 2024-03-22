@@ -1,18 +1,28 @@
 export function validateInput(fieldName, value) {
   switch (fieldName) {
     case "title":
-      if (value.length < 3 || value.length > 20) {
-        return "설문 제목은 3~20자 사이로 입력하세요.";
+      if (value.length > 30) {
+        return "설문 제목은 20자 이하로 입력하세요.";
       }
       break;
     case "subtitle":
-      if (value.length > 30) {
+      if (value.length > 20) {
         return "부제목은 30자 이하로 입력하세요.";
       }
       break;
     case "startButtonText":
-      if (value.length < 5 || value.length > 15) {
-        return "설문 시작 버튼 텍스트는 5~15자 사이로 입력하세요.";
+      if (value.length > 15) {
+        return "설문 시작 버튼 텍스트는 15자 사이로 입력하세요.";
+      }
+      break;
+    case "questionText":
+      if (value.length > 30) {
+        return "질문 제목은 30자 이하로 입력하세요.";
+      }
+      break;
+    case "optionText":
+      if (value.length > 20) {
+        return "옵션은 20자 이하로 입력하세요.";
       }
       break;
     default:

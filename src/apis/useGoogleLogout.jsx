@@ -4,7 +4,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../config/firebase";
 
 import fetchData from "../utils/axios";
-import useUserIdStore from "../store/store";
+import useUserIdStore from "../store/useUserIdStore";
 
 function useGoogleLogOut() {
   const navigate = useNavigate();

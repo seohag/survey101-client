@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import FormEditorHeader from "../../components/Header";
 import CoverEditor from "../../components/CoverEditor";
 import StyleEditor from "../../components/StyleEditor";
 import QuestionEditor from "../../components/QuestionEditor";
 import EndingEditor from "../../components/EndingEditor";
+
+import useFormEditorStore from "../../store/useFormEditorStore";
 
 function FormEditorPage() {
   useEffect(() => {
@@ -19,23 +21,18 @@ function FormEditorPage() {
     };
   }, []);
 
-  const [activeSection, setActiveSection] = useState("cover");
-  const [coverData, setCoverData] = useState({
-    title: "설문지",
-    subtitle: "부제목",
-    startButtonText: "설문 시작하기",
-    coverImage: null,
-  });
-  const [styleData, setStyleData] = useState({
-    themeColor: "#000000",
-    buttonShape: "rounded",
-    animation: "fade",
-  });
-  const [endingData, setEndingData] = useState({
-    title: "제출 완료",
-    content: "결과에 대한 내용을 입력해주세요",
-  });
-  const [questions, setQuestions] = useState([]);
+  const {
+    activeSection,
+    coverData,
+    styleData,
+    endingData,
+    setActiveSection,
+    setCoverData,
+    setStyleData,
+    setEndingData,
+    setQuestions,
+    questions,
+  } = useFormEditorStore();
 
   function handleSectionChange(section) {
     setActiveSection(section);
@@ -72,7 +69,9 @@ function FormEditorPage() {
           <EndingEditor
             endingData={endingData}
             setEndingData={setEndingData}
+            coverData={coverData}
             styleData={styleData}
+            questions={questions}
           />
         );
       default:

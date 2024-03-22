@@ -7,6 +7,7 @@ import {
   faArrowDown,
   faArrowUp,
   faTrash,
+  faCamera,
 } from "@fortawesome/free-solid-svg-icons";
 
 function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
@@ -264,6 +265,7 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
                         event.target.value,
                       );
                     }}
+                    value={option.text}
                     className="w-full p-2 border border-gray-300 rounded mr-2"
                     placeholder="옵션을 입력해주세요"
                   />
@@ -308,11 +310,12 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
                           className="w-full h-full object-cover"
                         />
                       ) : (
-                        <span>이미지 선택</span>
+                        <FontAwesomeIcon icon={faCamera} className="text-xl" />
                       )}
                     </div>
                     <input
                       type="file"
+                      accept="image/jpg, image/jpeg, image/png"
                       id={`image-upload-${question.questionId}-${option.id}`}
                       onChange={(event) =>
                         handleImageChange(event, question.questionId, option.id)

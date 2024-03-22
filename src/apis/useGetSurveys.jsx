@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import fetchData from "../utils/axios";
-import useUserIdStore from "../store/store";
+import useUserIdStore from "../store/useUserIdStore";
 
 function useGetSurveys() {
   const { userId } = useUserIdStore();
@@ -9,6 +9,7 @@ function useGetSurveys() {
   async function getSurveyList() {
     try {
       const response = await fetchData("get", `/user/${userId}/surveys`);
+
       return response.data;
     } catch (error) {
       console.error(error);
