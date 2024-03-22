@@ -4,7 +4,7 @@ import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../../config/firebase";
 
 import fetchData from "../utils/axios";
-import useUserIdStore from "../store/store";
+import useUserIdStore from "../store/useUserIdStore";
 
 function useGoogleLogin() {
   const navigate = useNavigate();

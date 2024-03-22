@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import authUser from "../utils/authUser";
-import useUserIdStore from "../store/store";
+import useUserIdStore from "../store/useUserIdStore";
 
 function useGetAuthUser() {
   const { setUser, setIsLoggedIn } = useUserIdStore();

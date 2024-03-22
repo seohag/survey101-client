@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import CoverStylePreview from "../CoverStylePreview";
 
 import { validateInput } from "../../utils/utils";
@@ -28,6 +30,7 @@ function CoverEditor({ coverData, setCoverData, styleData }) {
         ...coverData,
         [name]: file,
       });
+
       setErrorMessage("");
     } else {
       const newValue = value.trim();
@@ -95,15 +98,16 @@ function CoverEditor({ coverData, setCoverData, styleData }) {
               {coverData.coverImage ? (
                 <img
                   src={URL.createObjectURL(coverData.coverImage)}
-                  alt="CoverImage"
+                  alt="preview"
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <span>커버 이미지 선택</span>
+                <FontAwesomeIcon icon={faCamera} className="text-xl" />
               )}
             </div>
             <input
               type="file"
+              accept="image/*"
               id="coverImage"
               name="coverImage"
               onChange={handleCoverChange}
