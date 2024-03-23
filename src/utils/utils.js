@@ -39,3 +39,24 @@ export function getBrightness(color) {
 
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 }
+
+export function formatSurveyData(surveyData) {
+  return {
+    coverData: {
+      title: surveyData.title,
+      subtitle: surveyData.subtitle,
+      startButtonText: surveyData.startButtonText,
+      coverImage: surveyData.coverImage,
+    },
+    styleData: {
+      themeColor: surveyData.themeColor,
+      buttonShape: surveyData.buttonShape,
+      animation: surveyData.animation,
+    },
+    endingData: {
+      title: surveyData.endingTitle,
+      content: surveyData.endingContent,
+    },
+    questions: surveyData.questions,
+  };
+}

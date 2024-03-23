@@ -106,7 +106,7 @@ function DashBoardPage() {
         {filteredSurveys.map((survey) => (
           <button
             key={survey._id}
-            onClick={() => {}}
+            onClick={() => navigate(`/editor/${survey._id}`)}
             className="cursor-pointer bg-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 focus:outline-none min-h-60"
           >
             <h2 className="text-xl font-semibold">{survey.title}</h2>

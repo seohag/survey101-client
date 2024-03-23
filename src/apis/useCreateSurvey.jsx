@@ -50,7 +50,7 @@ function useCreateSurvey(surveyData) {
               if (question.questionType === "textChoice") {
                 formData.append(
                   `questions[${index}][options][${optionIndex}][optionId]`,
-                  option.id,
+                  option.optionId,
                 );
                 formData.append(
                   `questions[${index}][options][${optionIndex}][text]`,
@@ -59,7 +59,7 @@ function useCreateSurvey(surveyData) {
               } else if (question.questionType === "imageChoice") {
                 formData.append(
                   `questions[${index}][options][${optionIndex}][optionId]`,
-                  option.id,
+                  option.optionId,
                 );
                 formData.append(
                   `questions[${index}][options][${optionIndex}][image]`,

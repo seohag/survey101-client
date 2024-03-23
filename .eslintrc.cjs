@@ -32,6 +32,7 @@ module.exports = {
   rules: {
     semi: "warn",
     "no-unused-vars": "warn",
+    "no-use-before-define": "off",
     "import/no-extraneous-dependencies": "off",
     "react/button-has-type": "off",
     "react/jsx-props-no-spreading": "off",

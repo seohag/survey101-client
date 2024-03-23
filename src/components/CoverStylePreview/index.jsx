@@ -16,7 +16,11 @@ function CoverStylePreview({ coverData, styleData }) {
           </p>
           {coverImage && (
             <img
-              src={URL.createObjectURL(coverImage)}
+              src={
+                typeof coverData.coverImage === "string"
+                  ? coverData.coverImage
+                  : URL.createObjectURL(coverData.coverImage)
+              }
               alt="Cover"
               className="mb-2 w-[350px] h-[360px] object-contain"
             />

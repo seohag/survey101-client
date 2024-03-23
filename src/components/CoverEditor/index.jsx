@@ -97,7 +97,11 @@ function CoverEditor({ coverData, setCoverData, styleData }) {
             <div className="w-23 h-48 border border-gray-300 rounded flex justify-center items-center">
               {coverData.coverImage ? (
                 <img
-                  src={URL.createObjectURL(coverData.coverImage)}
+                  src={
+                    typeof coverData.coverImage === "string"
+                      ? coverData.coverImage
+                      : URL.createObjectURL(coverData.coverImage)
+                  }
                   alt="preview"
                   className="w-full h-full object-cover"
                 />

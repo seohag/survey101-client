@@ -30,7 +30,7 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
       if (question.questionId === questionId) {
         return {
           ...question,
-          options: [...question.options, { id: uuidv4(), text: "" }],
+          options: [...question.options, { optionId: uuidv4(), text: "" }],
         };
       }
 
@@ -45,7 +45,7 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
       if (question.questionId === questionId) {
         return {
           ...question,
-          options: [...question.options, { id: uuidv4(), image: null }],
+          options: [...question.options, { optionId: uuidv4(), image: null }],
         };
       }
 
@@ -60,7 +60,9 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
       if (question.questionId === questionId && question.options.length > 1) {
         return {
           ...question,
-          options: question.options.filter((option) => option.id !== optionId),
+          options: question.options.filter(
+            (option) => option.optionId !== optionId,
+          ),
         };
       }
 
@@ -91,7 +93,9 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
         return {
           ...question,
           options: question.options.map((option) =>
-            option.id === optionId ? { ...option, text: newOption } : option,
+            option.optionId === optionId
+              ? { ...option, text: newOption }
+              : option,
           ),
         };
       }
@@ -132,7 +136,7 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
       const newQuestions = questions.map((question) => {
         if (question.questionId === questionId) {
           const newOptions = question.options.map((option) => {
-            if (option.id === optionId) {
+            if (option.optionId === optionId) {
               return { ...option, image: file };
             }
 
@@ -255,13 +259,13 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
           {question.questionType === "textChoice" && (
             <div>
               {question.options.map((option) => (
-                <div key={option.id} className="flex items-center mb-2">
+                <div key={option.optionId} className="flex items-center mb-2">
                   <input
                     type="text"
                     onChange={(event) => {
                       handleQuestionOptionChange(
                         question.questionId,
-                        option.id,
+                        option.optionId,
                         event.target.value,
                       );
                     }}
@@ -272,7 +276,7 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
                   {question.options.length > 1 && (
                     <button
                       onClick={() =>
-                        handleDeleteOption(question.questionId, option.id)
+                        handleDeleteOption(question.questionId, option.optionId)
                       }
                       className="bg-red-500 text-white px-1 rounded"
                     >
@@ -297,16 +301,20 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
           {question.questionType === "imageChoice" && (
             <div className="flex flex-wrap justify-center">
               {question.options.map((option) => (
-                <div key={option.id} className="mb-4 mx-2 relative">
+                <div key={option.optionId} className="mb-4 mx-2 relative">
                   <label
-                    htmlFor={`image-upload-${question.questionId}-${option.id}`}
+                    htmlFor={`image-upload-${question.questionId}-${option.optionId}`}
                     className="block cursor-pointer"
                   >
                     <div className="w-24 h-24 border border-gray-300 rounded flex justify-center items-center">
                       {option.image ? (
                         <img
-                          src={URL.createObjectURL(option.image)}
-                          alt={`Option ${option.id}`}
+                          src={
+                            typeof option.image === "string"
+                              ? option.image
+                              : URL.createObjectURL(option.image)
+                          }
+                          alt={`Option ${option.optionId}`}
                           className="w-full h-full object-cover"
                         />
                       ) : (
@@ -316,9 +324,13 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
                     <input
                       type="file"
                       accept="image/*"
-                      id={`image-upload-${question.questionId}-${option.id}`}
+                      id={`image-upload-${question.questionId}-${option.optionId}`}
                       onChange={(event) =>
-                        handleImageChange(event, question.questionId, option.id)
+                        handleImageChange(
+                          event,
+                          question.questionId,
+                          option.optionId,
+                        )
                       }
                       className="hidden"
                     />
@@ -326,7 +338,7 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
                   {question.options.length > 1 && (
                     <button
                       onClick={() =>
-                        handleDeleteOption(question.questionId, option.id)
+                        handleDeleteOption(question.questionId, option.optionId)
                       }
                       className="absolute top-0 right-0 bg-red-500 text-white px-1 rounded"
                     >

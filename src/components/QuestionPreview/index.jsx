@@ -20,7 +20,7 @@ function QuestionPreview({ questions, styleData, selectedQuestionId }) {
               <div className="mt-4 flex flex-col items-center">
                 {selectedQuestion.options.map((option) => (
                   <CustomButton
-                    key={option.id}
+                    key={option.optionId}
                     text={option.text}
                     themeColor={styleData.themeColor}
                     buttonShape={styleData.buttonShape}
@@ -31,11 +31,15 @@ function QuestionPreview({ questions, styleData, selectedQuestionId }) {
             {selectedQuestion.questionType === "imageChoice" && (
               <div className="flex flex-wrap justify-center mt-4">
                 {selectedQuestion.options.map((option) => (
-                  <button key={option.id} className="mb-4 mx-2">
+                  <button key={option.optionId} className="mb-4 mx-2">
                     {option.image && (
                       <img
-                        src={URL.createObjectURL(option.image)}
-                        alt={`${option.id}`}
+                        src={
+                          typeof option.image === "string"
+                            ? option.image
+                            : URL.createObjectURL(option.image)
+                        }
+                        alt={`${option.optionId}`}
                         className="w-24 h-24 object-cover"
                       />
                     )}
