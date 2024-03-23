@@ -42,7 +42,7 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           questionId: newQuestionId,
           questionType: "textInput",
           questionText: "",
-          answer: "",
+          answer: null,
         };
         break;
       case "emailInput":
@@ -50,7 +50,7 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           questionId: newQuestionId,
           questionType: "emailInput",
           questionText: "",
-          answer: "",
+          answer: null,
         };
         break;
       case "phoneInput":
@@ -58,7 +58,7 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           questionId: newQuestionId,
           questionType: "phoneInput",
           questionText: "",
-          answer: "",
+          answer: null,
         };
         break;
       case "dateInput":
@@ -66,7 +66,7 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           questionId: newQuestionId,
           questionType: "dateInput",
           questionText: "",
-          answer: "",
+          answer: null,
         };
         break;
       case "timeInput":
@@ -74,7 +74,7 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           questionId: newQuestionId,
           questionType: "timeInput",
           questionText: "",
-          answer: "",
+          answer: null,
         };
         break;
       case "numberInput":
@@ -82,7 +82,7 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           questionId: newQuestionId,
           questionType: "numberInput",
           questionText: "",
-          answer: "",
+          answer: null,
         };
         break;
       case "rangeInput":
@@ -90,7 +90,7 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           questionId: newQuestionId,
           questionType: "rangeInput",
           questionText: "",
-          answer: "",
+          answer: null,
         };
         break;
       case "radioInput":
@@ -98,7 +98,7 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           questionId: newQuestionId,
           questionType: "radioInput",
           questionText: "",
-          answer: "",
+          answer: null,
         };
         break;
       case "selectInput":
@@ -106,7 +106,7 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           questionId: newQuestionId,
           questionType: "selectInput",
           questionText: "",
-          answer: "",
+          answer: null,
         };
         break;
       default:

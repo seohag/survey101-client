@@ -23,45 +23,53 @@ function useCreateSurvey(surveyData) {
       formData.append("endingContent", surveyData.endingContent);
       formData.append("coverImage", surveyData.coverImage);
 
-      surveyData.questions.forEach((question, index) => {
-        formData.append(`questions[${index}][questionId]`, question.questionId);
-        formData.append(
-          `questions[${index}][questionType]`,
-          question.questionType,
-        );
-        formData.append(
-          `questions[${index}][questionText]`,
-          question.questionText,
-        );
+      if (
+        Array.isArray(surveyData.questions) &&
+        surveyData.questions.length > 0
+      ) {
+        surveyData.questions.forEach((question, index) => {
+          formData.append(
+            `questions[${index}][questionId]`,
+            question.questionId,
+          );
+          formData.append(
+            `questions[${index}][questionType]`,
+            question.questionType,
+          );
+          formData.append(
+            `questions[${index}][questionText]`,
+            question.questionText,
+          );
 
-        if (
-          Array.isArray(question.options) &&
-          question.options.length > 0 &&
-          ["textChoice", "imageChoice"].includes(question.questionType)
-        ) {
-          question.options.forEach((option, optionIndex) => {
-            if (question.questionType === "textChoice") {
-              formData.append(
-                `questions[${index}][options][${optionIndex}][optionId]`,
-                option.id,
-              );
-              formData.append(
-                `questions[${index}][options][${optionIndex}][text]`,
-                option.text,
-              );
-            } else if (question.questionType === "imageChoice") {
-              formData.append(
-                `questions[${index}][options][${optionIndex}][optionId]`,
-                option.id,
-              );
-              formData.append(
-                `questions[${index}][options][${optionIndex}][image]`,
-                option.image,
-              );
-            }
-          });
-        }
-      });
+          if (
+            Array.isArray(question.options) &&
+            question.options.length > 0 &&
+            ["textChoice", "imageChoice"].includes(question.questionType)
+          ) {
+            question.options.forEach((option, optionIndex) => {
+              if (question.questionType === "textChoice") {
+                formData.append(
+                  `questions[${index}][options][${optionIndex}][optionId]`,
+                  option.id,
+                );
+                formData.append(
+                  `questions[${index}][options][${optionIndex}][text]`,
+                  option.text,
+                );
+              } else if (question.questionType === "imageChoice") {
+                formData.append(
+                  `questions[${index}][options][${optionIndex}][optionId]`,
+                  option.id,
+                );
+                formData.append(
+                  `questions[${index}][options][${optionIndex}][image]`,
+                  option.image,
+                );
+              }
+            });
+          }
+        });
+      }
 
       await fetchData("post", `/user/${userId}/surveys`, formData, {
         "Content-Type": "multipart/form-data",
