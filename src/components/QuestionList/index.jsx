@@ -315,7 +315,7 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
                     </div>
                     <input
                       type="file"
-                      accept="image/jpg, image/jpeg, image/png"
+                      accept="image/*"
                       id={`image-upload-${question.questionId}-${option.id}`}
                       onChange={(event) =>
                         handleImageChange(event, question.questionId, option.id)
@@ -350,11 +350,13 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
               </div>
             </div>
           )}
+
           {question.questionType === "textInput" && (
             <input
               type="text"
               className="w-full p-2 border border-gray-300 rounded"
-              placeholder="텍스트를 입력해주세요"
+              placeholder="텍스트만 입력 가능합니다"
+              readOnly
             />
           )}
           {question.questionType === "emailInput" && (
@@ -362,6 +364,7 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
               type="email"
               className="w-full p-2 border border-gray-300 rounded"
               placeholder="이메일만 입력 가능합니다"
+              readOnly
             />
           )}
           {question.questionType === "phoneInput" && (
@@ -369,6 +372,7 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
               type="tel"
               className="w-full p-2 border border-gray-300 rounded"
               placeholder="전화번호만 입력 가능합니다"
+              readOnly
             />
           )}
           {question.questionType === "dateInput" && (
@@ -376,6 +380,7 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
               type="date"
               value={question.answer}
               className="w-full p-2 border border-gray-300 rounded"
+              readOnly
             />
           )}
           {question.questionType === "timeInput" && (
@@ -383,6 +388,7 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
               type="time"
               value={question.answer}
               className="w-full p-2 border border-gray-300 rounded"
+              readOnly
             />
           )}
           {question.questionType === "numberInput" && (
@@ -391,6 +397,7 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
               value={question.answer}
               className="w-full p-2 border border-gray-300 rounded"
               placeholder="숫자만 입력 가능합니다"
+              readOnly
             />
           )}
           {question.questionType === "rangeInput" && (
@@ -398,6 +405,7 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
               type="range"
               value={question.answer}
               className="w-full p-2 border border-gray-300 rounded"
+              readOnly
             />
           )}
           {question.questionType === "radioInput" && (
@@ -409,6 +417,7 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
                     value={rating}
                     checked={question.answer === rating}
                     className="hidden"
+                    readOnly
                   />
                   <span
                     className={`text-3xl ${rating <= question.answer ? "text-yellow-500" : "text-gray-300"} cursor-pointer`}
