@@ -1,4 +1,11 @@
+import { useParams } from "react-router-dom";
+
+import useCreateSurvey from "../../apis/useDeleteSurvey";
+
 function FormEditorHeader({ activeSection, onSectionChange }) {
+  const { surveyId } = useParams();
+  const deleteSurvey = useCreateSurvey(surveyId);
+
   return (
     <section className="bg-purple-800 text-white p-4">
       <div className="flex justify-between items-center">
@@ -35,6 +42,12 @@ function FormEditorHeader({ activeSection, onSectionChange }) {
             onClick={() => onSectionChange("ending")}
           >
             엔딩
+          </button>
+          <button
+            className="bg-red-500 text-white px-4 py-2 rounded-md"
+            onClick={deleteSurvey}
+          >
+            삭제
           </button>
         </div>
       </div>

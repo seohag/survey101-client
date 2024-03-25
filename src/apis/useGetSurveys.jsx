@@ -20,8 +20,9 @@ function useGetSurveys() {
   const { data: surveys = [], isLoading } = useQuery({
     queryKey: ["surveys"],
     queryFn: getSurveyList,
-    refetchOnWindowFocus: false,
-    staleTime: 60 * 3000,
+    refetchOnMount: true,
+    refetchInterval: true,
+    refetchOnWindowFocus: true,
   });
 
   return { surveys, isLoading };

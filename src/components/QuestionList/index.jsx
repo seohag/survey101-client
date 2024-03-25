@@ -12,7 +12,6 @@ import {
 
 function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
   const [errorMessage, setErrorMessage] = useState("");
-  console.log(questions);
   function handleDeleteQuestion(questionId) {
     if (questions.length <= 1) {
       return;
