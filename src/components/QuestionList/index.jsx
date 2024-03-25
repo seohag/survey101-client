@@ -12,7 +12,7 @@ import {
 
 function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
   const [errorMessage, setErrorMessage] = useState("");
-
+  console.log(questions);
   function handleDeleteQuestion(questionId) {
     if (questions.length <= 1) {
       return;
@@ -310,8 +310,8 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
                       {option.image ? (
                         <img
                           src={
-                            typeof option.image === "string"
-                              ? option.image
+                            typeof option.image.imageUrl === "string"
+                              ? option.image.imageUrl
                               : URL.createObjectURL(option.image)
                           }
                           alt={`Option ${option.optionId}`}
@@ -390,7 +390,6 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
           {question.questionType === "dateInput" && (
             <input
               type="date"
-              value={question.answer}
               className="w-full p-2 border border-gray-300 rounded"
               readOnly
             />
@@ -398,7 +397,6 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
           {question.questionType === "timeInput" && (
             <input
               type="time"
-              value={question.answer}
               className="w-full p-2 border border-gray-300 rounded"
               readOnly
             />
@@ -406,7 +404,6 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
           {question.questionType === "numberInput" && (
             <input
               type="number"
-              value={question.answer}
               className="w-full p-2 border border-gray-300 rounded"
               placeholder="숫자만 입력 가능합니다"
               readOnly
@@ -415,7 +412,6 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
           {question.questionType === "rangeInput" && (
             <input
               type="range"
-              value={question.answer}
               className="w-full p-2 border border-gray-300 rounded"
               readOnly
             />
@@ -426,7 +422,6 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
                 <label key={rating} className="inline-block mr-2">
                   <input
                     type="radio"
-                    value={rating}
                     checked={question.answer === rating}
                     className="hidden"
                     readOnly

@@ -98,8 +98,8 @@ function CoverEditor({ coverData, setCoverData, styleData }) {
               {coverData.coverImage ? (
                 <img
                   src={
-                    typeof coverData.coverImage === "string"
-                      ? coverData.coverImage
+                    typeof coverData.coverImage.imageUrl === "string"
+                      ? coverData.coverImage.imageUrl
                       : URL.createObjectURL(coverData.coverImage)
                   }
                   alt="preview"

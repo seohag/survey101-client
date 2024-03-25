@@ -3,15 +3,19 @@ import quillEmoji from "react-quill-emoji";
 import "react-quill/dist/quill.snow.css";
 import "react-quill-emoji/dist/quill-emoji.css";
 
+import { useParams } from "react-router-dom";
 import EndingPreview from "../EndingPreview";
 
 import useFormEditorStore from "../../store/useFormEditorStore";
 import useUserIdStore from "../../store/useUserIdStore";
 
 import useCreateSurvey from "../../apis/useCreateSurvey";
+import usePutSurvey from "../../apis/usePutSurvey";
+
 
 function EndingEditor() {
   const { userId } = useUserIdStore();
+  const { surveyId } = useParams();
   const { coverData, styleData, endingData, questions, setEndingData } =
     useFormEditorStore();
 
@@ -30,6 +34,7 @@ function EndingEditor() {
   };
 
   const createSurvey = useCreateSurvey(surveyData);
+  const updateSurvey = usePutSurvey(surveyData, surveyId);
 
   const modules = {
     toolbar: {
@@ -57,13 +62,12 @@ function EndingEditor() {
     true,
   );
 
-  function handleTitleChange(event) {
-    const newTitle = event.target.value;
-
-    setEndingData((prevEndingData) => ({
-      ...prevEndingData,
-      title: newTitle,
-    }));
+  function handleSubmit() {
+    if (surveyId) {
+      updateSurvey();
+    } else {
+      createSurvey();
+    }
   }
 
   return (
@@ -76,9 +80,9 @@ function EndingEditor() {
         <div className="text-center">
           <button
             className="bg-gray-300 px-4 py-2 rounded"
-            onClick={createSurvey}
+            onClick={handleSubmit}
           >
-            설문 생성(저장) 하기
+            {surveyId ? "설문 저장" : "설문 생성"}
           </button>
         </div>
         <div className="bg-white rounded-lg shadow-lg p-4 mb-4 text-center h-[600px]">
@@ -87,7 +91,7 @@ function EndingEditor() {
             className="w-full p-2 border border-gray-300 rounded text-center"
             placeholder="비어있을 때 텍스트를 입력해주세요"
             value={endingData.title}
-            onChange={handleTitleChange}
+            readOnly
           />
           <ReactQuill
             theme="snow"

@@ -9,6 +9,20 @@ import EndingEditor from "../../components/EndingEditor";
 import useFormEditorStore from "../../store/useFormEditorStore";
 
 function FormEditorPage() {
+  const {
+    activeSection,
+    coverData,
+    styleData,
+    endingData,
+    setActiveSection,
+    setCoverData,
+    setStyleData,
+    setEndingData,
+    setQuestions,
+    questions,
+    reset,
+  } = useFormEditorStore();
+
   useEffect(() => {
     const handleBeforeUnload = (event) => {
       event.preventDefault();
@@ -21,18 +35,9 @@ function FormEditorPage() {
     };
   }, []);
 
-  const {
-    activeSection,
-    coverData,
-    styleData,
-    endingData,
-    setActiveSection,
-    setCoverData,
-    setStyleData,
-    setEndingData,
-    setQuestions,
-    questions,
-  } = useFormEditorStore();
+  useEffect(() => {
+    reset();
+  }, []);
 
   function handleSectionChange(section) {
     setActiveSection(section);

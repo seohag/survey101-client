@@ -35,8 +35,8 @@ function QuestionPreview({ questions, styleData, selectedQuestionId }) {
                     {option.image && (
                       <img
                         src={
-                          typeof option.image === "string"
-                            ? option.image
+                          typeof option.image.imageUrl === "string"
+                            ? option.image.imageUrl
                             : URL.createObjectURL(option.image)
                         }
                         alt={`${option.optionId}`}
