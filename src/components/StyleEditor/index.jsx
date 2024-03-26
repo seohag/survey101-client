@@ -66,7 +66,6 @@ function StyleEditor({ coverData, styleData, setStyleData }) {
               >
                 <option value="fade">Fade</option>
                 <option value="slide">Slide</option>
-                <option value="bounce">Bounce</option>
               </select>
             </label>
           </div>

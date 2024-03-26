@@ -128,12 +128,21 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
 
       <section className="w-3/5 p-4 overflow-auto">
         <div className="text-center">
-          <button
-            className="bg-gray-300 px-4 py-2 rounded mb-2"
-            onClick={handleAddQuestionPopup}
-          >
-            질문 추가
-          </button>
+          {questions.length === 0 ? (
+            <button
+              className="bg-gray-300 px-4 py-2 rounded mb-2"
+              onClick={handleAddQuestionPopup}
+            >
+              질문을 추가하려면 버튼을 눌러서 추가해주세요!
+            </button>
+          ) : (
+            <button
+              className="bg-gray-300 px-4 py-2 rounded mb-2"
+              onClick={handleAddQuestionPopup}
+            >
+              질문 추가
+            </button>
+          )}
         </div>
         <QuestionList
           questions={questions}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CustomButton from "../CustomButton";
 
 import EndingSection from "../EndingSection";
@@ -8,6 +8,23 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [hoveredRating, setHoveredRating] = useState(null);
   const [selectedRating, setSelectedRating] = useState(null);
+  const [animationOption, setAnimationOption] = useState("");
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [isPrevAnimating, setIsPrevAnimating] = useState(false);
+
+  useEffect(() => {
+    switch (surveyData.animation) {
+      case "fade":
+        setAnimationOption("fade");
+        break;
+      case "slide":
+        setAnimationOption("slide");
+        break;
+      default:
+        setAnimationOption("");
+        break;
+    }
+  }, [animationOption]);
 
   const totalQuestions = questions.length;
   const progressPercent = ((currentQuestionIndex + 1) / totalQuestions) * 100;
@@ -23,12 +40,18 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
 
   function handlePreviousQuestion() {
     if (currentQuestionIndex > 0) {
+      setIsPrevAnimating(true);
+      setIsAnimating(false);
+
       setCurrentQuestionIndex(currentQuestionIndex - 1);
     }
   }
 
   function handleNextQuestion() {
     if (currentQuestionIndex < totalQuestions - 1) {
+      setIsAnimating(true);
+      setIsPrevAnimating(false);
+
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       setCurrentQuestionIndex(totalQuestions);
@@ -52,7 +75,25 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
   return (
     <div className="h-screen min-w-96 flex flex-col justify-center items-center text-center overflow-auto">
       {currentQuestionIndex < totalQuestions ? (
-        <div>
+        <div
+          className={`w-full max-w-md ${
+            animationOption === "slide" && isAnimating ? "animate-slide-in" : ""
+          } ${
+            animationOption === "fade" && isAnimating ? "animate-fade-in" : ""
+          } ${
+            animationOption === "slide" && isPrevAnimating
+              ? "animate-slide-out"
+              : ""
+          } ${
+            animationOption === "fade" && isPrevAnimating
+              ? "animate-fade-out"
+              : ""
+          }`}
+          onAnimationEnd={() => {
+            setIsAnimating(false);
+            setIsPrevAnimating(false);
+          }}
+        >
           <div className="mb-4 w-full h-4 bg-gray-300 rounded-full">
             <div
               className="h-full bg-blue-500 rounded-full"
@@ -61,13 +102,21 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
           </div>
           <div className=" bg-gray-200 p-4 border rounded min-h-[572px] min-w-[320px]">
             <h3 className="text-l font-bold" style={{ color: themeColor }}>
+              <span className="flex justify-between">
+                {currentQuestionIndex > 0 && (
+                  <button
+                    onClick={() => {
+                      setIsPrevAnimating(true);
+                      handlePreviousQuestion();
+                    }}
+                  >
+                    {"<"}
+                  </button>
+                )}
+              </span>
               {currentQuestion.questionText}
             </h3>
-            <div className="mt-4 flex justify-between">
-              {currentQuestionIndex > 0 && (
-                <button onClick={handlePreviousQuestion}>이전</button>
-              )}
-            </div>
+
             {currentQuestion.questionType === "textChoice" && (
               <div className="mt-4 flex flex-col items-center">
                 {currentQuestion.options.map((option) => (

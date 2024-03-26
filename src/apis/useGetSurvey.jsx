@@ -26,6 +26,7 @@ function useGetSurvey(surveyId) {
     queryKey: ["survey", surveyId],
     queryFn: getSurveyData,
     refetchOnWindowFocus: false,
+    refetchOnMount: true,
 
     staleTime: 60 * 3000,
   });

@@ -6,16 +6,17 @@ import DashBoardPage from "./pages/DashBoardPage";
 import FormEditorPage from "./pages/FormEditorPage";
 import SurveyEditorPage from "./pages/SurveyEditorPage";
 import ResponsePage from "./pages/ResponsePage";
-
-import useGetAuthUser from "./apis/useGetAuthUser";
+import AnalyticsPage from "./pages/AnalyticsPage";
+import AnalyticsDetail from "./components/AnalaticsDetail";
 
 function App() {
-  // useGetAuthUser();
-
   return (
     <Routes>
       <Route path="/" exact element={<InitialPage />} />
       <Route path="/dash" element={<DashBoardPage />} />
+      <Route path="/analytics" element={<AnalyticsPage />}>
+        <Route path=":surveyId" element={<AnalyticsDetail />} />
+      </Route>
       <Route path="/editor/new-form" element={<FormEditorPage />} />
       <Route path="/editor/:surveyId" element={<SurveyEditorPage />} />
       <Route path="/form/:surveyId" element={<ResponsePage />} />

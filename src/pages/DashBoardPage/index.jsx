@@ -9,6 +9,9 @@ import useGetSurveys from "../../apis/useGetSurveys";
 
 import Loading from "../../components/shared/Loading";
 
+import useUserIdStore from "../../store/useUserIdStore";
+import authUser from "../../utils/authUser";
+
 function DashBoardPage() {
   const handleLogOut = useGoogleLogOut();
   const navigate = useNavigate();
@@ -16,9 +19,31 @@ function DashBoardPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const { surveys, isLoading } = useGetSurveys();
 
-  function toggleSearchVisibility() {
-    setIsSearchVisible(!isSearchVisible);
-  }
+  const { setUser, setIsLoggedIn } = useUserIdStore();
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await authUser();
+        const { result, user } = response;
+
+        if (result) {
+          setIsLoggedIn(true);
+          setUser(user);
+        } else {
+          setIsLoggedIn(false);
+          setUser("");
+          navigate("/");
+        }
+      } catch (error) {
+        setUser("");
+        setIsLoggedIn(false);
+        navigate("/");
+      }
+    };
+
+    checkAuth();
+  }, []);
 
   function debounce(func, wait) {
     let timeout;
@@ -44,6 +69,10 @@ function DashBoardPage() {
     return () => clearTimeout(timeout);
   }, [searchTerm]);
 
+  function toggleSearchVisibility() {
+    setIsSearchVisible(!isSearchVisible);
+  }
+
   function filterSurveys(survey) {
     return survey.title.toLowerCase().includes(searchTerm.toLocaleLowerCase());
   }
@@ -60,12 +89,15 @@ function DashBoardPage() {
         <div className="flex justify-between items-center">
           <span className="text-2xl font-bold">Survey101</span>
           <div className="flex items-center space-x-4">
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
+            <button
+              className="bg-blue-500 text-white px-4 py-2 rounded-md"
+              onClick={() => navigate("/analytics")}
+            >
               응답 인사이트 및 보기
             </button>
             <button
               onClick={handleLogOut}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md"
+              className="bg-red-500 text-white px-4 py-2 rounded-md"
             >
               로그아웃
             </button>

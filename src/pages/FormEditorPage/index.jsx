@@ -24,6 +24,10 @@ function FormEditorPage() {
   } = useFormEditorStore();
 
   useEffect(() => {
+    reset();
+  }, []);
+
+  useEffect(() => {
     const handleBeforeUnload = (event) => {
       event.preventDefault();
     };
@@ -33,10 +37,6 @@ function FormEditorPage() {
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, []);
-
-  useEffect(() => {
-    reset();
   }, []);
 
   function handleSectionChange(section) {
