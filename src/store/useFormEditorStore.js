@@ -14,7 +14,7 @@ const useFormEditorStore = create((set) => ({
     animation: "fade",
   },
   endingData: {
-    title: "제출 완료",
+    title: "설문 완료",
     content: "결과에 대한 내용을 입력해주세요.",
   },
   questions: [],
@@ -26,6 +26,7 @@ const useFormEditorStore = create((set) => ({
   setQuestions: (data) => set({ questions: data }),
   reset: () =>
     set({
+      activeSection: "cover",
       coverData: {
         title: "설문지",
         subtitle: "",
@@ -38,7 +39,7 @@ const useFormEditorStore = create((set) => ({
         animation: "fade",
       },
       endingData: {
-        title: "제출 완료",
+        title: "설문 완료",
         content: "결과에 대한 내용을 입력해주세요.",
       },
       questions: [],

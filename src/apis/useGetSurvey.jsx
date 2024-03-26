@@ -8,11 +8,13 @@ function useGetSurvey(surveyId) {
 
   async function getSurveyData() {
     try {
-      const response = await fetchData(
-        "get",
-        `/user/${userId}/surveys/${surveyId}`,
-      );
+      let endpoint = `/surveys/${surveyId}`;
 
+      if (userId) {
+        endpoint = `/user/${userId}/surveys/${surveyId}`;
+      }
+
+      const response = await fetchData("get", endpoint);
       return response.data;
     } catch (error) {
       console.error(error);
@@ -24,6 +26,7 @@ function useGetSurvey(surveyId) {
     queryKey: ["survey", surveyId],
     queryFn: getSurveyData,
     refetchOnWindowFocus: false,
+
     staleTime: 60 * 3000,
   });
 

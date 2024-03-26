@@ -101,14 +101,14 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           answer: null,
         };
         break;
-      case "selectInput":
-        newQuestion = {
-          questionId: newQuestionId,
-          questionType: "selectInput",
-          questionText: "",
-          answer: null,
-        };
-        break;
+      // case "selectInput":
+      //   newQuestion = {
+      //     questionId: newQuestionId,
+      //     questionType: "selectInput",
+      //     questionText: "",
+      //     answer: null,
+      //   };
+      //   break;
       default:
         break;
     }

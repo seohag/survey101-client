@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import fetchData from "../utils/axios";
 import useUserIdStore from "../store/useUserIdStore";
 
-function useCreateSurvey(surveyData) {
+function useCreateSurvey(surveyData, setSurveyUrl) {
   const navigate = useNavigate();
   const { userId } = useUserIdStore();
 
@@ -71,20 +71,28 @@ function useCreateSurvey(surveyData) {
         });
       }
 
-      await fetchData("post", `/user/${userId}/surveys`, formData, {
-        "Content-Type": "multipart/form-data",
-      });
+      const response = await fetchData(
+        "post",
+        `/user/${userId}/surveys`,
+        formData,
+        {
+          "Content-Type": "multipart/form-data",
+        },
+      );
+
+      return response.data.url;
     } catch (error) {
       console.error(error);
+      throw error;
     }
   }
 
   const { mutateAsync: fetchSurvey } = useMutation({
     mutationFn: handleFetchSurvey,
     useErrorBoundary: true,
-    onSuccess: () => {
+    onSuccess: (data) => {
+      setSurveyUrl(data);
       console.log("설문생성 성공");
-      // navigate(`/dash`);
     },
   });
 

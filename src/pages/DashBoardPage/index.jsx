@@ -102,17 +102,41 @@ function DashBoardPage() {
           <span className="text-xl font-semibold">설문 생성하기</span>
         </button>
       </section>
-      <section className="grid grid-cols-4 gap-4 mt-8">
-        {filteredSurveys.map((survey) => (
-          <button
-            key={survey._id}
-            onClick={() => navigate(`/editor/${survey._id}`)}
-            className="cursor-pointer bg-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 focus:outline-none min-h-60"
-          >
-            <h2 className="text-xl font-semibold">{survey.title}</h2>
-            <h2 className="text-x font-bold">{survey.createdAt}</h2>
-          </button>
-        ))}
+      <section>
+        {filteredSurveys.length > 0 ? (
+          <div className="grid grid-cols-4 gap-4 mt-8">
+            {filteredSurveys.map((survey) => (
+              <button
+                key={survey._id}
+                onClick={() => navigate(`/editor/${survey._id}`)}
+                className="cursor-pointer bg-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 focus:outline-none min-h-60"
+              >
+                <h2 className="text-xl font-semibold">{survey.title}</h2>
+                {survey.coverImage && (
+                  <div className="flex justify-center items-center mb-4 mx-2 relative">
+                    <img
+                      src={
+                        typeof survey.coverImage.imageUrl === "string"
+                          ? survey.coverImage.imageUrl
+                          : URL.createObjectURL(survey.coverImage)
+                      }
+                      alt="Cover"
+                      className="object-contain"
+                      width={200}
+                      height={200}
+                    />
+                  </div>
+                )}
+              </button>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center mt-7 text-gray-500">
+            <h2 className="text-2xl font-semibold color">
+              작성하신 설문이 없습니다.
+            </h2>
+          </div>
+        )}
       </section>
     </>
   );

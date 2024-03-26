@@ -434,7 +434,7 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
               ))}
             </div>
           )}
-          {question.questionType === "selectInput" && (
+          {/* {question.questionType === "selectInput" && (
             <select className="w-full p-2 border border-gray-300 rounded">
               <option value="">옵션을 선택해주세요</option>
               <option value="whale">고래</option>
@@ -444,7 +444,7 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
               <option value="tiger">호랑이</option>
               <option value="lion">사자</option>
             </select>
-          )}
+          )} */}
         </div>
       ))}
     </div>

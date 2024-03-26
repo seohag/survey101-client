@@ -1,9 +1,11 @@
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+
 import ReactQuill, { Quill } from "react-quill";
 import quillEmoji from "react-quill-emoji";
 import "react-quill/dist/quill.snow.css";
 import "react-quill-emoji/dist/quill-emoji.css";
 
-import { useParams } from "react-router-dom";
 import EndingPreview from "../EndingPreview";
 
 import useFormEditorStore from "../../store/useFormEditorStore";
@@ -12,12 +14,15 @@ import useUserIdStore from "../../store/useUserIdStore";
 import useCreateSurvey from "../../apis/useCreateSurvey";
 import usePutSurvey from "../../apis/usePutSurvey";
 
+import SurveyUrlModal from "../shared/SurveyUrlModal";
 
 function EndingEditor() {
   const { userId } = useUserIdStore();
   const { surveyId } = useParams();
   const { coverData, styleData, endingData, questions, setEndingData } =
     useFormEditorStore();
+  const [surveyUrl, setSurveyUrl] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const surveyData = {
     creator: userId,
@@ -33,8 +38,8 @@ function EndingEditor() {
     questions,
   };
 
-  const createSurvey = useCreateSurvey(surveyData);
-  const updateSurvey = usePutSurvey(surveyData, surveyId);
+  const createSurvey = useCreateSurvey(surveyData, setSurveyUrl);
+  const updateSurvey = usePutSurvey(surveyData, surveyId, setSurveyUrl);
 
   const modules = {
     toolbar: {
@@ -65,13 +70,18 @@ function EndingEditor() {
   function handleSubmit() {
     if (surveyId) {
       updateSurvey();
+      setShowModal(true);
     } else {
       createSurvey();
+      setShowModal(true);
     }
   }
 
   return (
     <div className="flex">
+      {showModal && (
+        <SurveyUrlModal url={surveyUrl} onClose={() => setShowModal(false)} />
+      )}
       <section className="w-2/5 p-4">
         <EndingPreview endingData={endingData} styleData={styleData} />
       </section>
@@ -89,7 +99,6 @@ function EndingEditor() {
           <input
             type="text"
             className="w-full p-2 border border-gray-300 rounded text-center"
-            placeholder="비어있을 때 텍스트를 입력해주세요"
             value={endingData.title}
             readOnly
           />

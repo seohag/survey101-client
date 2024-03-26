@@ -1,6 +1,6 @@
 import { getBrightness } from "../../utils/utils";
 
-function CustomButton({ text, themeColor, buttonShape }) {
+function CustomButton({ text, themeColor, buttonShape, onClick }) {
   const buttonBrightness = getBrightness(themeColor);
   const buttonTextColor = buttonBrightness < 128 ? "#FFFFFF" : "#000000";
 
@@ -20,8 +20,10 @@ function CustomButton({ text, themeColor, buttonShape }) {
       style={{
         backgroundColor: themeColor,
         color: buttonTextColor,
-        padding: "10px 120px",
+        width: "350px",
+        height: "50px",
       }}
+      onClick={onClick}
     >
       {text}
     </button>
