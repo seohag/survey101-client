@@ -8,7 +8,7 @@ function useGetSurvey(surveyId) {
 
   async function getSurveyData() {
     try {
-      let endpoint = `/surveys/${surveyId}`;
+      let endpoint = `response/surveys/${surveyId}`;
 
       if (userId) {
         endpoint = `/user/${userId}/surveys/${surveyId}`;

@@ -26,7 +26,7 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           questionId: newQuestionId,
           questionType: "textChoice",
           questionText: "",
-          options: [],
+          options: [{ optionId: uuidv4(), text: "" }],
         };
         break;
       case "imageChoice":
@@ -34,7 +34,7 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           questionId: newQuestionId,
           questionType: "imageChoice",
           questionText: "",
-          options: [],
+          options: [{ optionId: uuidv4(), image: null }],
         };
         break;
       case "textInput":
@@ -42,7 +42,6 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           questionId: newQuestionId,
           questionType: "textInput",
           questionText: "",
-          answer: null,
         };
         break;
       case "emailInput":
@@ -50,7 +49,6 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           questionId: newQuestionId,
           questionType: "emailInput",
           questionText: "",
-          answer: null,
         };
         break;
       case "phoneInput":
@@ -58,7 +56,6 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           questionId: newQuestionId,
           questionType: "phoneInput",
           questionText: "",
-          answer: null,
         };
         break;
       case "dateInput":
@@ -66,7 +63,6 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           questionId: newQuestionId,
           questionType: "dateInput",
           questionText: "",
-          answer: null,
         };
         break;
       case "timeInput":
@@ -74,7 +70,6 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           questionId: newQuestionId,
           questionType: "timeInput",
           questionText: "",
-          answer: null,
         };
         break;
       case "numberInput":
@@ -82,7 +77,6 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           questionId: newQuestionId,
           questionType: "numberInput",
           questionText: "",
-          answer: null,
         };
         break;
       case "rangeInput":
@@ -90,7 +84,6 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           questionId: newQuestionId,
           questionType: "rangeInput",
           questionText: "",
-          answer: null,
         };
         break;
       case "radioInput":
@@ -98,7 +91,6 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           questionId: newQuestionId,
           questionType: "radioInput",
           questionText: "",
-          answer: null,
         };
         break;
       // case "selectInput":
@@ -128,21 +120,12 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
 
       <section className="w-3/5 p-4 overflow-auto">
         <div className="text-center">
-          {questions.length === 0 ? (
-            <button
-              className="bg-gray-300 px-4 py-2 rounded mb-2"
-              onClick={handleAddQuestionPopup}
-            >
-              질문을 추가하려면 버튼을 눌러서 추가해주세요!
-            </button>
-          ) : (
-            <button
-              className="bg-gray-300 px-4 py-2 rounded mb-2"
-              onClick={handleAddQuestionPopup}
-            >
-              질문 추가
-            </button>
-          )}
+          <button
+            className="bg-gray-300 px-4 py-2 rounded mb-2"
+            onClick={handleAddQuestionPopup}
+          >
+            질문 추가
+          </button>
         </div>
         <QuestionList
           questions={questions}

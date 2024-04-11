@@ -10,7 +10,7 @@ function useGetSurveyReponses() {
     try {
       const surveyResponses = await fetchData(
         "get",
-        `/surveys/${surveyId}/surveyResponses`,
+        `response/surveys/${surveyId}/surveyResponses`,
       );
       return surveyResponses.data;
     } catch (error) {

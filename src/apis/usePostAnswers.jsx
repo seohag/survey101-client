@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { useParams , useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import fetchData from "../utils/axios";
 
@@ -9,9 +9,13 @@ function usePostAnswers(surveyAnswers) {
 
   async function handleFetchAnswers() {
     try {
-      const response = await fetchData("post", `/surveys/${surveyId}/answers`, {
-        surveyAnswers,
-      });
+      const response = await fetchData(
+        "post",
+        `/response/surveys/${surveyId}/answers`,
+        {
+          surveyAnswers,
+        },
+      );
 
       return response.data;
     } catch (error) {

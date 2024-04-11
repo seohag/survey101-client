@@ -12,6 +12,7 @@ import {
 
 function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
   const [errorMessage, setErrorMessage] = useState("");
+
   function handleDeleteQuestion(questionId) {
     if (questions.length <= 1) {
       return;
@@ -130,8 +131,6 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
     const reader = new FileReader();
 
     reader.onload = (ev) => {
-      const imageUrl = ev.target.result;
-
       const newQuestions = questions.map((question) => {
         if (question.questionId === questionId) {
           const newOptions = question.options.map((option) => {

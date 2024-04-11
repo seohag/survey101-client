@@ -1,5 +1,7 @@
 import { create } from "zustand";
 
+import { v4 as uuidv4 } from "uuid";
+
 const useFormEditorStore = create((set) => ({
   activeSection: "cover",
   coverData: {
@@ -17,7 +19,25 @@ const useFormEditorStore = create((set) => ({
     title: "설문 완료",
     content: "결과에 대한 내용을 입력해주세요.",
   },
-  questions: [],
+  questions: [
+    {
+      questionId: uuidv4(),
+      questionType: "imageChoice",
+      questionText: "",
+      options: [{ optionId: uuidv4(), image: null }],
+    },
+    {
+      questionId: uuidv4(),
+      questionType: "textChoice",
+      questionText: "",
+      options: [{ optionId: uuidv4(), text: "" }],
+    },
+    {
+      questionId: uuidv4(),
+      questionType: "textInput",
+      questionText: "",
+    },
+  ],
 
   setActiveSection: (section) => set({ activeSection: section }),
   setCoverData: (data) => set({ coverData: { ...data } }),
@@ -42,7 +62,25 @@ const useFormEditorStore = create((set) => ({
         title: "설문 완료",
         content: "결과에 대한 내용을 입력해주세요.",
       },
-      questions: [],
+      questions: [
+        {
+          questionId: uuidv4(),
+          questionType: "imageChoice",
+          questionText: "",
+          options: [{ optionId: uuidv4(), image: null }],
+        },
+        {
+          questionId: uuidv4(),
+          questionType: "textChoice",
+          questionText: "",
+          options: [{ optionId: uuidv4(), text: "" }],
+        },
+        {
+          questionId: uuidv4(),
+          questionType: "textInput",
+          questionText: "",
+        },
+      ],
     }),
 }));
 

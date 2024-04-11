@@ -111,6 +111,8 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                     }}
                   >
                     {"<"}
+                    <br />
+                    <br />
                   </button>
                 )}
               </span>

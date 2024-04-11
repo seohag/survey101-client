@@ -9,6 +9,7 @@ function StyleEditor({ coverData, styleData, setStyleData }) {
       [name]: value,
     });
   }
+
   return (
     <div className="flex">
       <section className="w-2/5 p-4">
