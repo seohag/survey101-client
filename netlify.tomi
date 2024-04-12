@@ -1,4 +1,10 @@
 [[redirects]]
+  from = "/proxy/*"
+  to = "https://Survey101-production.ap-northeast-2.elasticbeanstalk.com/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
