@@ -61,10 +61,21 @@ function useCreateSurvey(surveyData, setSurveyUrl) {
                   `questions[${index}][options][${optionIndex}][optionId]`,
                   option.optionId,
                 );
-                formData.append(
-                  `questions[${index}][options][${optionIndex}][image]`,
-                  option.image,
-                );
+                if (option.image instanceof File) {
+                  formData.append(
+                    `questions[${index}][options][${optionIndex}][image]`,
+                    option.image,
+                  );
+                } else if (option.image) {
+                  formData.append(
+                    `questions[${index}][options][${optionIndex}][image][imageUrl]`,
+                    option.image.imageUrl,
+                  );
+                  formData.append(
+                    `questions[${index}][options][${optionIndex}][image][optionId]`,
+                    option.optionId,
+                  );
+                }
               }
             });
           }

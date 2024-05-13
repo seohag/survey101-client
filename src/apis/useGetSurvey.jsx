@@ -15,6 +15,7 @@ function useGetSurvey(surveyId) {
       }
 
       const response = await fetchData("get", endpoint);
+
       return response.data;
     } catch (error) {
       console.error(error);

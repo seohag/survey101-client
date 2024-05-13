@@ -89,6 +89,7 @@ function FormEditorPage() {
       <FormEditorHeader
         activeSection={activeSection}
         onSectionChange={handleSectionChange}
+        isNewForm
       />
       <div className="mt-7">{renderActiveSection()}</div>
     </>

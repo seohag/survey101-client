@@ -130,7 +130,7 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
 
     const reader = new FileReader();
 
-    reader.onload = (ev) => {
+    reader.onload = () => {
       const newQuestions = questions.map((question) => {
         if (question.questionId === questionId) {
           const newOptions = question.options.map((option) => {
@@ -268,7 +268,7 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
                       );
                     }}
                     value={option.text}
-                    className="w-full p-2 border border-gray-300 rounded mr-2"
+                    className="w-full p-2 border border-gray-300 rounded"
                     placeholder="옵션을 입력해주세요"
                   />
                   {question.options.length > 1 && (

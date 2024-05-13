@@ -111,6 +111,7 @@ function SurveyEditorPage() {
       <FormEditorHeader
         activeSection={activeSection}
         onSectionChange={handleSectionChange}
+        isNewForm={false}
       />
       <div className="mt-7">{renderActiveSection()}</div>
     </>

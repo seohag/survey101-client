@@ -12,6 +12,7 @@ function useGetSurveyReponses() {
         "get",
         `response/surveys/${surveyId}/surveyResponses`,
       );
+
       return surveyResponses.data;
     } catch (error) {
       console.error(error);

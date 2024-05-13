@@ -17,7 +17,9 @@ function SurveyUrlModal({ url, onClose }) {
                   <p className="text-sm text-gray-500">
                     해당 링크를 통해 설문을 공유하세요!
                   </p>
-                  <Link to={url}>{url}</Link>
+                  <Link style={{ color: "black" }} to={url}>
+                    {url}
+                  </Link>
                 </div>
               </div>
             </div>

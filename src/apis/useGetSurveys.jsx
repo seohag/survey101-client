@@ -21,7 +21,7 @@ function useGetSurveys() {
     queryKey: ["surveys"],
     queryFn: getSurveyList,
     refetchOnMount: true,
-    refetchInterval: true,
+    refetchIntervalInBackground: true,
     refetchOnWindowFocus: true,
   });
 
