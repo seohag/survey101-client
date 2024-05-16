@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import CustomButton from "../CustomButton";
 
 import EndingSection from "../EndingSection";
@@ -118,7 +118,6 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
               </span>
               {currentQuestion.questionText}
             </h3>
-
             {currentQuestion.questionType === "textChoice" && (
               <div className="mt-4 flex flex-col items-center">
                 {currentQuestion.options.map((option) => (

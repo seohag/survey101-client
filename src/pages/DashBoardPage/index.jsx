@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import useGoogleLogOut from "../../apis/useGoogleLogout";
 import useGetSurveys from "../../apis/useGetSurveys";
 
 import Loading from "../../components/shared/Loading";
+import SurveyCard from "../../components/SurveyCard";
 
 import useUserIdStore from "../../store/useUserIdStore";
 import authUser from "../../utils/authUser";
@@ -18,7 +19,6 @@ function DashBoardPage() {
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const { surveys, isLoading } = useGetSurveys();
-
   const { setUser, setIsLoggedIn } = useUserIdStore();
 
   useEffect(() => {
@@ -138,28 +138,7 @@ function DashBoardPage() {
         {filteredSurveys.length > 0 ? (
           <div className="grid grid-cols-4 gap-4 mt-8">
             {filteredSurveys.map((survey) => (
-              <button
-                key={survey._id}
-                onClick={() => navigate(`/editor/${survey._id}`)}
-                className="cursor-pointer bg-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 focus:outline-none min-h-60"
-              >
-                <h2 className="text-xl font-semibold">{survey.title}</h2>
-                {survey.coverImage && (
-                  <div className="flex justify-center items-center mb-4 mx-2 relative">
-                    <img
-                      src={
-                        typeof survey.coverImage.imageUrl === "string"
-                          ? survey.coverImage.imageUrl
-                          : URL.createObjectURL(survey.coverImage)
-                      }
-                      alt="Cover"
-                      className="object-contain"
-                      width={200}
-                      height={200}
-                    />
-                  </div>
-                )}
-              </button>
+              <SurveyCard key={survey._id} survey={survey} />
             ))}
           </div>
         ) : (

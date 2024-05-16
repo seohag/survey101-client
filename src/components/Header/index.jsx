@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave, faTrash } from "@fortawesome/free-solid-svg-icons";
+
 import usePutSurvey from "../../apis/usePutSurvey";
 import useDeleteSurvey from "../../apis/useDeleteSurvey";
 
@@ -14,8 +15,7 @@ import SurveyUrlModal from "../shared/SurveyUrlModal";
 function FormEditorHeader({ activeSection, onSectionChange, isNewForm }) {
   const { userId } = useUserIdStore();
   const { surveyId } = useParams();
-  const { coverData, styleData, endingData, questions, setEndingData } =
-    useFormEditorStore();
+  const { coverData, styleData, endingData, questions } = useFormEditorStore();
 
   const [surveyUrl, setSurveyUrl] = useState("");
   const [showModal, setShowModal] = useState(false);

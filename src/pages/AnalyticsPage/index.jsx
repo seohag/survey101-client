@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 
 import useGetSurveys from "../../apis/useGetSurveys";
 import Loading from "../../components/shared/Loading";
@@ -7,19 +7,26 @@ import Loading from "../../components/shared/Loading";
 import useGoogleLogOut from "../../apis/useGoogleLogout";
 
 function AnalyticsPage() {
+  const { surveyId } = useParams();
+  const { surveys, isLoading } = useGetSurveys();
+  const [selectedSurveyId, setSelectedSurveyId] = useState(null);
+
   const navigate = useNavigate();
   const handleLogOut = useGoogleLogOut();
 
-  const { surveys, isLoading } = useGetSurveys();
-  const [selectedSurveyId, setSelectedSurveyId] = useState(null);
+  useEffect(() => {
+    if (surveyId) {
+      setSelectedSurveyId(surveyId);
+    }
+  }, [surveyId]);
 
   function navigateToDash() {
     navigate("/dash");
   }
 
-  function showDetail(surveyId) {
-    setSelectedSurveyId(surveyId);
-    navigate(`/analytics/${surveyId}`);
+  function showDetail(clickedSurveyId) {
+    setSelectedSurveyId(clickedSurveyId);
+    navigate(`/analytics/${clickedSurveyId}`);
   }
 
   return (

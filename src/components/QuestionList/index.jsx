@@ -295,7 +295,6 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
               </div>
             </div>
           )}
-
           {question.questionType === "imageChoice" && (
             <div className="flex flex-wrap justify-center">
               {question.options.map((option) => (
