@@ -26,6 +26,16 @@ function AnalyticsDetail() {
 
   const processedSurveyResponses = processData(surveyResponses.responses);
 
+  if (surveyResponses.responses.length === 0) {
+    return (
+      <aside className="flex flex-col items-center justify-center w-full h-full">
+        <div className="text-center text-gray-400 mb-32">
+          응답받은 답변이 없습니다!
+        </div>
+      </aside>
+    );
+  }
+
   return (
     <aside className="flex flex-col items-center justify-center w-full h-full">
       <div className="w-full max-w-screen-lg mx-auto overflow-x-auto mb-32">
