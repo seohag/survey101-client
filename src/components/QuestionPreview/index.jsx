@@ -1,4 +1,13 @@
-import CustomButton from "../CustomButton";
+import TextChoiceQuestion from "./TextChoiceQuestion";
+import ImageChoiceQuestion from "./ImageChoiceQuestion";
+import TextInputQuestion from "./TextInputQuestion";
+import EmailInputQuestion from "./EmailInputQuestion";
+import PhoneInputQuestion from "./PhoneInputQuestion";
+import NumberInputQuestion from "./NumberInputQuestion";
+import DateInputQuestion from "./DateInputQuestion";
+import TimeInputQuestion from "./TimeInputQuestion";
+import RadioInputQuestion from "./RadioInputQuestion";
+import RangeInputQuestion from "./RangeInputQuestion";
 
 function QuestionPreview({ questions, styleData, selectedQuestionId }) {
   const selectedQuestion = questions.find(
@@ -17,157 +26,40 @@ function QuestionPreview({ questions, styleData, selectedQuestionId }) {
               {selectedQuestion.questionText}
             </h3>
             {selectedQuestion.questionType === "textChoice" && (
-              <div className="mt-4 flex flex-col items-center">
-                {selectedQuestion.options.map((option) => (
-                  <CustomButton
-                    key={option.optionId}
-                    text={option.text}
-                    themeColor={styleData.themeColor}
-                    buttonShape={styleData.buttonShape}
-                  />
-                ))}
-              </div>
+              <TextChoiceQuestion
+                styleData={styleData}
+                options={selectedQuestion.options}
+              />
             )}
             {selectedQuestion.questionType === "imageChoice" && (
-              <div className="flex flex-wrap justify-center mt-4">
-                {selectedQuestion.options.map((option) => (
-                  <button key={option.optionId} className="mb-4 mx-2">
-                    {option.image && (
-                      <img
-                        src={
-                          typeof option.image.imageUrl === "string"
-                            ? option.image.imageUrl
-                            : URL.createObjectURL(option.image)
-                        }
-                        alt={`${option.optionId}`}
-                        className="w-24 h-24 object-cover"
-                      />
-                    )}
-                  </button>
-                ))}
-              </div>
+              <ImageChoiceQuestion
+                options={selectedQuestion.options}
+                styleData={styleData}
+              />
             )}
             {selectedQuestion.questionType === "textInput" && (
-              <div className="mt-4 flex flex-col items-center">
-                <input
-                  type="text"
-                  className="w-full p-2 border border-gray-300 rounded"
-                  placeholder="텍스트를 입력해주세요"
-                />
-                <CustomButton
-                  text="다음"
-                  themeColor={styleData.themeColor}
-                  buttonShape={styleData.buttonShape}
-                />
-              </div>
+              <TextInputQuestion styleData={styleData} />
             )}
             {selectedQuestion.questionType === "emailInput" && (
-              <div className="mt-4 flex flex-col items-center">
-                <input
-                  type="email"
-                  className="w-full p-2 border border-gray-300 rounded"
-                  placeholder="이메일을 입력해주세요"
-                />
-                <CustomButton
-                  text="다음"
-                  themeColor={styleData.themeColor}
-                  buttonShape={styleData.buttonShape}
-                />
-              </div>
+              <EmailInputQuestion styleData={styleData} />
             )}
             {selectedQuestion.questionType === "phoneInput" && (
-              <div className="mt-4 flex flex-col items-center">
-                <input
-                  type="tel"
-                  className="w-full p-2 border border-gray-300 rounded"
-                  placeholder="전화번호를 입력해주세요"
-                />
-                <CustomButton
-                  text="다음"
-                  themeColor={styleData.themeColor}
-                  buttonShape={styleData.buttonShape}
-                />
-              </div>
+              <PhoneInputQuestion styleData={styleData} />
             )}
             {selectedQuestion.questionType === "numberInput" && (
-              <div className="mt-4 flex flex-col items-center">
-                <input
-                  type="number"
-                  className="w-full p-2 border border-gray-300 rounded"
-                  placeholder="숫자를 입력해주세요"
-                />
-                <CustomButton
-                  text="다음"
-                  themeColor={styleData.themeColor}
-                  buttonShape={styleData.buttonShape}
-                />
-              </div>
+              <NumberInputQuestion styleData={styleData} />
             )}
             {selectedQuestion.questionType === "dateInput" && (
-              <div className="mt-4 flex flex-col items-center">
-                <input
-                  type="date"
-                  className="w-full p-2 border border-gray-300 rounded"
-                  placeholder="날짜를 입력해주세요"
-                />
-                <CustomButton
-                  text="다음"
-                  themeColor={styleData.themeColor}
-                  buttonShape={styleData.buttonShape}
-                />
-              </div>
+              <DateInputQuestion styleData={styleData} />
             )}
             {selectedQuestion.questionType === "timeInput" && (
-              <div className="mt-4 flex flex-col items-center">
-                <input
-                  type="time"
-                  className="w-full p-2 border border-gray-300 rounded"
-                  placeholder="시간을 입력해주세요"
-                />
-                <CustomButton
-                  text="다음"
-                  themeColor={styleData.themeColor}
-                  buttonShape={styleData.buttonShape}
-                />
-              </div>
+              <TimeInputQuestion styleData={styleData} />
             )}
             {selectedQuestion.questionType === "rangeInput" && (
-              <div className="mt-4 flex flex-col items-center">
-                <input
-                  type="range"
-                  className="w-full p-2 border border-gray-300 rounded"
-                />
-                <div className="mt-4">
-                  <CustomButton
-                    text="다음"
-                    themeColor={styleData.themeColor}
-                    buttonShape={styleData.buttonShape}
-                  />
-                </div>
-              </div>
+              <RangeInputQuestion styleData={styleData} />
             )}
             {selectedQuestion.questionType === "radioInput" && (
-              <div className="mt-4 flex flex-col">
-                <div className="flex justify-center items-center">
-                  {[1, 2, 3, 4, 5].map((rating) => (
-                    <div key={rating} className="mr-2">
-                      <input type="radio" value={rating} className="hidden" />
-                      <span
-                        className={`text-3xl ${rating ? "text-yellow-500" : "text-gray-300"} cursor-pointer`}
-                      >
-                        ★
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-4">
-                  <CustomButton
-                    text="다음"
-                    themeColor={styleData.themeColor}
-                    buttonShape={styleData.buttonShape}
-                  />
-                </div>
-              </div>
+              <RadioInputQuestion styleData={styleData} />
             )}
             {/* {selectedQuestion.questionType === "selectInput" && (
               <div className="mt-4 flex flex-col items-center">

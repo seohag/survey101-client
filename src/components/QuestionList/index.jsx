@@ -1,18 +1,15 @@
 import { useState } from "react";
-
 import { v4 as uuidv4 } from "uuid";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowDown,
-  faArrowUp,
-  faTrash,
-  faCamera,
-} from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+
+import Question from "../Question";
+import QuestionOptions from "../QuestionOptions";
+import QuestionControls from "../QuestionControls";
 
 function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
   const [errorMessage, setErrorMessage] = useState("");
-
+  console.log(questions);
   function handleDeleteQuestion(questionId) {
     if (questions.length <= 1) {
       return;
@@ -209,240 +206,23 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
               <FontAwesomeIcon icon={faTrash} className="text-xl" />
             </button>
           </h3>
-          <div className="flex justify-between">
-            <button
-              type="button"
-              className="mr-2"
-              onClick={() => handleArrowButtonClick(question.questionId, "up")}
-              aria-label="arrow-up"
-            >
-              <FontAwesomeIcon icon={faArrowUp} className="text-xl mt-7 px-2" />
-            </button>
-
-            <button
-              type="button"
-              className="ml-2"
-              onClick={() =>
-                handleArrowButtonClick(question.questionId, "down")
-              }
-              aria-label="arrow-down"
-            >
-              <FontAwesomeIcon
-                icon={faArrowDown}
-                className="text-xl mt-3 py-7"
-              />
-            </button>
-          </div>
-          <div className="mb-4">
-            <label
-              htmlFor={`questionText-${question.questionId}`}
-              className="block mb-2"
-            >
-              <input
-                type="text"
-                id={`questionText-${question.questionId}`}
-                value={question.questionText}
-                onChange={(event) =>
-                  handleQuestionTextChange(
-                    question.questionId,
-                    event.target.value,
-                  )
-                }
-                className="w-full p-2 border border-gray-300 rounded"
-                placeholder="질문을 입력해주세요"
-              />
-            </label>
-          </div>
-
-          {question.questionType === "textChoice" && (
-            <div>
-              {question.options.map((option) => (
-                <div key={option.optionId} className="flex items-center mb-2">
-                  <input
-                    type="text"
-                    onChange={(event) => {
-                      handleQuestionOptionChange(
-                        question.questionId,
-                        option.optionId,
-                        event.target.value,
-                      );
-                    }}
-                    value={option.text}
-                    className="w-full p-2 border border-gray-300 rounded"
-                    placeholder="옵션을 입력해주세요"
-                  />
-                  {question.options.length > 1 && (
-                    <button
-                      onClick={() =>
-                        handleDeleteOption(question.questionId, option.optionId)
-                      }
-                      className="bg-red-500 text-white px-1 rounded"
-                    >
-                      X
-                    </button>
-                  )}
-                </div>
-              ))}
-              <div className="w-full text-center">
-                <button
-                  onClick={() => {
-                    handleAddTextOption(question.questionId);
-                  }}
-                  className="bg-gray-300 text-black px-4 py-2 rounded"
-                >
-                  옵션 추가
-                </button>
-              </div>
-            </div>
-          )}
-          {question.questionType === "imageChoice" && (
-            <div className="flex flex-wrap justify-center">
-              {question.options.map((option) => (
-                <div key={option.optionId} className="mb-4 mx-2 relative">
-                  <label
-                    htmlFor={`image-upload-${question.questionId}-${option.optionId}`}
-                    className="block cursor-pointer"
-                  >
-                    <div className="w-24 h-24 border border-gray-300 rounded flex justify-center items-center">
-                      {option.image ? (
-                        <img
-                          src={
-                            typeof option.image.imageUrl === "string"
-                              ? option.image.imageUrl
-                              : URL.createObjectURL(option.image)
-                          }
-                          alt={`Option ${option.optionId}`}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <FontAwesomeIcon icon={faCamera} className="text-xl" />
-                      )}
-                    </div>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      id={`image-upload-${question.questionId}-${option.optionId}`}
-                      onChange={(event) =>
-                        handleImageChange(
-                          event,
-                          question.questionId,
-                          option.optionId,
-                        )
-                      }
-                      className="hidden"
-                    />
-                  </label>
-                  {question.options.length > 1 && (
-                    <button
-                      onClick={() =>
-                        handleDeleteOption(question.questionId, option.optionId)
-                      }
-                      className="absolute top-0 right-0 bg-red-500 text-white px-1 rounded"
-                    >
-                      X
-                    </button>
-                  )}
-                </div>
-              ))}
-              <div className="w-full text-center">
-                {errorMessage && (
-                  <div className="text-red-500 mb-4">{errorMessage}</div>
-                )}
-                <button
-                  onClick={() => {
-                    handleAddImageOption(question.questionId);
-                  }}
-                  className="bg-gray-300 text-black px-4 py-2 rounded mt-2"
-                >
-                  이미지 옵션 추가
-                </button>
-              </div>
-            </div>
-          )}
-
-          {question.questionType === "textInput" && (
-            <input
-              type="text"
-              className="w-full p-2 border border-gray-300 rounded"
-              placeholder="텍스트만 입력 가능합니다"
-              readOnly
-            />
-          )}
-          {question.questionType === "emailInput" && (
-            <input
-              type="email"
-              className="w-full p-2 border border-gray-300 rounded"
-              placeholder="이메일만 입력 가능합니다"
-              readOnly
-            />
-          )}
-          {question.questionType === "phoneInput" && (
-            <input
-              type="tel"
-              className="w-full p-2 border border-gray-300 rounded"
-              placeholder="전화번호만 입력 가능합니다"
-              readOnly
-            />
-          )}
-          {question.questionType === "dateInput" && (
-            <input
-              type="date"
-              className="w-full p-2 border border-gray-300 rounded"
-              readOnly
-            />
-          )}
-          {question.questionType === "timeInput" && (
-            <input
-              type="time"
-              className="w-full p-2 border border-gray-300 rounded"
-              readOnly
-            />
-          )}
-          {question.questionType === "numberInput" && (
-            <input
-              type="number"
-              className="w-full p-2 border border-gray-300 rounded"
-              placeholder="숫자만 입력 가능합니다"
-              readOnly
-            />
-          )}
-          {question.questionType === "rangeInput" && (
-            <input
-              type="range"
-              className="w-full p-2 border border-gray-300 rounded"
-              readOnly
-            />
-          )}
-          {question.questionType === "radioInput" && (
-            <div className="flex items-center justify-center">
-              {[1, 2, 3, 4, 5].map((rating) => (
-                <label key={rating} className="inline-block mr-2">
-                  <input
-                    type="radio"
-                    checked={question.answer === rating}
-                    className="hidden"
-                    readOnly
-                  />
-                  <span
-                    className={`text-3xl ${rating <= question.answer ? "text-yellow-500" : "text-gray-300"} cursor-pointer`}
-                  >
-                    ★
-                  </span>
-                </label>
-              ))}
-            </div>
-          )}
-          {/* {question.questionType === "selectInput" && (
-            <select className="w-full p-2 border border-gray-300 rounded">
-              <option value="">옵션을 선택해주세요</option>
-              <option value="whale">고래</option>
-              <option value="dog">개</option>
-              <option value="cat">고양이</option>
-              <option value="giraffe">기린</option>
-              <option value="tiger">호랑이</option>
-              <option value="lion">사자</option>
-            </select>
-          )} */}
+          <QuestionControls
+            questionId={question.questionId}
+            handleArrowButtonClick={handleArrowButtonClick}
+          />
+          <Question
+            question={question}
+            handleQuestionTextChange={handleQuestionTextChange}
+          />
+          <QuestionOptions
+            question={question}
+            handleAddTextOption={handleAddTextOption}
+            handleAddImageOption={handleAddImageOption}
+            handleImageChange={handleImageChange}
+            handleQuestionOptionChange={handleQuestionOptionChange}
+            handleDeleteOption={handleDeleteOption}
+            errorMessage={errorMessage}
+          />
         </div>
       ))}
     </div>
