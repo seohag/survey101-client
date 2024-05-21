@@ -13,12 +13,11 @@ function InitialPage() {
         <img
           src="/assets/survey-icon.png"
           alt="survey-icon"
-          className="mt-10 mb-10 ml-7"
           width="200"
           height="200"
         />
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-sky-950 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={handleLogin}
         >
           <FontAwesomeIcon icon={faGoogle} className="text-xl mr-2" />
