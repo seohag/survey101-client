@@ -1,12 +1,13 @@
 import { useState } from "react";
-
 import { v4 as uuidv4 } from "uuid";
 
 import QuestionPreview from "../QuestionPreview";
 import QuestionList from "../QuestionList";
 import AddQuestionPopup from "../../services/AddQuestionPopup";
+import useFormEditorStore from "../../store/useFormEditorStore";
 
-function QuestionEditor({ questions, setQuestions, styleData }) {
+function QuestionEditor() {
+  const { setQuestions, questions } = useFormEditorStore();
   const [showAddQuestionPopup, setShowAddQuestionPopup] = useState(false);
   const [selectedQuestionId, setSelectedQuestionId] = useState(null);
 
@@ -93,14 +94,6 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
           questionText: "",
         };
         break;
-      // case "selectInput":
-      //   newQuestion = {
-      //     questionId: newQuestionId,
-      //     questionType: "selectInput",
-      //     questionText: "",
-      //     answer: null,
-      //   };
-      //   break;
       default:
         break;
     }
@@ -111,13 +104,8 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
   return (
     <div className="flex">
       <section className="w-2/5 p-4">
-        <QuestionPreview
-          questions={questions}
-          styleData={styleData}
-          selectedQuestionId={selectedQuestionId}
-        />
+        <QuestionPreview selectedQuestionId={selectedQuestionId} />
       </section>
-
       <section className="w-3/5 p-4 overflow-auto">
         <div className="text-center">
           <button
@@ -127,13 +115,8 @@ function QuestionEditor({ questions, setQuestions, styleData }) {
             질문 추가
           </button>
         </div>
-        <QuestionList
-          questions={questions}
-          setQuestions={setQuestions}
-          setSelectedQuestionId={setSelectedQuestionId}
-        />
+        <QuestionList setSelectedQuestionId={setSelectedQuestionId} />
       </section>
-
       {showAddQuestionPopup && (
         <AddQuestionPopup
           handleAddQuestion={handleAddQuestion}

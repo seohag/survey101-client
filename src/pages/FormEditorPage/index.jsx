@@ -9,19 +9,7 @@ import EndingEditor from "../../components/EndingEditor";
 import useFormEditorStore from "../../store/useFormEditorStore";
 
 function FormEditorPage() {
-  const {
-    activeSection,
-    coverData,
-    styleData,
-    endingData,
-    setActiveSection,
-    setCoverData,
-    setStyleData,
-    setEndingData,
-    setQuestions,
-    questions,
-    reset,
-  } = useFormEditorStore();
+  const { activeSection, setActiveSection, reset } = useFormEditorStore();
 
   useEffect(() => {
     reset();
@@ -46,39 +34,13 @@ function FormEditorPage() {
   function renderActiveSection() {
     switch (activeSection) {
       case "cover":
-        return (
-          <CoverEditor
-            coverData={coverData}
-            styleData={styleData}
-            setCoverData={setCoverData}
-          />
-        );
+        return <CoverEditor />;
       case "style":
-        return (
-          <StyleEditor
-            coverData={coverData}
-            styleData={styleData}
-            setStyleData={setStyleData}
-          />
-        );
+        return <StyleEditor />;
       case "question":
-        return (
-          <QuestionEditor
-            questions={questions}
-            setQuestions={setQuestions}
-            styleData={styleData}
-          />
-        );
+        return <QuestionEditor />;
       case "ending":
-        return (
-          <EndingEditor
-            endingData={endingData}
-            setEndingData={setEndingData}
-            coverData={coverData}
-            styleData={styleData}
-            questions={questions}
-          />
-        );
+        return <EndingEditor />;
       default:
         return null;
     }

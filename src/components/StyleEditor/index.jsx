@@ -1,6 +1,9 @@
 import CoverStylePreview from "../CoverStylePreview";
+import useFormEditorStore from "../../store/useFormEditorStore";
 
-function StyleEditor({ coverData, styleData, setStyleData }) {
+function StyleEditor() {
+  const { coverData, setStyleData, styleData } = useFormEditorStore();
+
   function handleStyleChange(event) {
     const { name, value } = event.target;
 
@@ -65,8 +68,8 @@ function StyleEditor({ coverData, styleData, setStyleData }) {
                 onChange={handleStyleChange}
                 className="w-full p-2 border border-gray-300 rounded"
               >
-                <option value="fade">Fade</option>
-                <option value="slide">Slide</option>
+                <option value="fade">페이드</option>
+                <option value="slide">슬라이드</option>
               </select>
             </label>
           </div>

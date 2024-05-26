@@ -1,7 +1,11 @@
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-function EndingPreview({ endingData, styleData }) {
+import useFormEditorStore from "../../store/useFormEditorStore";
+
+function EndingPreview() {
+  const { endingData, styleData } = useFormEditorStore();
+
   return (
     <div className="bg-gray-200 rounded-lg shadow-lg p-4 flex justify-center items-center min-h-[642px]">
       <div className="text-center">

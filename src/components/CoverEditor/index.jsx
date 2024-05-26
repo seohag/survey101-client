@@ -4,9 +4,11 @@ import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import CoverStylePreview from "../CoverStylePreview";
 
 import { validateInput } from "../../utils/utils";
+import useFormEditorStore from "../../store/useFormEditorStore";
 
-function CoverEditor({ coverData, setCoverData, styleData }) {
+function CoverEditor() {
   const [errorMessage, setErrorMessage] = useState("");
+  const { coverData, setCoverData, styleData } = useFormEditorStore();
 
   function handleCoverChange(event) {
     const { name, value, files } = event.target;

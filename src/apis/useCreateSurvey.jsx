@@ -104,6 +104,7 @@ function useCreateSurvey(surveyData, setSurveyUrl) {
     onSuccess: (data) => {
       setSurveyUrl(data);
       console.log("설문생성 성공");
+      navigate("/dash");
     },
   });
 

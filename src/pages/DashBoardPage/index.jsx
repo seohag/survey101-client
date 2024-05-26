@@ -9,6 +9,7 @@ import useGetSurveys from "../../apis/useGetSurveys";
 
 import Loading from "../../components/shared/Loading";
 import SurveyCard from "../../components/SurveyCard";
+import SurveyUrlModal from "../../components/shared/SurveyUrlModal";
 
 import useUserIdStore from "../../store/useUserIdStore";
 import authUser from "../../utils/authUser";
@@ -18,6 +19,8 @@ function DashBoardPage() {
   const navigate = useNavigate();
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [surveyUrl, setSurveyUrl] = useState("");
+  const [showModal, setShowModal] = useState(false);
   const { surveys, isLoading } = useGetSurveys();
   const { setUser, setIsLoggedIn } = useUserIdStore();
 

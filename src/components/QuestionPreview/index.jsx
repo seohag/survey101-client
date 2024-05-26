@@ -1,3 +1,5 @@
+import useFormEditorStore from "../../store/useFormEditorStore";
+
 import TextChoiceQuestion from "./TextChoiceQuestion";
 import ImageChoiceQuestion from "./ImageChoiceQuestion";
 import TextInputQuestion from "./TextInputQuestion";
@@ -9,7 +11,8 @@ import TimeInputQuestion from "./TimeInputQuestion";
 import RadioInputQuestion from "./RadioInputQuestion";
 import RangeInputQuestion from "./RangeInputQuestion";
 
-function QuestionPreview({ questions, styleData, selectedQuestionId }) {
+function QuestionPreview({ selectedQuestionId }) {
+  const { questions, styleData } = useFormEditorStore();
   const selectedQuestion = questions.find(
     (question) => question.questionId === selectedQuestionId,
   );
@@ -33,8 +36,8 @@ function QuestionPreview({ questions, styleData, selectedQuestionId }) {
             )}
             {selectedQuestion.questionType === "imageChoice" && (
               <ImageChoiceQuestion
-                options={selectedQuestion.options}
                 styleData={styleData}
+                options={selectedQuestion.options}
               />
             )}
             {selectedQuestion.questionType === "textInput" && (
@@ -61,26 +64,6 @@ function QuestionPreview({ questions, styleData, selectedQuestionId }) {
             {selectedQuestion.questionType === "radioInput" && (
               <RadioInputQuestion styleData={styleData} />
             )}
-            {/* {selectedQuestion.questionType === "selectInput" && (
-              <div className="mt-4 flex flex-col items-center">
-                <select className="w-full p-2 border border-gray-300 rounded">
-                  <option value="">옵션을 선택해주세요</option>
-                  <option value="whale">고래</option>
-                  <option value="dog">개</option>
-                  <option value="cat">고양이</option>
-                  <option value="giraffe">기린</option>
-                  <option value="tiger">호랑이</option>
-                  <option value="lion">사자</option>
-                </select>
-                <div className="mt-4">
-                  <CustomButton
-                    text="다음"
-                    themeColor={styleData.themeColor}
-                    buttonShape={styleData.buttonShape}
-                  />
-                </div>
-              </div>
-            )} */}
           </div>
         )}
       </div>

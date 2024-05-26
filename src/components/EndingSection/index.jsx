@@ -6,7 +6,6 @@ import CustomButton from "../CustomButton";
 
 function EndingSection({ surveyData, surveyAnswers }) {
   const { endingContent, themeColor, endingTitle } = surveyData;
-
   const { fetchAnswers } = usePostAnswers(surveyAnswers);
 
   const handlePostAnswers = () => {

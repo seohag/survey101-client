@@ -31,10 +31,12 @@ function SurveyCard({ survey }) {
   }
 
   return (
-    <button
+    <div
       key={survey._id}
       onClick={() => navigate(`/editor/${survey._id}`)}
+      onKeyDown={() => navigate(`/editor/${survey._id}`)}
       className="cursor-pointer bg-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 focus:outline-none min-h-60"
+      role="presentation"
     >
       <div className="flex justify-center items-center">
         <h2 className="text-xl font-semibold">{survey.title}</h2>
@@ -63,7 +65,7 @@ function SurveyCard({ survey }) {
         </div>
       )}
       <DropdownMenu handleOptionClick={handleOptionClick} />
-    </button>
+    </div>
   );
 }
 

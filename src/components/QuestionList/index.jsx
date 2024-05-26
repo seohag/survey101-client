@@ -6,9 +6,11 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import Question from "../Question";
 import QuestionOptions from "../QuestionOptions";
 import QuestionControls from "../QuestionControls";
+import useFormEditorStore from "../../store/useFormEditorStore";
 
-function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
+function QuestionList({ setSelectedQuestionId }) {
   const [errorMessage, setErrorMessage] = useState("");
+  const { questions, setQuestions } = useFormEditorStore();
 
   function handleDeleteQuestion(questionId) {
     if (questions.length <= 1) {
@@ -128,11 +130,13 @@ function QuestionList({ questions, setQuestions, setSelectedQuestionId }) {
     const reader = new FileReader();
 
     reader.onload = () => {
+      const newOptionId = uuidv4();
+
       const newQuestions = questions.map((question) => {
         if (question.questionId === questionId) {
           const newOptions = question.options.map((option) => {
             if (option.optionId === optionId) {
-              return { ...option, image: file };
+              return { ...option, image: file, optionId: newOptionId };
             }
 
             return option;
