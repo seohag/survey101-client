@@ -8,6 +8,8 @@ export default {
         "slide-out": "slide-out 0.5s ease-in-out forwards",
         "fade-in": "fade-in 0.5s ease-in-out forwards",
         "fade-out": "fade-out 0.5s ease-in-out forwards",
+        "zoom-in": "zoom-in 0.5s ease-in-out forwards",
+        "zoom-out": "zoom-out 0.5s ease-in-out forwards",
       },
       keyframes: {
         "slide-in": {
@@ -25,6 +27,14 @@ export default {
         "fade-out": {
           from: { opacity: 1 },
           to: { opacity: 0 },
+        },
+        "zoom-in": {
+          from: { transform: "scale(0.5)", opacity: 0 },
+          to: { transform: "scale(1)", opacity: 1 },
+        },
+        "zoom-out": {
+          from: { transform: "scale(1)", opacity: 1 },
+          to: { transform: "scale(0.5)", opacity: 0 },
         },
       },
     },

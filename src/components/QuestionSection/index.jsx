@@ -20,6 +20,9 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
       case "slide":
         setAnimationOption("slide");
         break;
+      case "zoom":
+        setAnimationOption("zoom");
+        break;
       default:
         setAnimationOption("");
         break;
@@ -81,12 +84,18 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
           } ${
             animationOption === "fade" && isAnimating ? "animate-fade-in" : ""
           } ${
+            animationOption === "zoom" && isAnimating ? "animate-zoom-in" : ""
+          } ${
             animationOption === "slide" && isPrevAnimating
               ? "animate-slide-out"
               : ""
           } ${
             animationOption === "fade" && isPrevAnimating
               ? "animate-fade-out"
+              : ""
+          } ${
+            animationOption === "zoom" && isPrevAnimating
+              ? "animate-zoom-out"
               : ""
           }`}
           onAnimationEnd={() => {

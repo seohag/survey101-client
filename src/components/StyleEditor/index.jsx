@@ -70,6 +70,7 @@ function StyleEditor() {
               >
                 <option value="fade">페이드</option>
                 <option value="slide">슬라이드</option>
+                <option value="zoom">줌</option>
               </select>
             </label>
           </div>
