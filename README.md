@@ -24,9 +24,9 @@
 - [기능 미리보기 및 간단한 설명](#-기능-미리보기-및-설명)
 - [테크 스택](#-테크-스택)
   - [React](#리액트는-왜-쓸까)
-  - [Vite](#번들러는-왜-vite로-사용했을까)
+  - [Vite](#vite는-왜-사용했을까)
   - [React Query / Zustand](#react-query-그리고-zustand는-왜-사용했을까)
-  - [FormData](#왜-html-form이-아닌-formdata를-사용해서-작업했을까)
+  - [FormData](#왜-formdata를-사용해서-작업했을까)
 - [기술적 챌린지](#-기술적-챌린지)
   - [컴포넌트 모듈화](#컴포넌트-모듈화)
     - [가독성이 좋지 않은 코드와 동일한 코드 반복 작성](#가독성이-좋지-않은-코드와-동일한-코드-반복-작성)
@@ -36,7 +36,7 @@
     - [프로젝트에 적합한 데이터 구조는 무엇일까?](#프로젝트에-적합한-데이터-구조는-무엇일까)
     - [MongoDB의 Embedding 방식과 Reference 방식 조사](#mongodb의-embedding-방식과-reference-방식-조사)
     - [데이터 구조 설계 조사 후 적용결과](#데이터-구조-설계-조사-후-적용결과)
-  - [AWS S3 이미지 여러장 업로드 에러가 발생했을 때의 에러핸들링](#aws-s3-bucket을-이용한-서버에서-여러장의-이미지를-업로드-과정에서의-에러핸들링)
+  - [AWS S3에 여러장의 이미지 업로드를 하는 과정에서 에러가 발생했을 때의 에러핸들링](#aws-s3-bucket을-이용한-서버에서-여러장의-이미지를-업로드-과정에서의-에러핸들링)
     - [어떠한 에러인지 클라이언트에서 알지 못했다](#어떠한-에러인지-클라이언트에서-알지-못했다)
     - [정확한 에러 전달과 해당 에러에 맞는 분기 처리](#정확한-에러-전달과-해당-에러에-맞는-분기-처리)
     - [에러핸들링 결과](#에러핸들링-결과)
@@ -45,6 +45,9 @@
     - [해결과정]()
     - [결과]()
   - [유저 경험과 인터페이스는 어떤 부분을 신경썼을까?](#유저-경험과-인터페이스는-어떤-부분을-신경썼을까)
+- [이슈](#-이슈)
+  - [설문 이미지 수정이 되지 않는다](#설문-이미지-수정이-되지-않는다)
+  - [프록시 파일 크기 초과](#nginx-프록시-파일-크기-초과)
 - [일정](#-일정)
 - [회고록](#-회고록)
 
@@ -55,11 +58,11 @@
 
 학생 때 구글 폼을 이용해서 설문 조사를 만들어서 지인 혹은 학우들에게 편하게 공유했던 경험이 있었습니다. 그러나 그 당시의 개인적인 생각으로는 구글 폼을 이용한 설문조사 제작이 조금은 지루하고 딱딱하게 느껴졌습니다. 만약 이러한 설문조사 양식을 커스터마이징 하는 웹서비스를 직접 만들어본다면 좋은 경험이 되지 않을까 라는 생각으로 해당 주제로 개발을 시작하게 되었습니다.
 
-설문조사에 대한 여러 서비스들을 찾아보았고, 기존에는 B2C 서비스에 익숙했지만 B2B 서비스 까지도 찾아보게 되면서 정말 많은 서비스들이 존재한다는 것을 다시금 깨닫게 되며, 이러한 많은 서비스들 중 어떤 서비스가 사용자들의 니즈를 파악해서 적절하게 제공하고 있는지에 대한 점에 집중하며 몇 가지 추려보았습니다. 너무 많은 전문성을 요구하는 서비스는 제외하고 **smore** 라는 설문조사 제작 툴을 찾게되었고, 다른 서비스들에 비해 비교적 B2C에 가깝다는 판단하에 smore를 벤치마킹하며 설문조사 제작 툴을 만들어보았습니다.
+설문조사에 대한 여러 서비스를 찾아보았고, 기존에는 B2C 서비스에 익숙했지만 B2B 서비스까지도 찾아보게 되면서 정말 많은 서비스들이 존재한다는 것을 다시금 깨닫게 되며, 이러한 많은 서비스들 중 어떤 서비스가 사용자들의 니즈를 파악해서 적절하게 제공하고 있는지에 대한 점에 집중하며 몇 가지 추려보았습니다. 너무 많은 전문성을 요구하는 서비스는 제외하고 **smore** 라는 설문조사 제작 툴을 찾게되었고, 다른 서비스들에 비해 비교적 B2C에 가깝다는 판단하에 smore를 벤치마킹하며 설문조사 제작 툴을 만들어보았습니다.
 
-우선 설문조사 제작 툴을 만드는데 있어서 어떻게 하면 **사용자가 설문 양식을 보기좋게 입맛대로 커스터마이징 할 수 있을까?** 라는 고민으로 시작해, **응답 받는 데이터 시각화** 까지도 보기 쉽게 제공할 수 있다면 괜찮은 설문조사 웹 서비스가 되지 않을까 라는 주제에 초점을 두어 **"Survey101"** 라는 이름으로 정하고 프로젝트를 진행했습니다.
+우선 설문조사 제작 툴을 만드는데 있어서 어떻게 하면 **사용자가 설문 양식을 보기좋게 입맛대로 커스터마이징 할 수 있을까?** 라는 고민으로 시작해, **응답 받는 데이터 시각화** 까지도 보기 쉽게 제공할 수 있다면 괜찮은 설문조사 웹 서비스가 되지 않을까 라는 주제에 초점을 맞춰 **"Survey101"** 라는 이름으로 정하고 프로젝트를 진행했습니다.
 
-**Survey101**은 사용자들이 보다 직관적이고 맞춤형 설문조사를 만들 수 있도록 도와주는 것에 초점을 맞추었으며, 간단하고 쉽게 설문 양식을 디자인 할 수 있는 기능을 제공하고, 다양한 목적에 맞춘 설문을 작성할 수 있도록 서비스를 제공합니다. 또한 수집한 데이터를 시각화하여 제공함으로써 응답 결과를 더욱 쉽게 이해하고 분석할 수 있도록 도와주고, 이를 통해 데이터 분석에 소요되는 시간과 노력을 절약하면서 보다 의미있는 인사이트를 얻을 수 있으면 했습니다. 이와 같은 기능들을 통해 사용자들이 보다 효율적으로 정보를 수집하고 활용할 수 있도록 지원하는 것을 목표로 하는 웹서비스 입니다.
+**Survey101**은 사용자들이 더욱 직관적이고 맞춤형 설문조사를 만들 수 있도록 도와주는 것에 주안점을 두었으며, 간단하고 쉽게 설문 양식을 디자인할 수 있는 기능을 제공하고, 다양한 목적에 맞춘 설문을 작성할 수 있도록 서비스를 제공합니다. 또한 수집한 데이터를 시각화하여 제공함으로써 응답 결과를 더욱 쉽게 이해하고 분석할 수 있도록 도와주고, 이를 통해 데이터 분석에 걸리는 시간과 노력을 절약하면서 보다 의미 있는 인사이트를 얻을 수 있으면 했습니다. 이와 같은 기능들을 통해 사용자들이 더욱 효율적으로 정보를 수집하고 활용할 수 있도록 지원하는 것을 목표로 하는 웹서비스입니다.
 
 <br>
 <br>
@@ -159,15 +162,15 @@
 
 간략하긴 하지만 이러한 조사한 내용들로 React가 어떠한 장점들이 있는지 알게 되었고, 단지 많이 사용한다는 이유만이 아닌 여러 가지 장점들을 찾아보니 "아직은 리액트를 사용하는 것이 적절하겠구나" 라는 판단하에 리액트를 프로젝트에 사용하는 것으로 결정하게 되었습니다.
 
-### 번들러는 왜 vite로 사용했을까?
+### vite는 왜 사용했을까?
 
-리액트 프로젝트를 생성하기 위한 방법들을 찾아보았고, CRA, Vite, Webpack 등을 사용해서 프로젝트를 생성할 수 있다는 것을 찾아보았습니다. 각 번들러들의 장단점을 조사해았고, 타 비교 군들과 비교해 Vite가 여러 측면에서 장점들을 더 가지고 있었습니다.
+리액트 프로젝트를 생성하기 위한 방법들을 찾아보았고, CRA, Vite, Webpack 등을 사용해서 프로젝트를 생성할 수 있다는 것을 찾아보았습니다. 세가지 툴의 장단점을 조사해았고, 타 비교 군들과 비교해 Vite가 여러 측면에서 장점들을 더 가지고 있었습니다.
 
-우선 CRA는 사용하지 않는 기능들까지 모두 설치되기 때문에 모듈 사이즈가 크다는 단점이 있고 커스텀 빌드를 하는 것이 어렵습니다. 다른 대표적인 번들러 WebPack 과 비교했을 땐 Webpack은 초기 빌드 속도가 느릴 수 있지만, Vite는 개발 서버를 통해 빠른 번들링 속도를 제공하고 파일을 필요할 때마다 필요한 모듈만 번들링하여 신속한 개발이 가능하다고 조사했습니다. Vite가 빠른 이유는 dependencies(Esbuild) 그리고 source code 두 가지 카테고리로 나누어 개발 서버 시작하기 때문이라고 조사했습니다.
+CRA는 사용하지 않는 기능들까지 모두 설치되기 때문에 모듈 사이즈가 크다는 단점이 있고 커스텀 빌드를 하는 것이 어렵습니다. 또한 빌드 시간이 Vite에 비해 많이 느렸습니다. 다른 대표적인 번들러 WebPack 과 비교했을 땐 Webpack은 초기 빌드 속도가 느릴 수 있지만, Vite는 개발 서버를 통해 빠른 번들링 속도를 제공하고 파일을 필요할 때마다 필요한 모듈만 번들링하여 신속한 개발이 가능하다고 조사했습니다. Vite가 빠른 이유는 dependencies(Esbuild) 그리고 source code 두 가지 카테고리로 나누어 개발 서버를 시작하기 때문이라고 조사했습니다.
 
-기본적으로 HMR(앱을 종료하지 않고 갱신된 파일만을 교체하는 방식)을 포함한 빠르고 간단한 서버 개발을 제공하며 기본 환경설정이 간단했고, 프로덕션 빌드 시 Rollup을 사용하여 코드를 최적화합니다. 불필요한 코드를 효과적으로 트리쉐이킹하여 제거하고, 결과물의 파일 크기를 최소화 하는 장점도 있었습니다.
+기본적으로 HMR(앱을 종료하지 않고 갱신된 파일만을 교체하는 방식)을 포함한 빠르고 간단한 개발 서버를 제공하며 기본 환경설정이 간단했고, 프로덕션 빌드 시 Rollup을 사용하여 코드를 최적화합니다. 불필요한 코드를 효과적으로 트리쉐이킹하여 제거하고, 결과물의 파일 크기를 최소화 하는 장점도 있었습니다.
 
-이러한 이유들로 인해 번들러는 Vite로 선정 후 진행하였습니다.
+이렇게 Vite가 타 비교군에 비해 많은 장점을 가졌기에, Vite를 번들러로 선정 후 프로젝트를 진행하였습니다.
 
 ### React Query 그리고 Zustand는 왜 사용했을까?
 
@@ -226,11 +229,19 @@ export default useFormEditorStore;
 
 <br>
 
-### 왜 HTML Form이 아닌 FormData를 사용해서 작업했을까?
+### 왜 FormData를 사용해서 작업했을까?
 
-첫번째 이유는 사용자 경험적인 측면이였습니다. 기존에 HTML의 form으로 작업을 했을 땐 폼이 제출될 때 페이지가 리로드 되는 현상이 있었습니다. 그러나 FormData는 페이지 리로드 없이 서버로 데이터를 전송할 수 있었기 때문에 해당 방식으로 작업을 하였습니다.
+우선 사용자 경험적인 측면이였습니다. 기존에 HTML에 내장된 form으로 작업을 했을 땐 form이 제출될 때 페이지가 리로드 되는 현상이 있었습니다. 그러나 FormData는 페이지 리로드 없이 서버로 데이터를 전송할 수 있었기 때문에 해당 방식으로 작업을 하였습니다.
 
-두번째 이유는 저의 프로젝트의 데이터 구조상 FormData가 적합했습니다. 서버에 전송하는 데이터 구조가 사진과 같았기에 (중첩된 구조), 파일 객체들과 옵션 ID를 자바스크립트로 조작할 수 있는 FormData를 선택 후 사용하였습니다.
+다른 이유는 저의 프로젝트의 데이터 구조상 FormData가 적합했습니다. 서버에 전송하는 데이터 구조가 아래의 사진과 같았기에 (중첩된 구조), 파일 객체들과 옵션 ID를 자바스크립트로 조작할 수 있는 FormData를 선택 후 사용하였습니다.
+
+그리고 리액트에서 유명한 Form 라이브러리인 Formik과 React-Hook-Form 특징들을 조사해보고 사용도 고려했었습니다.
+
+Formik은 form이 필요한 컴포넌트를 `<Formik>` 태그로 감싸서 props drilling 없이 컴포넌트 내에서 전역적으로 상태관리를 할 수 있는 장점이 있고, Controlled Component 방식으로 동작합니다.
+
+React-Hook-Form은 Uncontrolled Component 방식으로 동작하기 때문에 렌더링 횟수가 적다는 특징이 있습니다. 따라서 웹 퍼포먼스 향상에 직결되는 장점이 있지만, 기본적으로 form안의 값을 제어하기 위해선 ref를 사용해서 접근해야 하는 방식을 가지고 있습니다.
+
+그러나 라이브러리 사용은 지양하는 쪽으로 프로젝트를 진행방향을 정했기에, HTML 내장 Form과 FormData를 꼼꼼히 비교 후 Survey101에 적합했던 FormData를 사용하기로 결정했습니다.
 
 <p align="center">
 <img width="350" height="260" alt="스크린샷 2024-05-17 06 03 57" src="https://github.com/seohag/survey101-client/assets/126459089/175d3efc-ea4b-4f1f-9ed6-999273468e35">
@@ -272,7 +283,8 @@ export default useFormEditorStore;
 ```jsx
 import CustomButton from "../CustomButton";
 
-function QuestionPreview({ questions, styleData, selectedQuestionId }) {
+function QuestionPreview({ selectedQuestionId }) {
+  const { questions, styleData } = useFormEditorStore();
   const selectedQuestion = questions.find(
     (question) => question.questionId === selectedQuestionId,
   );
@@ -282,10 +294,7 @@ function QuestionPreview({ questions, styleData, selectedQuestionId }) {
       <div className="text-center">
         {selectedQuestion && (
           <div className="p-4 border border-gray-300 rounded min-h-[572px] min-w-[350.594px]">
-            <h3
-              className="text-xl font-bold mb-4"
-              style={{ color: styleData.themeColor }}
-            >
+            <h3 className="text-xl font-bold mb-4">
               {selectedQuestion.questionText}
             </h3>
             {selectedQuestion.questionType === "textChoice" && (
@@ -338,7 +347,8 @@ import ImageChoiceQuestion from "./ImageChoiceQuestion";
 import TextInputQuestion from "./TextInputQuestion";
 ...
 
-function QuestionPreview({ questions, styleData, selectedQuestionId }) {
+function QuestionPreview({ selectedQuestionId }) {
+  const { questions, styleData } = useFormEditorStore();
   const selectedQuestion = questions.find(
     (question) => question.questionId === selectedQuestionId,
   );
@@ -348,10 +358,7 @@ function QuestionPreview({ questions, styleData, selectedQuestionId }) {
       <div className="text-center">
         {selectedQuestion && (
           <div className="p-4 border border-gray-300 rounded min-h-[572px] min-w-[350.594px]">
-            <h3
-              className="text-xl font-bold mb-4"
-              style={{ color: styleData.themeColor }}
-            >
+            <h3 className="text-xl font-bold mb-4">
               {selectedQuestion.questionText}
             </h3>
             {selectedQuestion.questionType === "textChoice" && (
@@ -502,14 +509,89 @@ const { mutateAsync: fetchSurvey } = useMutation({
 
 ### 결과:
 
-### 유저 경험과 인터페이스는 어떤 부분을 신경썼을까?
+## 유저 경험과 인터페이스는 어떤 부분을 신경썼을까?
 
-- ...
+- 설문 결과 분석 페이지 뷰 섹션화 (데이터 차트화와 테이블 형식의 인터페이스 제공)
+
+- 설문을 커스터마이징 하는 각 섹션마다 임시저장 버튼을 추가했으며, 설문에 대한 질문을 생성할 때 질문추가 버튼을 리모컨 형식으로 만들어 스크롤바를 내릴 때 마다 리모컨이 따라오게끔 구현했습니다.
 
 <br>
 <br>
 
-###
+# 🚫 이슈
+
+### 설문 이미지 수정이 되지 않는다.
+
+Survey101 에서는 설문을 생성할 때 이미지 파일을 첨부할 수 있는 기능이 있습니다. 클라이언트에서 formData에 이미지 파일을 담아 서버로 요청을 보내게 되면 서버에선 파일데이터들을 AWS S3에 업로드 하는 방식으로 진행했었습니다.
+
+그러나 클라이언트에서 질문에 대한 선택지 옵션(이미지 파일)을 추가하는 기능은 잘 작동하는데, 기존에 있던 선택지 옵션을 수정하는 기능은 정상작동 하지 않았습니다.
+
+클라이언트에서 서버로 이미지 파일들을 보낼 때 각 파일들을 구분하기 위해 optionId를 사용해서 같이 보내주고 있는데, 이미지파일을 s3에 업로드 할 때도 클라이언트 측에서 optionId를 키 값으로 bucket에 저장되게끔 로직을 작성했었습니다.
+
+이미지파일을 추가하는 기능은 새로운 optionId가 부여되기 때문에 s3에 업로드 되도 클라이언트 측에서 ImageUrl을 가져올 때 겹치는 ImageUrl이 없기 때문에 정확한 이미지를 가져올 수 있었습니다. 그러나 존재하던 이미지가 수정될 때의 경우는 optionId를 바꿔주지 않았기 때문에 같은 optionId를 가진 ImageUrl이 bucket에 중복저장되고 있었던 상황이였습니다.
+
+그래서 이미지가 AWS S3에 업로드 되었음에도 불구하고, 클라이언트에서 이미지를 보여줄 때 중복된 imageUrl이 있으면 기존에 먼저 있던 bucket에 있는 imageUrl을 먼저 get 해오기 때문에 수정된 이미지가 보이지 않는 것 이였습니다. 그래서 사용자가 이미지 옵션을 바꿀 때도 새롭게 optionId를 생성해주는 방식으로 코드를 수정했습니다.
+
+서버에선 기존에 있던 이미지파일의 optionId와 수정된 이미지파일의 optionId가 다르면 이미지가 바뀐 것이니 바뀐 이미지를 업로드함과 동시에 존재하던 이미지파일을 AWS S3 Bucket에서도 삭제하고 업데이트 된 데이터만 bucket에 저장되게끔 코드를 수정했습니다.
+
+```jsx
+function handleImageChange(event, questionId, optionId) {
+  const file = event.target.files[0];
+
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    const newOptionId = uuidv4();
+
+    const newQuestions = questions.map((question) => {
+      if (question.questionId === questionId) {
+        const newOptions = question.options.map((option) => {
+          if (option.optionId === optionId) {
+            return { ...option, image: file, optionId: newOptionId };
+          }
+
+          return option;
+        });
+
+        return { ...question, options: newOptions };
+      }
+
+      return question;
+    });
+    setQuestions(newQuestions);
+  };
+
+  setErrorMessage("");
+  reader.readAsDataURL(file);
+}
+```
+
+이렇게 설문 이미지 파일에 대한 관리를 적절하게 처리해줌으로써 설문 이미지 수정이 되고 있지 않는 이슈를 해결하였습니다.
+
+<br>
+
+### nginx 프록시 파일 크기 초과
+
+로컬 개발 환경에서는 이상이 없었지만 AWS Elastic Beanstalk 으로 배포한 환경에서 파일 크기를 초과했다는 에러가 발생했습니다. 로그 에서 확인한 에러 내용은 다음과 같았습니다.
+<br>
+
+`[error] 32211#32211: *9131 client intended to send too large body: 6115831 bytes`
+
+클라이언트에서 서버로 데이터 전송 중 body의 크기가 너무 크다는 내용이였고, 이는 Elastic Beanstalk의 기본 프록시 설정인 NGINX에 요청된 데이터의 크기가 크면 발생하는 에러였습니다.
+
+EB는 NGINX를 역방향 프록시로 사용하는데, 프록시 서버는 클라이언트와 서버 사이의 중개자 역할을 하며 요청 및 응답을 처리하는데 중요한 역할을 합니다.
+
+NGINX의 기본 설정은 클라이언트에서 넘어오는 데이터의 크기를 최대 1MB로 제한하는데, 여러장의 이미지를 전송하는데에는 더 큰 데이터크기가 필요해서 구성 파일을 수정해서 파일 크기 제한을 늘렸습니다.
+
+```js
+client_max_body_size 10M;
+types_hash_max_size 4096;
+```
+
+이렇게 client_max_body_size와 types_hash_max_size를 늘려주며, 배포 환경에서의 이미지 파일 전송에 대한 이슈를 해결하였습니다.
+
+<br>
+<br>
 
 # 🗓 일정
 
