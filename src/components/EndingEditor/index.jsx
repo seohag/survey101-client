@@ -10,6 +10,7 @@ import EndingPreview from "../EndingPreview";
 
 import useFormEditorStore from "../../store/useFormEditorStore";
 import useUserIdStore from "../../store/useUserIdStore";
+import useSurveyUrlStore from "../../store/useSurveyUrlStore";
 
 import useCreateSurvey from "../../apis/useCreateSurvey";
 import usePutSurvey from "../../apis/usePutSurvey";
@@ -21,8 +22,8 @@ function EndingEditor() {
   const { surveyId } = useParams();
   const { coverData, styleData, endingData, questions, setEndingData } =
     useFormEditorStore();
-  const [surveyUrl, setSurveyUrl] = useState("");
-  const [showModal, setShowModal] = useState(false);
+  const { surveyUrl, showModal, setSurveyUrl, setShowModal } =
+    useSurveyUrlStore();
 
   const surveyData = {
     creator: userId,

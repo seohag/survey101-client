@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import DropdownMenu from "../DropDownMenu";
@@ -5,8 +6,9 @@ import useDeleteSurvey from "../../apis/useDeleteSurvey";
 
 function SurveyCard({ survey }) {
   const navigate = useNavigate();
+  const deleteSurvey = useDeleteSurvey(survey._id);
 
-  function handleOptionClick(event) {
+  async function handleOptionClick(event) {
     event.stopPropagation();
 
     if (event.target.textContent === "미리보기") {
@@ -17,8 +19,15 @@ function SurveyCard({ survey }) {
       navigate(`/editor/${survey._id}`);
     }
 
-    if (event.target.textContent === "링크복사") {
-      // 링크 복사 기능 구현
+    if (event.target.textContent === "링크 복사") {
+      const surveyUrl = `${window.location.origin}/form/${survey._id}`;
+
+      try {
+        await navigator.clipboard.writeText(surveyUrl);
+        alert("링크가 클립보드에 복사되었습니다.");
+      } catch (error) {
+        console.error("링크를 복사하는데 실패했습니다.", error);
+      }
     }
 
     if (event.target.textContent === "응답 및 분석") {
@@ -26,7 +35,7 @@ function SurveyCard({ survey }) {
     }
 
     if (event.target.textContent === "삭제") {
-      // 삭제 기능 추가
+      await deleteSurvey();
     }
   }
 

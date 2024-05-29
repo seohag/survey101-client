@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 function DropdownMenu({ handleOptionClick }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   useEffect(() => {
     document.addEventListener("click", closeMenu);
@@ -15,7 +14,7 @@ function DropdownMenu({ handleOptionClick }) {
   }, []);
 
   function toggleMenu() {
-    setIsOpen(!isOpen);
+    setMenuIsOpen(!menuIsOpen);
   }
 
   function handleButtonClick(event) {
@@ -24,9 +23,11 @@ function DropdownMenu({ handleOptionClick }) {
   }
 
   function closeMenu(event) {
-    if (event.target.closest(".relative")) return;
+    if (event.target.closest(".relative")) {
+      return;
+    }
 
-    setIsOpen(false);
+    setMenuIsOpen(false);
   }
 
   return (
@@ -38,8 +39,8 @@ function DropdownMenu({ handleOptionClick }) {
       >
         <FontAwesomeIcon icon={faAngleDown} className="text-xl" />
       </button>
-      {isOpen && (
-        <div className="absolute ml-12 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+      {menuIsOpen && (
+        <div className="absolute mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 left-1/2 transform -translate-x-1/2">
           <div className="py-1">
             <button
               onClick={handleOptionClick}

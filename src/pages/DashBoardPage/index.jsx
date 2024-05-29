@@ -12,6 +12,7 @@ import SurveyCard from "../../components/SurveyCard";
 import SurveyUrlModal from "../../components/shared/SurveyUrlModal";
 
 import useUserIdStore from "../../store/useUserIdStore";
+import useSurveyUrlStore from "../../store/useSurveyUrlStore";
 import authUser from "../../utils/authUser";
 
 function DashBoardPage() {
@@ -19,10 +20,9 @@ function DashBoardPage() {
   const navigate = useNavigate();
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [surveyUrl, setSurveyUrl] = useState("");
-  const [showModal, setShowModal] = useState(false);
   const { surveys, isLoading } = useGetSurveys();
   const { setUser, setIsLoggedIn } = useUserIdStore();
+  const { surveyUrl, showModal, setShowModal } = useSurveyUrlStore();
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -88,6 +88,9 @@ function DashBoardPage() {
 
   return (
     <>
+      {showModal && (
+        <SurveyUrlModal url={surveyUrl} onClose={() => setShowModal(false)} />
+      )}
       <section className="bg-gray-800 text-white p-4">
         <div className="flex justify-between items-center">
           <span className="text-2xl font-bold">Survey101</span>
