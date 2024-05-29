@@ -64,7 +64,7 @@ function DropdownMenu({ handleOptionClick }) {
               onClick={handleOptionClick}
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-center"
             >
-              응답 및 분석
+              응답 데이터 분석
             </button>
             <button
               onClick={handleOptionClick}

@@ -30,7 +30,7 @@ function SurveyCard({ survey }) {
       }
     }
 
-    if (event.target.textContent === "응답 및 분석") {
+    if (event.target.textContent === "응답 데이터 분석") {
       navigate(`/analytics/${survey._id}`);
     }
 

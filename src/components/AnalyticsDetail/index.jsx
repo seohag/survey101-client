@@ -1,8 +1,22 @@
+import { useState, useEffect } from "react";
 import useGetSurveyReponses from "../../apis/useGetSurveyReponses";
 import Loading from "../shared/Loading";
 
 function AnalyticsDetail() {
   const { surveyResponses, isLoading } = useGetSurveyReponses();
+  const [showInsights, setShowInsights] = useState(false);
+  const [respondentsCount, setRespondentsCount] = useState(0);
+
+  useEffect(() => {
+    if (!isLoading && surveyResponses.responses.length > 0) {
+      const totalCount = Math.max(
+        ...Object.values(processData(surveyResponses.responses)).map(
+          (arr) => arr.length,
+        ),
+      );
+      setRespondentsCount(totalCount);
+    }
+  }, [surveyResponses, isLoading]);
 
   if (isLoading) {
     return <Loading />;
@@ -38,6 +52,9 @@ function AnalyticsDetail() {
 
   return (
     <aside className="flex flex-col items-center justify-center w-full h-full">
+      <div className="mb-4">
+        <p>설문 응답자 수: {respondentsCount}명</p>
+      </div>
       <div className="w-full max-w-screen-lg mx-auto overflow-x-auto mb-32">
         <table className="min-h-1/4 bg-green-500 w-full rounded-lg overflow-hidden">
           <thead className="bg-gray-700 text-white">
@@ -61,10 +78,7 @@ function AnalyticsDetail() {
               <tr key={`row-${rowIndex}`}>
                 {Object.entries(processedSurveyResponses).map(
                   ([question, answers]) => (
-                    <td
-                      key={`${question._id}-${rowIndex}`}
-                      className="px-6 py-4 whitespace-nowrap"
-                    >
+                    <td key={question} className="px-6 py-4 whitespace-nowrap">
                       {answers[rowIndex] || "-"}
                     </td>
                   ),
@@ -75,6 +89,12 @@ function AnalyticsDetail() {
           {/* eslint-disable */}
         </table>
       </div>
+      <button
+        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+        onClick={() => setShowInsights(true)}
+      >
+        질문별 인사이트
+      </button>
     </aside>
   );
 }

@@ -7,7 +7,7 @@ import FormEditorPage from "./pages/FormEditorPage";
 import SurveyEditorPage from "./pages/SurveyEditorPage";
 import ResponsePage from "./pages/ResponsePage";
 import AnalyticsPage from "./pages/AnalyticsPage";
-import AnalyticsDetail from "./components/AnalaticsDetail";
+import AnalyticsDetail from "./components/AnalyticsDetail";
 
 function App() {
   return (
