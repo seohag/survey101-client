@@ -4,7 +4,6 @@ import Loading from "../shared/Loading";
 
 function AnalyticsDetail() {
   const { surveyResponses, isLoading } = useGetSurveyReponses();
-  const [showInsights, setShowInsights] = useState(false);
   const [respondentsCount, setRespondentsCount] = useState(0);
 
   useEffect(() => {
@@ -89,10 +88,7 @@ function AnalyticsDetail() {
           {/* eslint-disable */}
         </table>
       </div>
-      <button
-        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
-        onClick={() => setShowInsights(true)}
-      >
+      <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">
         질문별 인사이트
       </button>
     </aside>
