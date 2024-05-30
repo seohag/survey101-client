@@ -1,25 +1,21 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import DropdownMenu from "../DropDownMenu";
 import useDeleteSurvey from "../../apis/useDeleteSurvey";
+import DropdownMenu from "../DropDownMenu";
 
-function SurveyCard({ survey }) {
+function SurveyCard({ survey, openDropdownId, setOpenDropdownId }) {
   const navigate = useNavigate();
   const deleteSurvey = useDeleteSurvey(survey._id);
 
   async function handleOptionClick(event) {
     event.stopPropagation();
 
-    if (event.target.textContent === "미리보기") {
+    const action = event.target.textContent;
+
+    if (action === "미리보기") {
       navigate(`/form/${survey._id}`);
-    }
-
-    if (event.target.textContent === "편집") {
+    } else if (action === "편집") {
       navigate(`/editor/${survey._id}`);
-    }
-
-    if (event.target.textContent === "링크 복사") {
+    } else if (action === "링크 복사") {
       const surveyUrl = `${window.location.origin}/form/${survey._id}`;
 
       try {
@@ -28,13 +24,9 @@ function SurveyCard({ survey }) {
       } catch (error) {
         console.error("링크를 복사하는데 실패했습니다.", error);
       }
-    }
-
-    if (event.target.textContent === "응답 데이터 분석") {
+    } else if (action === "응답 데이터 분석") {
       navigate(`/analytics/${survey._id}`);
-    }
-
-    if (event.target.textContent === "삭제") {
+    } else if (action === "삭제") {
       await deleteSurvey();
     }
   }
@@ -43,37 +35,27 @@ function SurveyCard({ survey }) {
     <div
       key={survey._id}
       onClick={() => navigate(`/editor/${survey._id}`)}
-      onKeyDown={() => navigate(`/editor/${survey._id}`)}
-      className="cursor-pointer bg-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 focus:outline-none min-h-60"
       role="presentation"
+      className="group hover:shadow-md transition-all duration-300 bg-white rounded-md border border-gray-200 p-4"
     >
       <div className="flex justify-center items-center">
         <h2 className="text-xl font-semibold">{survey.title}</h2>
       </div>
-      {survey.coverImage && (
-        <div className="flex justify-center items-center mb-4 mx-2 relative">
-          <img
-            src={
-              typeof survey.coverImage.imageUrl === "string"
-                ? survey.coverImage.imageUrl
-                : URL.createObjectURL(survey.coverImage)
-            }
-            alt="Cover"
-            style={{ width: "200px", height: "147px" }}
-          />
-        </div>
-      )}
-      {!survey.coverImage && (
-        <div className="flex justify-center items-center mb-4 mx-2 relative">
-          <img
-            src="/assets/default-coverimg.png"
-            alt="No Cover"
-            className="object-contain"
-            style={{ width: "200px", height: "147px" }}
-          />
-        </div>
-      )}
-      <DropdownMenu handleOptionClick={handleOptionClick} />
+      <div className="flex justify-center items-center mb-4 mx-2 relative">
+        <img
+          src={survey.coverImage?.imageUrl || "/assets/default-coverimg.png"}
+          alt="Cover"
+          className="object-contain"
+          style={{ width: "200px", height: "147px" }}
+        />
+      </div>
+      <DropdownMenu
+        handleOptionClick={handleOptionClick}
+        isOpen={openDropdownId === survey._id}
+        toggle={() =>
+          setOpenDropdownId(openDropdownId === survey._id ? null : survey._id)
+        }
+      />
     </div>
   );
 }

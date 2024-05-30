@@ -20,6 +20,7 @@ function DashBoardPage() {
   const navigate = useNavigate();
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [openDropdownId, setOpenDropdownId] = useState(null);
   const { surveys, isLoading, isError, error } = useGetSurveys();
   const { setUser, setIsLoggedIn } = useUserIdStore();
   const { surveyUrl, showModal, setShowModal } = useSurveyUrlStore();
@@ -77,7 +78,7 @@ function DashBoardPage() {
   }
 
   function filterSurveys(survey) {
-    return survey.title.toLowerCase().includes(searchTerm.toLocaleLowerCase());
+    return survey.title.toLowerCase().includes(searchTerm.toLowerCase());
   }
 
   const filteredSurveys = surveys.filter(filterSurveys);
@@ -154,7 +155,12 @@ function DashBoardPage() {
         {filteredSurveys.length > 0 ? (
           <div className="grid grid-cols-4 gap-4 mt-8">
             {filteredSurveys.map((survey) => (
-              <SurveyCard key={survey._id} survey={survey} />
+              <SurveyCard
+                key={survey._id}
+                survey={survey}
+                openDropdownId={openDropdownId}
+                setOpenDropdownId={setOpenDropdownId}
+              />
             ))}
           </div>
         ) : (
