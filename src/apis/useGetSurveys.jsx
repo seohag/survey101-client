@@ -17,15 +17,24 @@ function useGetSurveys() {
     }
   }
 
-  const { data: surveys = [], isLoading } = useQuery({
+  const {
+    data: surveys = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
     queryKey: ["surveys"],
     queryFn: getSurveyList,
     refetchOnMount: true,
     refetchIntervalInBackground: true,
     refetchOnWindowFocus: true,
+    retry: false,
+    onError: (err) => {
+      console.error("설문 데이터를 불러오는 중 에러가 발생했습니다", err);
+    },
   });
 
-  return { surveys, isLoading };
+  return { surveys, isLoading, isError, error };
 }
 
 export default useGetSurveys;

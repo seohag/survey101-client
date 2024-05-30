@@ -9,17 +9,61 @@ import ResponsePage from "./pages/ResponsePage";
 import AnalyticsPage from "./pages/AnalyticsPage";
 import AnalyticsDetail from "./components/AnalyticsDetail";
 
+import ErrorBoundary from "./components/ErrorBoundary";
+
 function App() {
   return (
     <Routes>
       <Route path="/" exact element={<InitialPage />} />
-      <Route path="/dash" element={<DashBoardPage />} />
-      <Route path="/analytics" element={<AnalyticsPage />}>
-        <Route path=":surveyId" element={<AnalyticsDetail />} />
+      <Route
+        path="/dash"
+        element={
+          <ErrorBoundary>
+            <DashBoardPage />
+          </ErrorBoundary>
+        }
+      />
+      <Route
+        path="/analytics"
+        element={
+          <ErrorBoundary>
+            <AnalyticsPage />
+          </ErrorBoundary>
+        }
+      >
+        <Route
+          path=":surveyId"
+          element={
+            <ErrorBoundary>
+              <AnalyticsDetail />
+            </ErrorBoundary>
+          }
+        />
       </Route>
-      <Route path="/editor/new-form" element={<FormEditorPage />} />
-      <Route path="/editor/:surveyId" element={<SurveyEditorPage />} />
-      <Route path="/form/:surveyId" element={<ResponsePage />} />
+      <Route
+        path="/editor/new-form"
+        element={
+          <ErrorBoundary>
+            <FormEditorPage />
+          </ErrorBoundary>
+        }
+      />
+      <Route
+        path="/editor/:surveyId"
+        element={
+          <ErrorBoundary>
+            <SurveyEditorPage />
+          </ErrorBoundary>
+        }
+      />
+      <Route
+        path="/form/:surveyId"
+        element={
+          <ErrorBoundary>
+            <ResponsePage />
+          </ErrorBoundary>
+        }
+      />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );

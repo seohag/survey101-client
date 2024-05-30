@@ -20,7 +20,7 @@ function DashBoardPage() {
   const navigate = useNavigate();
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const { surveys, isLoading } = useGetSurveys();
+  const { surveys, isLoading, isError, error } = useGetSurveys();
   const { setUser, setIsLoggedIn } = useUserIdStore();
   const { surveyUrl, showModal, setShowModal } = useSurveyUrlStore();
 
@@ -38,7 +38,7 @@ function DashBoardPage() {
           setUser("");
           navigate("/");
         }
-      } catch (error) {
+      } catch (err) {
         setUser("");
         setIsLoggedIn(false);
         navigate("/");
@@ -46,7 +46,7 @@ function DashBoardPage() {
     };
 
     checkAuth();
-  }, []);
+  }, [navigate, setIsLoggedIn, setUser]);
 
   function debounce(func, wait) {
     let timeout;
@@ -84,6 +84,16 @@ function DashBoardPage() {
 
   if (isLoading) {
     return <Loading />;
+  }
+
+  if (isError) {
+    return (
+      <div className="text-center mt-7 text-gray-500">
+        <h2 className="text-2xl font-semibold color">
+          데이터를 불러오는 중 오류가 발생했습니다: {error.message}
+        </h2>
+      </div>
+    );
   }
 
   return (
