@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import useGetSurveyReponses from "../../apis/useGetSurveyReponses";
 import Loading from "../shared/Loading";
+import AnalyticsInsights from "../AnalyticsInsights";
 
 function AnalyticsDetail() {
   const { surveyResponses, isLoading } = useGetSurveyReponses();
   const [respondentsCount, setRespondentsCount] = useState(0);
+  const [showInsights, setShowInsights] = useState(false);
 
   useEffect(() => {
     if (!isLoading && surveyResponses.responses.length > 0) {
@@ -27,7 +29,7 @@ function AnalyticsDetail() {
     surveyAnswers.forEach((item) => {
       const { questionText, answerValue } = item;
 
-      if (groupedData.hasOwnProperty.call(groupedData, questionText)) {
+      if (Object.prototype.hasOwnProperty.call(groupedData, questionText)) {
         groupedData[questionText].push(answerValue);
       } else {
         groupedData[questionText] = [answerValue];
@@ -50,47 +52,65 @@ function AnalyticsDetail() {
   }
 
   return (
-    <aside className="flex flex-col items-center justify-center w-full h-full">
-      <div className="mb-4">
-        <p>설문 응답자 수: {respondentsCount}명</p>
-      </div>
-      <div className="w-full max-w-screen-lg mx-auto overflow-x-auto mb-32">
-        <table className="min-h-1/4 bg-green-500 w-full rounded-lg overflow-hidden">
-          <thead className="bg-gray-700 text-white">
-            <tr>
-              {Object.keys(processedSurveyResponses).map((questionText) => (
-                <th key={questionText} className="px-6 py-3 whitespace-nowrap">
-                  {questionText}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          {/* eslint-disable */}
-          <tbody className="bg-white divide-y divide-gray-200">
-            {Array.from({
-              length: Math.max(
-                ...Object.values(processedSurveyResponses).map(
-                  (arr) => arr.length,
-                ),
-              ),
-            }).map((_, rowIndex) => (
-              <tr key={`row-${rowIndex}`}>
-                {Object.entries(processedSurveyResponses).map(
-                  ([question, answers]) => (
-                    <td key={question} className="px-6 py-4 whitespace-nowrap">
-                      {answers[rowIndex] || "-"}
-                    </td>
+    <aside className="flex flex-col items-center justify-center w-full h-full overflow-auto">
+      {showInsights ? (
+        <AnalyticsInsights
+          surveyData={processedSurveyResponses}
+          onBack={() => setShowInsights(false)}
+        />
+      ) : (
+        <>
+          <button
+            className="px-4 py-2 mb-7 mt-3 bg-[#374151] text-white rounded hover:bg-black"
+            onClick={() => setShowInsights(true)}
+          >
+            질문별 인사이트
+          </button>
+          <div className="mb-4">
+            <p>설문 응답자 수: {respondentsCount}명</p>
+          </div>
+          <div className="w-full max-w-screen-lg mx-auto overflow-x-auto mb-32">
+            <table className="min-h-1/4 bg-green-500 w-full rounded-lg overflow-hidden">
+              <thead className="bg-gray-700 text-white">
+                <tr>
+                  {Object.keys(processedSurveyResponses).map((questionText) => (
+                    <th
+                      key={questionText}
+                      className="px-6 py-3 whitespace-nowrap"
+                    >
+                      {questionText}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              {/* eslint-disable */}
+              <tbody className="bg-white divide-y divide-gray-200">
+                {Array.from({
+                  length: Math.max(
+                    ...Object.values(processedSurveyResponses).map(
+                      (arr) => arr.length,
+                    ),
                   ),
-                )}
-              </tr>
-            ))}
-          </tbody>
-          {/* eslint-disable */}
-        </table>
-      </div>
-      <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">
-        질문별 인사이트
-      </button>
+                }).map((_, rowIndex) => (
+                  <tr key={`row-${rowIndex}`}>
+                    {Object.entries(processedSurveyResponses).map(
+                      ([question, answers]) => (
+                        <td
+                          key={question}
+                          className="px-6 py-4 whitespace-nowrap"
+                        >
+                          {answers[rowIndex] || "-"}
+                        </td>
+                      ),
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+              {/* eslint-disable */}
+            </table>
+          </div>
+        </>
+      )}
     </aside>
   );
 }
