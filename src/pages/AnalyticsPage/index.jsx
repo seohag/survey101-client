@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 
+import useGoogleLogOut from "../../apis/useGoogleLogOut";
 import useGetSurveys from "../../apis/useGetSurveys";
 import Loading from "../../components/shared/Loading";
-
-import useGoogleLogOut from "../../apis/useGoogleLogout";
 
 function AnalyticsPage() {
   const { surveyId } = useParams();
@@ -12,7 +11,7 @@ function AnalyticsPage() {
   const [selectedSurveyId, setSelectedSurveyId] = useState(null);
 
   const navigate = useNavigate();
-  const handleLogOut = useGoogleLogOut();
+  const { openModal, modal } = useGoogleLogOut();
 
   useEffect(() => {
     if (surveyId) {
@@ -49,7 +48,7 @@ function AnalyticsPage() {
               메인페이지로
             </button>
             <button
-              onClick={handleLogOut}
+              onClick={openModal}
               className="bg-transparent text-white px-4 py-2 rounded-md hover:bg-[#8B9093]"
             >
               로그아웃
@@ -57,7 +56,6 @@ function AnalyticsPage() {
           </div>
         </div>
       </header>
-
       <section className="flex h-full w-full items-center justify-center mt-10">
         <aside className="flex w-1/4 h-full">
           <div className="h-full w-full overflow-y-auto">
@@ -105,6 +103,7 @@ function AnalyticsPage() {
           <Outlet />
         )}
       </section>
+      {modal}
     </main>
   );
 }

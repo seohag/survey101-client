@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import QuestionPreview from "../QuestionPreview";
 import QuestionList from "../QuestionList";
-import AddQuestionPopup from "../../services/AddQuestionPopup";
+import AddQuestionPopup from "../AddQuestionPopup";
 import useFormEditorStore from "../../store/useFormEditorStore";
 
 function QuestionEditor() {

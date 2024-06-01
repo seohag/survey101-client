@@ -4,7 +4,7 @@ import DropdownMenu from "../DropDownMenu";
 
 function SurveyCard({ survey, openDropdownId, setOpenDropdownId }) {
   const navigate = useNavigate();
-  const deleteSurvey = useDeleteSurvey(survey._id);
+  const { openModal, modal } = useDeleteSurvey(survey._id);
 
   async function handleOptionClick(event) {
     event.stopPropagation();
@@ -27,14 +27,20 @@ function SurveyCard({ survey, openDropdownId, setOpenDropdownId }) {
     } else if (action === "응답 데이터 분석") {
       navigate(`/analytics/${survey._id}`);
     } else if (action === "삭제") {
-      await deleteSurvey();
+      openModal();
     }
   }
+
+  const handleCardClick = () => {
+    if (!modal) {
+      navigate(`/editor/${survey._id}`);
+    }
+  };
 
   return (
     <div
       key={survey._id}
-      onClick={() => navigate(`/editor/${survey._id}`)}
+      onClick={handleCardClick}
       role="presentation"
       className="group transition-all duration-300 bg-white rounded-md border border-gray-200 p-4 hover:shadow-lg hover:border-[#3182F6] hover:shadow-outline"
     >
@@ -56,6 +62,7 @@ function SurveyCard({ survey, openDropdownId, setOpenDropdownId }) {
           setOpenDropdownId(openDropdownId === survey._id ? null : survey._id)
         }
       />
+      {modal}
     </div>
   );
 }

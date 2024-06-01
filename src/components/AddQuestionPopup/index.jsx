@@ -16,14 +16,14 @@ function AddQuestionPopup({ handleClosePopup, handleAddQuestion }) {
           <div className="flex justify-between items-center">
             <h3 className="text-lg font-bold">질문 추가</h3>
             <button
-              className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+              className="bg-gray-300 text-[#4E5968] px-4 py-2 rounded-md hover:bg-gray-200"
               onClick={handleClosePopup}
             >
               닫기
             </button>
           </div>
         </div>
-        <div className="pt-16">
+        <div className="pt-10">
           <div>
             <h4 className="text-md font-bold mb-2">선택</h4>
             <div className="flex flex-col mb-4">

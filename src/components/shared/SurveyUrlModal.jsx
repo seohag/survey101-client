@@ -1,6 +1,21 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function SurveyUrlModal({ url, onClose }) {
+  const [copySuccess, setCopySuccess] = useState(false);
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopySuccess(true);
+      setTimeout(() => {
+        setCopySuccess(false);
+      }, 2000);
+    } catch (error) {
+      console.error("링크 복사에 실패했습니다.", error);
+    }
+  };
+
   return (
     <div className="fixed z-10 inset-0 overflow-y-auto">
       <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center">
@@ -17,21 +32,38 @@ function SurveyUrlModal({ url, onClose }) {
                   <p className="text-sm text-gray-500">
                     해당 링크를 통해 설문을 공유하세요!
                   </p>
-                  <Link style={{ color: "black" }} to={url}>
-                    {url}
-                  </Link>
+                  <div className="flex items-center">
+                    <Link
+                      style={{ color: "black" }}
+                      to={url}
+                      className="ml-auto"
+                    >
+                      {url}
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+          <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse border-t">
             <button
               onClick={onClose}
               type="button"
-              className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
+              className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-[#004CFE] text-base font-medium text-white hover:bg-[#0289FF] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm relative"
             >
               닫기
             </button>
+            <button
+              onClick={copyToClipboard}
+              className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-gray-300 text-black font-medium hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm relative"
+            >
+              링크 복사
+            </button>
+            {copySuccess && (
+              <span className="text-xs text-green-500 flex items-center ml-2">
+                복사 완료!
+              </span>
+            )}
           </div>
         </div>
       </div>

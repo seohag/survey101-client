@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-import useGoogleLogOut from "../../apis/useGoogleLogout";
+import useGoogleLogOut from "../../apis/useGoogleLogOut";
 import useGetSurveys from "../../apis/useGetSurveys";
 
 import Loading from "../../components/shared/Loading";
@@ -16,7 +16,7 @@ import useSurveyUrlStore from "../../store/useSurveyUrlStore";
 import authUser from "../../utils/authUser";
 
 function DashBoardPage() {
-  const handleLogOut = useGoogleLogOut();
+  const { openModal, modal } = useGoogleLogOut();
   const navigate = useNavigate();
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -120,7 +120,7 @@ function DashBoardPage() {
               응답 및 인사이트 보기
             </button>
             <button
-              onClick={handleLogOut}
+              onClick={openModal}
               className="bg-transparent text-[#4E5968] px-4 py-2 rounded-md hover:bg-gray-300"
             >
               로그아웃
@@ -178,6 +178,7 @@ function DashBoardPage() {
           </div>
         )}
       </section>
+      {modal}
     </>
   );
 }
