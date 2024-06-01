@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 
-import useGoogleLogOut from "../../apis/useGoogleLogOut";
 import useGetSurveys from "../../apis/useGetSurveys";
+import useGoogleLogOut from "../../apis/useGoogleLogOut";
 import Loading from "../../components/shared/Loading";
 
 function AnalyticsPage() {
