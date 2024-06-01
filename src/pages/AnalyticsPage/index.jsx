@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 
 import useGetSurveys from "../../apis/useGetSurveys";
-import useGoogleLogOut from "../../apis/useGoogleLogOut";
+import useGoogleLogout from "../../apis/useGoogleLogout";
 import Loading from "../../components/shared/Loading";
 
 function AnalyticsPage() {
@@ -11,7 +11,7 @@ function AnalyticsPage() {
   const [selectedSurveyId, setSelectedSurveyId] = useState(null);
 
   const navigate = useNavigate();
-  const { openModal, modal } = useGoogleLogOut();
+  const { openModal, modal } = useGoogleLogout();
 
   useEffect(() => {
     if (surveyId) {

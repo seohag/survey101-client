@@ -6,7 +6,7 @@ import fetchData from "../utils/axios";
 import useUserIdStore from "../store/useUserIdStore";
 import ConfirmModal from "../components/shared/ConfirmModal";
 
-function useGoogleLogOut() {
+function useGoogleLogout() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
   const { setUser, setUserId, setIsLoggedIn } = useUserIdStore();
@@ -51,4 +51,4 @@ function useGoogleLogOut() {
   return { openModal, modal };
 }
 
-export default useGoogleLogOut;
+export default useGoogleLogout;

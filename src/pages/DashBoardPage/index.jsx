@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import useGetSurveys from "../../apis/useGetSurveys";
-import useGoogleLogOut from "../../apis/useGoogleLogOut";
+import useGoogleLogout from "../../apis/useGoogleLogout";
 
 import Loading from "../../components/shared/Loading";
 import SurveyCard from "../../components/SurveyCard";
@@ -16,7 +16,7 @@ import useSurveyUrlStore from "../../store/useSurveyUrlStore";
 import authUser from "../../utils/authUser";
 
 function DashBoardPage() {
-  const { openModal, modal } = useGoogleLogOut();
+  const { openModal, modal } = useGoogleLogout();
   const navigate = useNavigate();
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
