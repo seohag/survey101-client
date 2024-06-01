@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-import useGoogleLogOut from "../../apis/useGoogleLogOut";
 import useGetSurveys from "../../apis/useGetSurveys";
+import useGoogleLogOut from "../../apis/useGoogleLogOut";
 
 import Loading from "../../components/shared/Loading";
 import SurveyCard from "../../components/SurveyCard";
