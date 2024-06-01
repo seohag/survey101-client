@@ -102,26 +102,33 @@ function DashBoardPage() {
       {showModal && (
         <SurveyUrlModal url={surveyUrl} onClose={() => setShowModal(false)} />
       )}
-      <section className="bg-gray-800 text-white p-4">
+      <section className="text-black p-2 border-b border-[[#4E5968]]">
         <div className="flex justify-between items-center">
-          <span className="text-2xl font-bold">Survey101</span>
+          <span
+            className="flex items-center cursor-pointer ml-7"
+            onClick={() => navigate("/dash")}
+            role="presentation"
+          >
+            <img src="/assets/survey-icon.png" alt="Logo" className="w-8 h-8" />
+            <span className="text-xl font-bold">Survey101</span>
+          </span>
           <div className="flex items-center space-x-4">
             <button
-              className="bg-blue-500 text-white px-4 py-2 rounded-md"
+              className="bg-transparent text-[#4E5968] px-4 py-2 rounded-md hover:bg-gray-300"
               onClick={() => navigate("/analytics")}
             >
-              응답 인사이트 및 보기
+              응답 및 인사이트 보기
             </button>
             <button
               onClick={handleLogOut}
-              className="bg-red-500 text-white px-4 py-2 rounded-md"
+              className="bg-transparent text-[#4E5968] px-4 py-2 rounded-md hover:bg-gray-300"
             >
               로그아웃
             </button>
           </div>
         </div>
       </section>
-      <section className="relative mt-5">
+      <section className="relative mt-5 px-5">
         <span className="text-2xl ml-5 mb-2">전체 설문</span>
         <button
           type="button"
@@ -145,13 +152,13 @@ function DashBoardPage() {
       </section>
       <section className="flex items-center justify-center mt-8">
         <button
-          className="cursor-pointer bg-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-105"
+          className="cursor-pointer bg-transparent p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:bg-gray-300"
           onClick={() => navigate("/editor/new-form")}
         >
           <span className="text-xl font-semibold">설문 생성하기</span>
         </button>
       </section>
-      <section>
+      <section className="ml-10 mr-10">
         {filteredSurveys.length > 0 ? (
           <div className="grid grid-cols-4 gap-4 mt-8">
             {filteredSurveys.map((survey) => (

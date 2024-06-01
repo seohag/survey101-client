@@ -11,90 +11,90 @@ function AddQuestionPopup({ handleClosePopup, handleAddQuestion }) {
       onClick={handleClickOutside}
       role="presentation"
     >
-      <div className="bg-white p-4 rounded-lg w-80 max-h-96 overflow-y-auto">
-        <h3 className="text-lg font-bold mb-4">질문 추가</h3>
-        <div>
-          <h4 className="text-md font-bold mb-2">선택</h4>
-          <div className="flex flex-col mb-4">
+      <div className="bg-white p-4 rounded-lg w-80 max-h-96 overflow-y-auto relative">
+        <div className="sticky -top-4 left-0 right-0 bg-white p-2 rounded-t-lg border-b z-10">
+          <div className="flex justify-between items-center">
+            <h3 className="text-lg font-bold">질문 추가</h3>
             <button
-              className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
-              onClick={() => handleAddQuestion("textChoice")}
+              className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+              onClick={handleClosePopup}
             >
-              텍스트
-            </button>
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
-              onClick={() => handleAddQuestion("imageChoice")}
-            >
-              이미지
+              닫기
             </button>
           </div>
         </div>
-        <div>
-          <h4 className="text-md font-bold mb-2">입력</h4>
-          <div className="flex flex-col">
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
-              onClick={() => handleAddQuestion("textInput")}
-            >
-              텍스트 입력
-            </button>
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
-              onClick={() => handleAddQuestion("emailInput")}
-            >
-              이메일 입력
-            </button>
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
-              onClick={() => handleAddQuestion("phoneInput")}
-            >
-              전화번호 입력
-            </button>
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
-              onClick={() => handleAddQuestion("numberInput")}
-            >
-              숫자 입력
-            </button>
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
-              onClick={() => handleAddQuestion("timeInput")}
-            >
-              시간 입력
-            </button>
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
-              onClick={() => handleAddQuestion("dateInput")}
-            >
-              날짜 입력
-            </button>
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
-              onClick={() => handleAddQuestion("rangeInput")}
-            >
-              슬라이더
-            </button>
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
-              onClick={() => handleAddQuestion("radioInput")}
-            >
-              별점
-            </button>
-            {/* <button
-              className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
-              onClick={() => handleAddQuestion("selectInput")}
-            >
-              드롭다운
-            </button> */}
+        <div className="pt-16">
+          <div>
+            <h4 className="text-md font-bold mb-2">선택</h4>
+            <div className="flex flex-col mb-4">
+              <button
+                className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+                onClick={() => handleAddQuestion("textChoice")}
+              >
+                텍스트
+              </button>
+              <button
+                className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+                onClick={() => handleAddQuestion("imageChoice")}
+              >
+                이미지
+              </button>
+            </div>
+          </div>
+          <div>
+            <h4 className="text-md font-bold mb-2">입력</h4>
+            <div className="flex flex-col">
+              <button
+                className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+                onClick={() => handleAddQuestion("textInput")}
+              >
+                텍스트 입력
+              </button>
+              <button
+                className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+                onClick={() => handleAddQuestion("emailInput")}
+              >
+                이메일 입력
+              </button>
+              <button
+                className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+                onClick={() => handleAddQuestion("phoneInput")}
+              >
+                전화번호 입력
+              </button>
+              <button
+                className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+                onClick={() => handleAddQuestion("numberInput")}
+              >
+                숫자 입력
+              </button>
+              <button
+                className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+                onClick={() => handleAddQuestion("timeInput")}
+              >
+                시간 입력
+              </button>
+              <button
+                className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+                onClick={() => handleAddQuestion("dateInput")}
+              >
+                날짜 입력
+              </button>
+              <button
+                className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+                onClick={() => handleAddQuestion("rangeInput")}
+              >
+                슬라이더
+              </button>
+              <button
+                className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+                onClick={() => handleAddQuestion("radioInput")}
+              >
+                별점
+              </button>
+            </div>
           </div>
         </div>
-        <button
-          className="bg-red-500 text-white px-4 py-2 rounded mt-4"
-          onClick={handleClosePopup}
-        >
-          닫기
-        </button>
       </div>
     </div>
   );

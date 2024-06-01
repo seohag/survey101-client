@@ -30,7 +30,7 @@ function QuestionOptions({
               onClick={() => {
                 handleAddTextOption(question.questionId);
               }}
-              className="bg-gray-300 text-black px-4 py-2 rounded"
+              className="bg-gray-300 text-[#4E5968] px-4 py-2 rounded-md hover:bg-gray-200"
             >
               옵션 추가
             </button>
@@ -54,7 +54,7 @@ function QuestionOptions({
             )}
             <button
               onClick={() => handleAddImageOption(question.questionId)}
-              className="bg-gray-300 text-black px-4 py-2 rounded mt-2"
+              className="bg-gray-300 text-[#4E5968] px-4 py-2 rounded-md hover:bg-gray-200"
             >
               이미지 옵션 추가
             </button>

@@ -31,25 +31,26 @@ function AnalyticsPage() {
 
   return (
     <main className="h-screen w-screen box-border">
-      <header className="w-full bg-green-800 text-white p-4">
+      <header className="bg-[#495667] text-white p-2 border-b">
         <div className="flex justify-between items-center">
           <span
-            className="text-2xl font-bold cursor-pointer"
-            onClick={navigateToDash}
+            className="flex items-center cursor-pointer ml-7"
+            onClick={() => navigate("/dash")}
             role="presentation"
           >
-            Survey101
+            <img src="/assets/survey-icon.png" alt="Logo" className="w-8 h-8" />
+            <span className="text-xl font-bold">Survey101</span>
           </span>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 mr-4">
             <button
               onClick={navigateToDash}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md"
+              className="bg-transparent text-white px-4 py-2 rounded-md hover:bg-[#8B9093]"
             >
               메인페이지로
             </button>
             <button
               onClick={handleLogOut}
-              className="bg-red-500 text-white px-4 py-2 rounded-md"
+              className="bg-transparent text-white px-4 py-2 rounded-md hover:bg-[#8B9093]"
             >
               로그아웃
             </button>
@@ -57,7 +58,7 @@ function AnalyticsPage() {
         </div>
       </header>
 
-      <section className="flex h-full w-full items-center justify-center">
+      <section className="flex h-full w-full items-center justify-center mt-10">
         <aside className="flex w-1/4 h-full">
           <div className="h-full w-full overflow-y-auto">
             {isLoading ? (
@@ -74,7 +75,7 @@ function AnalyticsPage() {
                       <button
                         key={survey._id}
                         onClick={() => showDetail(survey._id)}
-                        className="cursor-pointer p-4 border rounded-lg transition duration-300 ease-in-out transform hover:shadow-md"
+                        className="group transition-all duration-300 bg-white rounded-md border border-gray-200 p-4 hover:shadow-lg hover:border-[#3182F6] hover:shadow-outline"
                         type="button"
                       >
                         <h3 className="text-xl font-semibold">

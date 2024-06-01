@@ -45,70 +45,71 @@ function FormEditorHeader({ activeSection, onSectionChange, isNewForm }) {
   }
 
   return (
-    <section className="bg-purple-800 text-white p-4">
+    <section className="text-black p-2 border-b border-[[#4E5968]]">
       {showModal && (
         <SurveyUrlModal url={surveyUrl} onClose={() => setShowModal(false)} />
       )}
       <div className="flex justify-between items-center">
         <span
-          className="text-2xl font-bold cursor-pointer"
-          onClick={navigateToDash}
+          className="flex items-center cursor-pointer ml-7"
+          onClick={() => navigate("/dash")}
           role="presentation"
         >
-          Survey101
+          <img src="/assets/survey-icon.png" alt="Logo" className="w-8 h-8" />
+          <span className="text-xl font-bold">Survey101</span>
         </span>
         <div className="flex-1 flex justify-center items-center space-x-6 max-w-[800px]">
           <button
             className={`flex items-center space-x-2 px-4 py-2 rounded-md ${
-              activeSection === "cover" ? "bg-blue-700" : ""
+              activeSection === "cover" ? "bg-[#C9E2FF]" : ""
             }`}
             onClick={() => onSectionChange("cover")}
           >
             <span
               className={`w-2 h-2 rounded-full ${
-                activeSection === "cover" ? "bg-black" : "bg-white"
+                activeSection === "cover" ? "bg-[#004EFF]" : "bg-white"
               }`}
             ></span>
             <span>설문 커버</span>
           </button>
-          <FontAwesomeIcon icon={faArrowRight} className="text-white" />
+          <FontAwesomeIcon icon={faArrowRight} className="text-black" />
           <button
             className={`flex items-center space-x-2 px-4 py-2 rounded-md ${
-              activeSection === "style" ? "bg-blue-700" : ""
+              activeSection === "style" ? "bg-[#C9E2FF]" : ""
             }`}
             onClick={() => onSectionChange("style")}
           >
             <span
               className={`w-2 h-2 rounded-full ${
-                activeSection === "style" ? "bg-black" : "bg-white"
+                activeSection === "style" ? "bg-[#004EFF]" : "bg-white"
               }`}
             ></span>
             <span>설문 스타일</span>
           </button>
-          <FontAwesomeIcon icon={faArrowRight} className="text-white" />
+          <FontAwesomeIcon icon={faArrowRight} className="text-black" />
           <button
             className={`flex items-center space-x-2 px-4 py-2 rounded-md ${
-              activeSection === "question" ? "bg-blue-700" : ""
+              activeSection === "question" ? "bg-[#C9E2FF]" : ""
             }`}
             onClick={() => onSectionChange("question")}
           >
             <span
               className={`w-2 h-2 rounded-full ${
-                activeSection === "question" ? "bg-black" : "bg-white"
+                activeSection === "question" ? "bg-[#004EFF]" : "bg-white"
               }`}
             ></span>
             <span>설문 내용</span>
           </button>
-          <FontAwesomeIcon icon={faArrowRight} className="text-white" />
+          <FontAwesomeIcon icon={faArrowRight} className="text-black" />
           <button
             className={`flex items-center space-x-2 px-4 py-2 rounded-md ${
-              activeSection === "ending" ? "bg-blue-700" : ""
+              activeSection === "ending" ? "bg-[#C9E2FF]" : ""
             }`}
             onClick={() => onSectionChange("ending")}
           >
             <span
               className={`w-2 h-2 rounded-full ${
-                activeSection === "ending" ? "bg-black" : "bg-white"
+                activeSection === "ending" ? "bg-[#004EFF]" : "bg-white"
               }`}
             ></span>
             <span>설문 마무리</span>
@@ -119,7 +120,7 @@ function FormEditorHeader({ activeSection, onSectionChange, isNewForm }) {
             <button
               type="button"
               aria-label="save-button"
-              className="bg-green-500 text-white px-2 py-1 rounded-md"
+              className="bg-[#C9E2FF] text-[#004EFF] px-2 py-1 rounded-md"
               onClick={handleSubmit}
             >
               <FontAwesomeIcon icon={faSave} className="text-xl" />
