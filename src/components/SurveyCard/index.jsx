@@ -31,11 +31,11 @@ function SurveyCard({ survey, openDropdownId, setOpenDropdownId }) {
     }
   }
 
-  const handleCardClick = () => {
+  function handleCardClick() {
     if (!modal) {
       navigate(`/editor/${survey._id}`);
     }
-  };
+  }
 
   return (
     <div

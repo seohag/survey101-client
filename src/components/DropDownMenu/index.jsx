@@ -1,9 +1,28 @@
+import { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 function DropdownMenu({ handleOptionClick, isOpen, toggle }) {
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const closeDropdown = (event) => {
+      if (!dropdownRef.current.contains(event.target)) {
+        toggle();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("click", closeDropdown);
+    }
+
+    return () => {
+      document.removeEventListener("click", closeDropdown);
+    };
+  }, [isOpen, toggle]);
+
   return (
-    <div className="relative text-center">
+    <div className="relative text-center" ref={dropdownRef}>
       <button
         onClick={(event) => {
           event.stopPropagation();
