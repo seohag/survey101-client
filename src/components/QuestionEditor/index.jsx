@@ -106,16 +106,11 @@ function QuestionEditor() {
       <section className="w-2/5 p-4">
         <QuestionPreview selectedQuestionId={selectedQuestionId} />
       </section>
-      <section className="w-3/5 p-4 overflow-auto">
-        <div className="text-center">
-          <button
-            className="bg-gray-300 text-[#4E5968] px-4 py-2 rounded-md hover:bg-gray-200"
-            onClick={handleAddQuestionPopup}
-          >
-            질문 추가
-          </button>
-        </div>
-        <QuestionList setSelectedQuestionId={setSelectedQuestionId} />
+      <section className="w-3/5 p-4">
+        <QuestionList
+          handleAddQuestionPopup={handleAddQuestionPopup}
+          setSelectedQuestionId={setSelectedQuestionId}
+        />
       </section>
       {showAddQuestionPopup && (
         <AddQuestionPopup

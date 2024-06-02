@@ -1,16 +1,57 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
 import Question from "../Question";
 import QuestionOptions from "../QuestionOptions";
 import QuestionControls from "../QuestionControls";
 import useFormEditorStore from "../../store/useFormEditorStore";
 
-function QuestionList({ setSelectedQuestionId }) {
+function QuestionList({ setSelectedQuestionId, handleAddQuestionPopup }) {
   const [errorMessage, setErrorMessage] = useState("");
   const { questions, setQuestions } = useFormEditorStore();
+  const containerRef = useRef(null);
+  const menuButtonRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = containerRef.current;
+      const menuButton = menuButtonRef.current;
+
+      const offsetTop = container.scrollTop;
+      const containerHeight = container.scrollHeight;
+      const menuButtonHeight = menuButton.offsetHeight;
+
+      let newTop;
+
+      if (offsetTop < 0) {
+        newTop = 0;
+      } else if (offsetTop + menuButtonHeight > containerHeight) {
+        newTop = containerHeight - menuButtonHeight;
+      } else {
+        newTop = offsetTop;
+      }
+
+      setTimeout(() => {
+        menuButton.style.top = `${newTop}px`;
+      }, 500);
+    };
+
+    const handleResize = () => {
+      handleScroll();
+    };
+
+    const container = containerRef.current;
+
+    container.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      container.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   function handleDeleteQuestion(questionId) {
     if (questions.length <= 1) {
@@ -189,11 +230,27 @@ function QuestionList({ setSelectedQuestionId }) {
   }
 
   return (
-    <div style={{ maxHeight: "500px" }}>
+    <div
+      ref={containerRef}
+      className="relative max-h-[650px] overflow-auto container"
+    >
+      <div
+        ref={menuButtonRef}
+        className="menu-button absolute right-0 top-0 m-4"
+      >
+        <button
+          type="button"
+          className="bg-gray-300 text-[#4E5968] px-4 py-2 rounded-md hover:bg-gray-200"
+          onClick={handleAddQuestionPopup}
+          aria-label="Question Button"
+        >
+          <FontAwesomeIcon icon={faPlusCircle} className="text-xl" />
+        </button>
+      </div>
       {questions.map((question) => (
         <div
           key={question.questionId}
-          className="cursor-pointer bg-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-95"
+          className="cursor-pointer bg-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 mb-5 max-w-[600px] mx-auto"
           onClick={() => setSelectedQuestionId(question.questionId)}
           role="presentation"
         >
