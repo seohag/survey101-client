@@ -1,19 +1,16 @@
 import { useParams } from "react-router-dom";
-
 import ReactQuill, { Quill } from "react-quill";
 import quillEmoji from "react-quill-emoji";
+
 import "react-quill/dist/quill.snow.css";
 import "react-quill-emoji/dist/quill-emoji.css";
 
 import EndingPreview from "../EndingPreview";
-
 import useFormEditorStore from "../../store/useFormEditorStore";
 import useUserIdStore from "../../store/useUserIdStore";
 import useSurveyUrlStore from "../../store/useSurveyUrlStore";
-
 import useCreateSurvey from "../../apis/useCreateSurvey";
 import usePutSurvey from "../../apis/usePutSurvey";
-
 import SurveyUrlModal from "../shared/SurveyUrlModal";
 
 function EndingEditor() {
@@ -49,9 +46,7 @@ function EndingEditor() {
         [{ header: 1 }, { header: 2 }],
         ["bold", "italic", "underline", "strike"],
         ["blockquote", "code-block", "emoji"],
-
         [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
-
         [{ color: [] }, { background: [] }],
         [{ align: [] }],
       ],
@@ -82,11 +77,11 @@ function EndingEditor() {
       {showModal && (
         <SurveyUrlModal url={surveyUrl} onClose={() => setShowModal(false)} />
       )}
-      <section className="w-2/5 p-4">
+      <section className="w-2/5 p-4 hidden md:block">
         <EndingPreview endingData={endingData} styleData={styleData} />
       </section>
 
-      <section className="w-3/5 p-4">
+      <section className="w-3/5 p-4 max-w-[800px] mx-auto">
         <div className="text-center">
           <button
             className="bg-gray-300 text-[#4E5968] px-4 py-2 rounded-md hover:bg-gray-200"

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import QuestionPreview from "../QuestionPreview";
@@ -10,6 +10,20 @@ function QuestionEditor() {
   const { setQuestions, questions } = useFormEditorStore();
   const [showAddQuestionPopup, setShowAddQuestionPopup] = useState(false);
   const [selectedQuestionId, setSelectedQuestionId] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   function handleAddQuestionPopup() {
     setShowAddQuestionPopup(true);
@@ -102,11 +116,13 @@ function QuestionEditor() {
   }
 
   return (
-    <div className="flex">
-      <section className="w-2/5 p-4">
-        <QuestionPreview selectedQuestionId={selectedQuestionId} />
+    <div className="flex flex-col md:flex-row">
+      <section className="md:w-2/5 p-4">
+        {!isMobile && (
+          <QuestionPreview selectedQuestionId={selectedQuestionId} />
+        )}
       </section>
-      <section className="w-3/5 p-4">
+      <section className="md:w-3/5 p-4">
         <QuestionList
           handleAddQuestionPopup={handleAddQuestionPopup}
           setSelectedQuestionId={setSelectedQuestionId}
