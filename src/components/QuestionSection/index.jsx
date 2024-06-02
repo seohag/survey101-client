@@ -103,13 +103,14 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
             setIsPrevAnimating(false);
           }}
         >
+          {progressPercent} %
           <div className="mb-4 w-full h-4 bg-gray-300 rounded-full">
             <div
               className="h-full bg-blue-500 rounded-full"
               style={{ width: `${progressPercent}%` }}
             ></div>
           </div>
-          <div className=" bg-gray-200 p-4 border rounded min-h-[572px] min-w-[320px]">
+          <div className=" bg-gray-200 p-4 border rounded min-h-[650px] min-w-[320px]">
             <h3 className="text-l font-bold" style={{ color: themeColor }}>
               <span className="flex justify-between">
                 {currentQuestionIndex > 0 && (

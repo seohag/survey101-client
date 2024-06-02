@@ -81,7 +81,7 @@ function EndingEditor() {
         <EndingPreview endingData={endingData} styleData={styleData} />
       </section>
 
-      <section className="w-3/5 p-4 max-w-[800px] mx-auto">
+      <section className="w-3/5 p-4 max-w-[830px] mx-auto">
         <div className="text-center">
           <button
             className="bg-gray-300 text-[#4E5968] px-4 py-2 rounded-md hover:bg-gray-200"
