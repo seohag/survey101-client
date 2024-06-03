@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import useFormEditorStore from "../../store/useFormEditorStore";
 import TextChoiceQuestion from "./TextChoiceQuestion";
@@ -25,15 +25,14 @@ const questionComponents = {
   rangeInput: RangeInputQuestion,
 };
 
-function QuestionPreview() {
+function QuestionPreview({ selectedQuestionId, setSelectedQuestionId }) {
   const { questions, styleData } = useFormEditorStore();
-  const [selectedQuestionId, setSelectedQuestionId] = useState(null);
 
   useEffect(() => {
     if (questions.length > 0) {
       setSelectedQuestionId(questions[0].questionId);
     }
-  }, [questions]);
+  }, []);
 
   const selectedQuestion = questions.find(
     (question) => question.questionId === selectedQuestionId,

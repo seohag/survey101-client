@@ -119,7 +119,10 @@ function QuestionEditor() {
     <div className="flex flex-col md:flex-row">
       <section className="md:w-2/5 p-4">
         {!isMobile && (
-          <QuestionPreview selectedQuestionId={selectedQuestionId} />
+          <QuestionPreview
+            selectedQuestionId={selectedQuestionId}
+            setSelectedQuestionId={setSelectedQuestionId}
+          />
         )}
       </section>
       <section className="md:w-3/5 p-4">
