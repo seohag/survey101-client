@@ -70,44 +70,48 @@ function AnalyticsDetail() {
             <p>설문 응답자 수: {respondentsCount}명</p>
           </div>
           <div className="w-full max-w-screen-lg mx-auto overflow-x-auto mb-32">
-            <table className="min-h-1/4 bg-green-500 w-full rounded-lg overflow-hidden">
-              <thead className="bg-gray-700 text-white">
-                <tr>
-                  {Object.keys(processedSurveyResponses).map((questionText) => (
-                    <th
-                      key={questionText}
-                      className="px-6 py-3 whitespace-nowrap"
-                    >
-                      {questionText}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              {/* eslint-disable */}
-              <tbody className="bg-white divide-y divide-gray-200">
-                {Array.from({
-                  length: Math.max(
-                    ...Object.values(processedSurveyResponses).map(
-                      (arr) => arr.length,
-                    ),
-                  ),
-                }).map((_, rowIndex) => (
-                  <tr key={`row-${rowIndex}`}>
-                    {Object.entries(processedSurveyResponses).map(
-                      ([question, answers]) => (
-                        <td
-                          key={question}
-                          className="px-6 py-4 whitespace-nowrap"
+            <div className="overflow-x-auto">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-700 text-white">
+                  <tr>
+                    {Object.keys(processedSurveyResponses).map(
+                      (questionText) => (
+                        <th
+                          key={questionText}
+                          className="px-2 py-3 text-xs sm:text-sm lg:text-base whitespace-nowrap"
                         >
-                          {answers[rowIndex] || "-"}
-                        </td>
+                          {questionText}
+                        </th>
                       ),
                     )}
                   </tr>
-                ))}
-              </tbody>
-              {/* eslint-disable */}
-            </table>
+                </thead>
+                {/* eslint-disable */}
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {Array.from({
+                    length: Math.max(
+                      ...Object.values(processedSurveyResponses).map(
+                        (arr) => arr.length,
+                      ),
+                    ),
+                  }).map((_, rowIndex) => (
+                    <tr key={`row-${rowIndex}`}>
+                      {Object.entries(processedSurveyResponses).map(
+                        ([question, answers]) => (
+                          <td
+                            key={question}
+                            className="px-2 py-4 text-xs sm:text-sm lg:text-base whitespace-nowrap"
+                          >
+                            {answers[rowIndex] || "-"}
+                          </td>
+                        ),
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+                {/* eslint-disable */}
+              </table>
+            </div>
           </div>
         </>
       )}

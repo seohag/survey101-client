@@ -60,7 +60,7 @@ function CoverEditor() {
         ></CoverStylePreview>
       </section>
 
-      <section className="md:w-full p-4 max-w-[55%] mx-auto">
+      <section className="md:w-full p-4 max-w-full md:max-w-[55%] mx-auto">
         <div className="bg-white rounded-lg shadow-lg p-4 mb-4 text-center">
           {errorMessage && (
             <div className="text-red-500 mb-4">{errorMessage}</div>
@@ -96,7 +96,7 @@ function CoverEditor() {
           </div>
 
           <label htmlFor="coverImage" className="block mb-2 cursor-pointer">
-            <div className="border border-gray-300 rounded flex justify-center items-center">
+            <div className="border border-gray-300 rounded flex justify-center items-center h-44">
               {coverData.coverImage ? (
                 <img
                   src={

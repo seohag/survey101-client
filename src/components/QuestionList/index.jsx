@@ -12,12 +12,11 @@ function QuestionList({ setSelectedQuestionId, handleAddQuestionPopup }) {
   const [errorMessage, setErrorMessage] = useState("");
   const { questions, setQuestions } = useFormEditorStore();
   const containerRef = useRef(null);
-  const menuButtonRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
       const container = containerRef.current;
-      const menuButton = menuButtonRef.current;
+      const menuButton = document.getElementById("menuButton");
 
       const offsetTop = container.scrollTop;
       const containerHeight = container.scrollHeight;
@@ -234,17 +233,19 @@ function QuestionList({ setSelectedQuestionId, handleAddQuestionPopup }) {
       ref={containerRef}
       className="relative max-h-[85vh] overflow-auto container"
     >
-      <div
-        ref={menuButtonRef}
-        className="menu-button absolute right-4 top-4 m-2"
-      >
+      <div id="menuButton" className="absolute right-4 top-4 m-2 z-10">
         <button
           type="button"
-          className="bg-gray-300 text-[#4E5968] px-4 py-2 rounded-md hover:bg-gray-200"
+          className="bg-gray-300 text-[#4E5968] px-2 py-2.5 rounded-md hover:bg-gray-200 whitespace-pre-wrap sm:whitespace-normal"
           onClick={handleAddQuestionPopup}
           aria-label="Question Button"
         >
-          <FontAwesomeIcon icon={faPlusCircle} className="text-xl" />
+          추가
+          <br />
+          <FontAwesomeIcon
+            icon={faPlusCircle}
+            className="text-xl ml-0.5 mt-1"
+          />
         </button>
       </div>
       {questions.map((question) => (

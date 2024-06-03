@@ -73,15 +73,15 @@ function EndingEditor() {
   }
 
   return (
-    <div className="flex">
+    <div className="flex flex-col md:flex-row">
       {showModal && (
         <SurveyUrlModal url={surveyUrl} onClose={() => setShowModal(false)} />
       )}
-      <section className="w-2/5 p-4 hidden md:block">
+      <section className="w-full md:w-2/5 p-4 hidden md:block">
         <EndingPreview endingData={endingData} styleData={styleData} />
       </section>
 
-      <section className="md:w-full p-4 max-w-[58%] mx-auto">
+      <section className="w-full md:w-full p-4 max-w-[58%] mx-auto">
         <div className="text-center">
           <button
             className="bg-gray-300 text-[#4E5968] px-4 py-2 rounded-md hover:bg-gray-200"
@@ -90,7 +90,7 @@ function EndingEditor() {
             {surveyId ? "설문 저장" : "설문 생성"}
           </button>
         </div>
-        <div className="bg-white rounded-lg shadow-lg p-4 mb-4 text-center h-[94%]">
+        <div className="bg-white rounded-lg shadow-lg p-4 mb-4 text-center h-[60vh] md:h-[94%]">
           <input
             id="endingtitle"
             type="text"
@@ -103,7 +103,7 @@ function EndingEditor() {
             value={endingData.content}
             onChange={(content) => setEndingData({ ...endingData, content })}
             modules={modules}
-            style={{ height: "460px" }}
+            className="h-[30vh] md:h-[60vh]"
           />
         </div>
       </section>
