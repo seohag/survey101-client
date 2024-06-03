@@ -232,11 +232,11 @@ function QuestionList({ setSelectedQuestionId, handleAddQuestionPopup }) {
   return (
     <div
       ref={containerRef}
-      className="relative max-h-[650px] overflow-auto container"
+      className="relative max-h-[85vh] overflow-auto container"
     >
       <div
         ref={menuButtonRef}
-        className="menu-button absolute right-0 top-0 m-4"
+        className="menu-button absolute right-4 top-4 m-2"
       >
         <button
           type="button"
@@ -250,7 +250,7 @@ function QuestionList({ setSelectedQuestionId, handleAddQuestionPopup }) {
       {questions.map((question) => (
         <div
           key={question.questionId}
-          className="cursor-pointer bg-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 mb-5 max-w-[600px] mx-auto"
+          className="cursor-pointer bg-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 mb-4 max-w-[67%] mx-auto"
           onClick={() => setSelectedQuestionId(question.questionId)}
           role="presentation"
         >

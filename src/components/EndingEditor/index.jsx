@@ -81,7 +81,7 @@ function EndingEditor() {
         <EndingPreview endingData={endingData} styleData={styleData} />
       </section>
 
-      <section className="w-3/5 p-4 max-w-[830px] mx-auto">
+      <section className="md:w-full p-4 max-w-[58%] mx-auto">
         <div className="text-center">
           <button
             className="bg-gray-300 text-[#4E5968] px-4 py-2 rounded-md hover:bg-gray-200"
@@ -90,10 +90,11 @@ function EndingEditor() {
             {surveyId ? "설문 저장" : "설문 생성"}
           </button>
         </div>
-        <div className="bg-white rounded-lg shadow-lg p-4 mb-4 text-center h-[600px]">
+        <div className="bg-white rounded-lg shadow-lg p-4 mb-4 text-center h-[94%]">
           <input
+            id="endingtitle"
             type="text"
-            className="w-full p-2 border border-gray-300 rounded text-center"
+            className="w-full p-2 mt-3 border border-gray-300 rounded text-center"
             value={endingData.title}
             readOnly
           />
@@ -102,7 +103,7 @@ function EndingEditor() {
             value={endingData.content}
             onChange={(content) => setEndingData({ ...endingData, content })}
             modules={modules}
-            style={{ height: "470px" }}
+            style={{ height: "460px" }}
           />
         </div>
       </section>

@@ -69,43 +69,51 @@
 
 # 🖥 기능 미리보기 및 설명
 
+**구글 소셜 로그인**: 사용자는 구글을 통한 소셜로그인이 가능합니다.
+
+<img width="600" alt="스크린샷 2024-06-03 04 55 42" src="https://github.com/seohag/survey101-client/assets/126459089/867c6ff6-363b-415f-869a-dd7447372396">
+
+<br>
+<br>
+
+**대쉬보드 페이지**: 로그인한 사용자는 설문을 관리할 수 있는 대쉬보드 페이지에 들어오게 됩니다.
+
+<img width="600" alt="스크린샷 2024-06-03 04 24 36" src="https://github.com/seohag/survey101-client/assets/126459089/251d870b-4764-4198-a434-ecdddcbb3ade">
+
+- 대쉬보드(관리자) 페이지에선 생성된 설문들을 수정하고, 삭제할 수 있는 기능이 있고 드롭다운 메뉴를 통해 편리하게 설문들을 관리할 수 있습니다.
+
+<br>
+<br>
+
 **설문 생성페이지**: 사용자는 설문 커버, 스타일, 내용(질문), 마무리 섹션별로 설문 양식을 커스터마이징해서 생성할 수 있습니다.
 
-<img width="600" alt="스크린샷 2024-05-17 05 12 52" src="https://github.com/seohag/survey101-client/assets/126459089/55bd21ac-1e59-464a-a095-0ac89fc84c4e">
+<img width="600" alt="스크린샷 2024-06-03 04 19 30" src="https://github.com/seohag/survey101-client/assets/126459089/99bee4d9-18ae-4379-9116-6552d1be1cb8">
 
 - 커버 섹션은 설문 양식의 인트로를 커스터마이징 할 수 있습니다.
 
 <br>
 
-<img width="600" alt="스크린샷 2024-05-17 05 14 02" src="https://github.com/seohag/survey101-client/assets/126459089/8298b5cc-a913-41c5-8b45-95b16d80775c">
+<img width="600" alt="스크린샷 2024-06-03 04 19 17" src="https://github.com/seohag/survey101-client/assets/126459089/e5b990fb-c664-41c6-853c-0510ad52b838">
 
 - 스타일 섹션은 설문 양식의 색상, 버튼 모양, 애니메이션을 커스터마이징 할 수 있습니다.
 
 </br>
 
-<img width="600" alt="스크린샷 2024-05-17 05 20 44" src="https://github.com/seohag/survey101-client/assets/126459089/03a6c6b7-d726-4391-8d1b-03ad2d8b33bf">
+<img width="600" alt="스크린샷 2024-06-03 04 21 30" src="https://github.com/seohag/survey101-client/assets/126459089/558715ae-11b6-4f83-a14e-19f859b9deb9">
 
 - 내용 섹션은 설문의 질문을 커스터마이징 할 수 있습니다. 질문 타입에 따라 질문들을 생성 할 수 있습니다.
 
 </br>
 
-<img width="600" alt="스크린샷 2024-05-17 05 21 57" src="https://github.com/seohag/survey101-client/assets/126459089/250a4006-ec5e-4ae1-8ba7-a6169c3618e4">
+<img width="600" alt="스크린샷 2024-06-03 04 23 26" src="https://github.com/seohag/survey101-client/assets/126459089/83371642-d030-40f3-8f4c-0f43ee096858">
 
 - 마무리 섹션은 설문 양식의 아웃트로를 텍스트 에디터를 통해 커스터마이징 할 수 있습니다.
 
 </br>
 
-**설문 수정 및 삭제**
-
-<img width="600" alt="스크린샷 2024-05-17 05 26 04" src="https://github.com/seohag/survey101-client/assets/126459089/3979b36b-def2-459f-86cf-014c738bed10">
-
-- 관리자 대쉬보드 페이지에선 생성된 설문들을 수정하고, 삭제할 수 있는 기능이 있습니다.
-
-<br>
-
 **링크를 통한 공유**
 
-<img width="600" alt="스크린샷 2024-05-17 05 27 59" src="https://github.com/seohag/survey101-client/assets/126459089/3cdce143-07d4-4cac-b26a-93eb538c5685">
+<img width="600" alt="스크린샷 2024-06-03 04 31 05" src="https://github.com/seohag/survey101-client/assets/126459089/637d6fdc-5f37-48b9-943c-5c7c1d74a527">
 
 - 생성된 설문 양식은 링크를 통해 설문 대상자들에게 공유 가능합니다.
 
@@ -113,7 +121,7 @@
 
 **공유된 설문에 대한 답변페이지**
 
-<img width="600" alt="스크린샷 2024-05-17 05 29 39" src="https://github.com/seohag/survey101-client/assets/126459089/4f8bad88-9ea5-4343-84be-9a5bb974b767">
+<img width="600" alt="스크린샷 2024-06-03 04 47 24" src="https://github.com/seohag/survey101-client/assets/126459089/201fb725-67bd-4e85-a8d5-6fd30a2f9e3a">
 
 - 링크를 통해 공유된 설문은 설문 대상자들이 응답할 수 있습니다.
 
@@ -121,7 +129,8 @@
 
 **응답결과 시각화 페이지**
 
-<img width="600" alt="스크린샷 2024-05-17 05 31 16" src="https://github.com/seohag/survey101-client/assets/126459089/c5ea246e-9a06-48f1-8de0-9dc8f62a6fc8">
+<img width="600" alt="스크린샷 2024-06-03 04 29 35" src="https://github.com/seohag/survey101-client/assets/126459089/e9c25505-2902-4af5-a8c9-a442c44d8b0b">
+<img width="600" alt="스크린샷 2024-06-03 05 14 13" src="https://github.com/seohag/survey101-client/assets/126459089/d66026c2-b236-47d9-9584-76c9ae38bc6e">
 
 - 설문 대상자들에게 답변을 받으면 응답받은 결과들을 테이블이나 차트형식으로 시각화를 도와줍니다.
 
@@ -162,15 +171,18 @@
 
 간략하긴 하지만 이러한 조사한 내용들로 React가 어떠한 장점들이 있는지 알게 되었고, 단지 많이 사용한다는 이유만이 아닌 여러 가지 장점들을 찾아보니 "아직은 리액트를 사용하는 것이 적절하겠구나" 라는 판단하에 리액트를 프로젝트에 사용하는 것으로 결정하게 되었습니다.
 
-<img width="600" alt="스크린샷 2024-05-30 10 43 24" src="https://github.com/seohag/survey101-client/assets/126459089/f774c58c-aa66-44e3-8e76-34a08aad2458">
+<img width="500" height="230" alt="스크린샷 2024-06-03 19 28 37" src="https://github.com/seohag/survey101-client/assets/126459089/685442c7-141e-411f-a05a-df1672cc8ebf">
+<img width="500" height="230" alt="스크린샷 2024-06-03 10 23 45" src="https://github.com/seohag/survey101-client/assets/126459089/e8a2bf5b-dec0-46f0-a922-6d3162f18195">
 
-### vite는 왜 사용했을까?
+<br>
+
+### Vite는 왜 사용했을까?
 
 리액트 프로젝트를 생성하기 위한 방법들을 찾아보았고, CRA, Vite, Webpack 등을 사용해서 프로젝트를 생성할 수 있다는 것을 찾아보았습니다. 세가지 툴의 장단점을 조사해았고, 타 비교 군들과 비교해 Vite가 여러 측면에서 장점들을 더 가지고 있었습니다.
 
 CRA는 사용하지 않는 기능들까지 모두 설치되기 때문에 모듈 사이즈가 크다는 단점이 있고 커스텀 빌드를 하는 것이 어렵습니다. 또한 빌드 시간이 Vite에 비해 많이 느렸습니다. 다른 대표적인 번들러 WebPack 과 비교했을 땐 Webpack은 초기 빌드 속도가 느릴 수 있지만, Vite는 개발 서버를 통해 빠른 번들링 속도를 제공하고 파일을 필요할 때마다 필요한 모듈만 번들링하여 신속한 개발이 가능하다고 조사했습니다. Vite가 빠른 이유는 dependencies(Esbuild) 그리고 source code 두 가지 카테고리로 나누어 개발 서버를 시작하기 때문이라고 조사했습니다.
 
-기본적으로 HMR(앱을 종료하지 않고 갱신된 파일만을 교체하는 방식)을 포함한 빠르고 간단한 개발 서버를 제공하며 기본 환경설정이 간단했고, 프로덕션 빌드 시 Rollup을 사용하여 코드를 최적화합니다. 불필요한 코드를 효과적으로 트리쉐이킹하여 제거하고, 결과물의 파일 크기를 최소화 하는 장점도 있었습니다.
+기본적으로 Hot Module Replacement(앱을 종료하지 않고 갱신된 파일만을 교체하는 방식)을 포함한 빠르고 간단한 개발 서버를 제공하며 기본 환경설정이 간단했고, 프로덕션 빌드 시 Rollup을 사용하여 코드를 최적화합니다. 불필요한 코드를 효과적으로 트리쉐이킹하여 제거하고, 결과물의 파일 크기를 최소화 하는 장점도 있었습니다.
 
 이렇게 Vite가 타 비교군에 비해 많은 장점을 가졌기에, Vite를 번들러로 선정 후 프로젝트를 진행하였습니다.
 
@@ -187,6 +199,8 @@ CRA는 사용하지 않는 기능들까지 모두 설치되기 때문에 모듈 
 | 트리 쉐이킹          | 효과적으로 불필요한 코드 제거 | 일부 기능을 제공 (Tree Shaking) | 일부 기능을 제공 (Tree Shaking) |
 | 파일 크기 최소화     | 효과적으로 최소화             | 일부 최적화                     | 일부 최적화                     |
 
+<br>
+
 ### React Query 그리고 Zustand는 왜 사용했을까?
 
 설문을 커스터마이징 하고, 커스터마이징한 설문을 데이터베이스에 저장하고 불러오는 등의 작업들을 하다보면 클라이언트와 서버와의 상호작용이 잦았습니다. 설문 양식을 생성, 수정, 삭제 하는 등 CRUD 작업이 많은 프로젝트였기에 클라이언트에 저장되는 데이터들은 변화되기 쉬운 성격을 가지고 있었습니다. 서버와 클라이언트 간의 데이터가 같은 데이터임에도 시점 차이로 인한 클라이언트와 서버와의 데이터가 달라질 수 있는 상황이 있을 수 있기에 데이터의 정확성과 일관성 유지를 위해 클라이언트와 서버의 상태를 분리해서 관리했고, `React Query`의 상태관리의 이점들을 활용하고자 선택하였습니다.
@@ -201,8 +215,6 @@ CRA는 사용하지 않는 기능들까지 모두 설치되기 때문에 모듈 
 
 ```jsx
 import { create } from "zustand";
-
-import { v4 as uuidv4 } from "uuid";
 
 const useFormEditorStore = create((set) => ({
   activeSection: "cover",
@@ -240,28 +252,26 @@ const useFormEditorStore = create((set) => ({
 export default useFormEditorStore;
 ```
 
-이러한 이유들로 인해 `React Query`로는 서버 데이터 페칭 및 캐싱을 담당하게 했고, `Zustand`로는 클라이언트 상태 관리 및 UI 업데이트를 담당하며 명확한 책임 분리를 하여 상태관리를 하였습니다.
+조사한 내용들을 바탕으로 `React Query`로는 서버 데이터 페칭 및 캐싱을 담당하게 했고, `Zustand`로는 클라이언트 상태 관리 및 UI 업데이트를 담당하며 명확한 책임 분리를 하여 상태관리를 하였습니다.
 
 <br>
 
 ### 왜 FormData를 사용해서 작업했을까?
 
-우선 사용자 경험적인 측면이였습니다. 기존에 HTML에 내장된 form으로 작업을 했을 땐 form이 제출될 때 페이지가 리로드 되는 현상이 있었습니다. 그러나 FormData는 페이지 리로드 없이 서버로 데이터를 전송할 수 있었기 때문에 해당 방식으로 작업을 하였습니다.
+우선 사용자 경험적인 측면 때문이였습니다. 기존에 HTML에 내장된 form으로 작업을 했을 땐 form이 제출될 때 페이지가 리로드 되는 현상이 있었습니다. 그러나 FormData는 페이지 리로드 없이 서버로 데이터를 전송할 수 있었기 때문에 해당 방식으로 작업을 하였습니다.
 
-다른 이유는 저의 프로젝트의 데이터 구조상 FormData가 적합했습니다. 서버에 전송하는 데이터 구조가 아래의 사진과 같았기에 (중첩된 구조), 파일 객체들과 옵션 ID를 자바스크립트로 조작할 수 있는 FormData를 선택 후 사용하였습니다.
+또다른 이유는 저의 프로젝트의 데이터 구조상 FormData가 적합했습니다. 서버에 전송하는 데이터 구조가 아래의 사진과 같았기에 (중첩된 구조), 파일 객체들과 옵션 ID를 자바스크립트로 조작할 수 있는 FormData를 선택 후 사용하였습니다.
 
 그리고 리액트에서 유명한 Form 라이브러리인 Formik과 React-Hook-Form 특징들을 조사해보고 사용도 고려했었습니다.
 
-Formik은 form이 필요한 컴포넌트를 `<Formik>` 태그로 감싸서 props drilling 없이 컴포넌트 내에서 전역적으로 상태관리를 할 수 있는 장점이 있고, Controlled Component 방식으로 동작합니다.
+**Formik**은 form이 필요한 컴포넌트를 `<Formik>` 태그로 감싸서 props drilling 없이 컴포넌트 내에서 전역적으로 상태관리를 할 수 있는 장점이 있고, Controlled Component 방식으로 동작합니다.
 
-React-Hook-Form은 Uncontrolled Component 방식으로 동작하기 때문에 렌더링 횟수가 적다는 특징이 있습니다. 따라서 웹 퍼포먼스 향상에 직결되는 장점이 있지만, 기본적으로 form안의 값을 제어하기 위해선 ref를 사용해서 접근해야 하는 방식을 가지고 있습니다.
+**React-Hook-Form**은 Uncontrolled Component 방식으로 동작하기 때문에 렌더링 횟수가 적다는 특징이 있습니다. 따라서 웹 퍼포먼스 향상에 직결되는 장점이 있지만, 기본적으로 form안의 값을 제어하기 위해선 ref를 사용해서 접근해야 하는 방식을 가지고 있습니다.
 
 그러나 라이브러리 사용은 지양하는 쪽으로 프로젝트를 진행방향을 정했기에, HTML 내장 Form과 FormData를 꼼꼼히 비교 후 Survey101에 적합했던 FormData를 사용하기로 결정했습니다.
 
-<p align="center">
-<img width="350" height="260" alt="스크린샷 2024-05-17 06 03 57" src="https://github.com/seohag/survey101-client/assets/126459089/175d3efc-ea4b-4f1f-9ed6-999273468e35">
-<img width="350" alt="스크린샷 2024-05-17 06 04 27" src="https://github.com/seohag/survey101-client/assets/126459089/0d4ef465-50c4-44b0-940f-d2aa38e18115">
-</p>
+<img width="500" height="330" alt="스크린샷 2024-05-17 06 03 57" src="https://github.com/seohag/survey101-client/assets/126459089/175d3efc-ea4b-4f1f-9ed6-999273468e35">
+<img width="500" height="330" alt="스크린샷 2024-05-17 06 04 27" src="https://github.com/seohag/survey101-client/assets/126459089/0d4ef465-50c4-44b0-940f-d2aa38e18115">
 
 <br>
 
@@ -343,6 +353,7 @@ function QuestionPreview({ selectedQuestionId }) {
                 ))}
               </div>
             )}
+            ...
           </div>
         )}
       </div>
@@ -357,10 +368,18 @@ export default QuestionPreview;
 <br>
 
 ```jsx
+
 import TextChoiceQuestion from "./TextChoiceQuestion";
 import ImageChoiceQuestion from "./ImageChoiceQuestion";
 import TextInputQuestion from "./TextInputQuestion";
 ...
+
+const questionComponents = {
+  textChoice: TextChoiceQuestion,
+  imageChoice: ImageChoiceQuestion,
+  textInput: TextInputQuestion,
+  ...
+};
 
 function QuestionPreview({ selectedQuestionId }) {
   const { questions, styleData } = useFormEditorStore();
@@ -368,32 +387,26 @@ function QuestionPreview({ selectedQuestionId }) {
     (question) => question.questionId === selectedQuestionId,
   );
 
+  if (!selectedQuestion) {
+    return null;
+  }
+
+  const SpecificQuestionComponent = questionComponents[selectedQuestion.questionType];
+
   return (
     <div className="bg-gray-200 rounded-lg shadow-lg p-4 flex justify-center items-center min-h-[642px]">
       <div className="text-center">
-        {selectedQuestion && (
-          <div className="p-4 border border-gray-300 rounded min-h-[572px] min-w-[350.594px]">
-            <h3 className="text-xl font-bold mb-4">
-              {selectedQuestion.questionText}
-            </h3>
-            {selectedQuestion.questionType === "textChoice" && (
-              <TextChoiceQuestion
-                styleData={styleData}
-                options={selectedQuestion.options}
-              />
-            )}
-            {selectedQuestion.questionType === "imageChoice" && (
-              <ImageChoiceQuestion
-                options={selectedQuestion.options}
-                styleData={styleData}
-              />
-            )}
-            {selectedQuestion.questionType === "textInput" && (
-              <TextInputQuestion styleData={styleData} />
-            )}
-            ...
-          </div>
-        )}
+        <div className="p-4 border border-gray-300 rounded min-h-[572px] min-w-[351px]">
+          <h3 className="text-xl font-bold mb-4">
+            {selectedQuestion.questionText}
+          </h3>
+          {SpecificQuestionComponent && (
+            <SpecificQuestionComponent
+              styleData={styleData}
+              options={selectedQuestion.options}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
@@ -404,9 +417,60 @@ export default QuestionPreview;
 
 - 합성 컴포넌트 패턴을 적용시켜 관심사를 분리한 코드 (to-be)
 
+<br>
+
+```plaintext
+QuestionPreview
+│
+├── import TextChoiceQuestion from "./TextChoiceQuestion"
+├── import ImageChoiceQuestion from "./ImageChoiceQuestion"
+├── import TextInputQuestion from "./TextInputQuestion"
+...
+│
+├── const questionComponents = {
+│   ├── textChoice: TextChoiceQuestion
+│   ├── imageChoice: ImageChoiceQuestion
+│   ├── textInput: TextInputQuestion
+│   ...
+│   }
+│
+├── function QuestionPreview({ selectedQuestionId })
+│   ├── useFormEditorStore()
+│   │   ├── questions
+│   │   └── styleData
+│   │
+│   ├── const selectedQuestion = questions.find(
+│   │     └── (question) => question.questionId === selectedQuestionId
+│   │   )
+│   │
+│   ├── const SpecificQuestionComponent = questionComponents[selectedQuestion.questionType]
+│   │
+│   └── return (
+│       ├── <div>
+│           ├── <div>
+│               ├── <div>
+│                   ├── <h3>
+│                   │   └── {selectedQuestion.questionText}
+│                   │
+│                   ├── {SpecificQuestionComponent && (
+│                   │   ├── <SpecificQuestionComponent
+│                   │   │   ├── styleData={styleData}
+│                   │   │   └── options={selectedQuestion.options}
+│                   │   └── )}
+│                   └── )}
+│
+└── export default QuestionPreview
+```
+
+- `QuestionPreview` 컴포넌트 계층 구조
+
+<br>
+
 ### 컴포넌트를 분리한 결과:
 
 합성 컴포넌트 패턴을 이용하여 분리한 코드에서는 각 질문 타입에 해당되는 컴포넌트에 역할을 위임하며 이를 통해 질문 타입들마다 컴포넌트를 독립적으로 관리할 수 있고, 기존코드에 비해 가독성을 향상 시켰습니다. 또한 질문 미리보기와 비슷한 설문에 대한 답변을 하는 컴포넌트에서도 동일한 패턴을 이용해서 재사용성과 유연성을 향상 시킬 수 있었습니다. 기존의 코드에선 하나의 컴포넌트에서 많은 책임을 지고 있었기에 유지보수 할 때 모든 코드를 살펴봐야 했지만, 컴포넌트를 분리함으로써 단일 책임 원칙을 지킬 수 있게끔 하였습니다.
+
+컴포넌트를 작성할때 리액트의 여러 디자인 패턴들을 활용하여 컴포넌트를 분리함으로써 코드의 재사용성을 높이고 유지 보수성을 향상 시켜야 한다는 점을 배웠습니다. 이러한 패턴들을 사용하게되면 각 컴포넌트가 명확한 역할과 책임을 가지게 되어 유지보수가 용이해집니다. `QuestionPreview` 컴포넌트를 예로 들었을 때, 새로운 질문 타입이 추가될 때도 기존 코드를 최소한으로 수정하여 확장시킬 수 있었고, 앞으로도 이런 컴포넌트를 나누는 패턴들을 적극 활용하여 보다 모듈화되고 관리하기 쉬운 코드를 작성해야겠다고 느꼈습니다.
 
 <br>
 
@@ -414,7 +478,7 @@ export default QuestionPreview;
 
 ### 프로젝트에 적합한 데이터 구조는 무엇일까?:
 
-데이터 구조를 설계하는 방법을 잘 알지 못했기에 설문에 대한 데이터 스키마 모델링을 하기 위해선 어떤 데이터 구조로 설계하는 것이 가장 효율적이고, 적절한 방식인지에 대한 고민으로 시작했습니다.
+데이터 구조 및 스키마를 설계하는 방법을 잘 알지 못했기에 설문에 대한 데이터 스키마 모델링을 하기 위해선 어떤 데이터 구조로 설계하는 것이 가장 효율적이고, 적절한 방식인지에 대한 고민으로 시작했습니다.
 
 ### MongoDB의 Embedding 방식과 Reference 방식 조사:
 
@@ -438,9 +502,13 @@ Survey101는 설문조사를 커스터마이징 하고, 관리하는 특성을 �
 | **데이터 크기**   | 큰 데이터를 효과적으로 처리 가능           | 도큐먼트 크기가 제한을 초과할 수 있음         |
 | **관계 유형**     | 복잡한 다대다 관계를 표현하는 데 적합      | 단순한 일대다 관계를 표현하는 데 적합         |
 
+<br>
+
 ### 데이터 구조 설계 조사 후 적용결과:
 
 결과적으로 이러한 차이점을 가지고 있는 부분을 학습해서 Survey101의 설문 데이터는 데이터가 매우 크거나 복잡하다는 이유로 하나의 도큐먼트에 담기 어렵지 않고, 여러 설문조사에 걸쳐 동일한 질문이나 옵션을 재사용하는 경우가 없다는 등의 특성을 고려해서 Embedding 방식을 사용한 데이터 구조를 적용시켰습니다.
+
+앞으로도 이러한 방식으로 프로젝트에 적합한 데이터 구조들을 조사 및 비교해보면서 각 데이터 구조들의 특성을 고려해 스키마를 작성해야겠다고 배웠습니다. 최적의 데이터 구조를 선택하는게 결국 프로젝트의 성능과 확장성을 지속적으로 개선시키는 것이기 때문에, 이러한 데이터베이스 모델과 설계 방식을 항상 고려하며 프로젝트에 가장 적합한 솔루션을 찾아내고, 이를 효과적으로 적용하는 것을 목표로 꼼꼼히 조사하는 습관을 기르는 것을 연습해야겠다는 점을 느꼈습니다.
 
 <br>
 
@@ -448,17 +516,19 @@ Survey101는 설문조사를 커스터마이징 하고, 관리하는 특성을 �
 
 <br>
 
-## AWS S3 bucket을 이용한 서버에서 여러장의 이미지를 업로드 과정에서의 에러핸들링
+## AWS S3 bucket을 이용한 서버에서 여러 장의 이미지를 업로드 과정에서의 에러핸들링
 
-POC 단계에서 이미지파일을 어떠한 방식으로 다룰 수 있을까 고민을 했었습니다. 기존에 MongoDB를 사용해본 기억이 있어 MongoDB를 사용한 이미지 파일 방법들을 조사해보았습니다. Binary JSON 데이터로 변환하여(Base64 인코딩) 데이터베이스 도큐먼트 내에 직접 저장하는 방식이 있었고, 외부 파일 스토리지와 연동하여 저장하는 방법이 있었습니다.
+우선 POC 단계에서 이미지파일을 어떠한 방식으로 다룰 수 있을까 고민을 했었습니다. 기존에 MongoDB를 사용해본 기억이 있어 MongoDB를 사용한 이미지 파일 방법들을 조사해보았습니다. Binary JSON 데이터로 변환하여 (Base64 인코딩) 데이터베이스 도큐먼트 내에 직접 저장하는 방식이 있었고, 외부 파일 스토리지와 연동하여 저장하는 방법이 있었습니다.
 
-BSON 데이터로 변환하여 이미지 파일을 MongoDB 도큐먼트 내에 직접 저장하는 방식으로 하려니 16MB로 문서 크기 제한이 있었고, 대용량 바이너리 데이터를 처리하기엔 한계가 있었습니다. 또한 Base64로 인코딩하게 되면 원래 크기보다 커지는 단점이 있어서, 저장 공간이 빠르게 소진되는 단점이 있었습니다.
+BSON 데이터로 변환하여 이미지 파일을 MongoDB 도큐먼트 내에 직접 저장하는 방식으로 하려니 16MB로 문서 크기 제한이 있었고, 대용량 바이너리 데이터를 처리하기엔 한계가 있었습니다. 또한 Base64로 인코딩하게 되면 원래 크기보다 커지기 때문에 저장 공간이 빠르게 소진되는 단점이 있었습니다.
 
-AWS S3는 CDN(Content Delivery Network)과 통합하여 안정적인 이미지 전달이 가능하고, 대규모 이미지 파일을(최대 5TB) 효율적으로 저장하며, 고가용성 및 내구성, 확장성이 뛰어난 장점을 갖고 있습니다. 또한 imageUrl과 key값등을 제공해주기 데이터베이스에 url, key 값들만 저장해 클라이언트에서 사용하기 편한 장점이 있었습니다. 이러한 이유들로 인해 AWS S3 bucket에 이미지 파일들을 업로드 하는 방법을 택했습니다.
+AWS S3는 CDN(Content Delivery Network)과 통합하여 안정적인 이미지 전달이 가능하고, 대규모 이미지 파일을(최대 5TB) 효율적으로 저장하며, 고가용성 및 내구성, 확장성이 뛰어난 장점을 갖고 있습니다. 또한 **imageUrl**과 **key**값 등을 제공해주기 데이터베이스에 url, key 값들만 저장해 클라이언트에서 사용하기 편한 장점이 있었습니다. 이러한 이유들로 인해 AWS S3 bucket에 이미지 파일들을 업로드 하는 방법을 택했습니다.
+
+<img width="700" alt="스크린샷 2024-06-03 19 53 26" src="https://github.com/seohag/survey101-client/assets/126459089/68f6c943-ab04-41ba-b1e4-b57aa72475cc">
 
 ### 어떠한 에러인지 클라이언트에서 알지 못했다:
 
-서버 측에서 AWS S3에 이미지 파일 데이터를 `Promise.all`로 업로드 하고 있습니다. `Promise.all`로 이미지를 여러장 업로드 하게되면 여러개의 데이터 중 하나만 업로드되지 않아도 모든 데이터들이 업로드되지 않으며 함수 실행이 중단되었습니다. 이미지 업로드 함수실행은 중단되었지만 클라이언트 측에선 이미지 업로드 에러인지 서버 측의 다른 에러인지 알지 못했기에 설문이 생성완료 되었다는 모달창이 뜨는 문제점이 있었습니다.
+서버 측에서 AWS S3에 이미지 파일 데이터를 `Promise.all`로 업로드 하고 있습니다. `Promise.all`로 이미지를 여러장 업로드 하게되면 여러 개의 데이터 중 하나만 업로드되지 않아도 모든 데이터들이 업로드되지 않으며 함수 실행이 중단되었습니다. 그러나 이미지 업로드 함수 실행이 종료되어도 클라이언트 측에선 이미지 업로드 에러인지 서버 측의 다른 에러인지 알지 못했기에 설문이 생성완료 되었다는 모달창이 뜨는 문제점이 있었습니다.
 
 ### 정확한 에러 전달과 해당 에러에 맞는 분기 처리:
 
@@ -479,13 +549,13 @@ async function uploadImageToS3(file, optionId) {
 
     return { imageId, imageUrl };
   } catch (error) {
-    res.status(500).json({ message: "이미지 업로드 실패" });
+    res.status(503).json({ message: "이미지 업로드 실패" });
     console.error("S3에 업로드 하는데 실패:", error);
   }
 }
 ```
 
-이러한 방식으로 AWS S3가 업로드 되는 도중에 에러가 발생하면 상태코드와 함께 "이미지 업로드 실패" 라는 메시지를 클라이언트 측으로 정확한 에러전달을 해주었습니다.
+위와 같은 방식으로 AWS S3가 업로드 되는 도중에 에러가 발생하면 `503` 상태코드와 함께 "이미지 업로드 실패" 라는 메시지를 클라이언트 측으로 정확한 에러전달을 해주었습니다.
 
 ```js
 const { mutateAsync: fetchSurvey } = useMutation({
@@ -496,7 +566,10 @@ const { mutateAsync: fetchSurvey } = useMutation({
     navigate("dash");
   },
   onError: (error) => {
-    if (error.response.message === "이미지 업로드 실패") {
+    if (
+      error.response.message === "이미지 업로드 실패" ||
+      error.response.status === 503
+    ) {
       setErrormessage(
         "이미지를 업로드 하는 동안 에러가 발생했습니다. 잠시 후 다시 시도해주세요.",
       );
@@ -506,31 +579,29 @@ const { mutateAsync: fetchSurvey } = useMutation({
 });
 ```
 
-클라이언트 측에서는 api 요청을 보냈을 때 response의 결과에 따라 명확한 에러핸들링을 해주는 방식으로 코드를 작성해보았습니다.
+클라이언트 측에서는 서버로 api 요청을 보냈을 때 `useMutation` 훅 내에서 `onError` 옵션을 이용하여 `error.response`의 결과에 따라 명확한 에러핸들링을 해주는 방식으로 코드를 작성해보았습니다.
 
 ### 에러핸들링 결과:
 
-에러핸들링을 해줌으로써 이미지 업로드를 하는 비동기 작업간에 에러가 난다면 AWS S3 bucket에 업로드 하는 과정에서 에러가 났는지, 서버 측의 다른 부분에서 에러가 났는지 확실히 알 수 없기 때문에 클라이언트로 유의미한 에러를 전달하였고, 정확한 에러핸들링을 할 수 있게끔 하였습니다. 이로 인해 에러조차 알 수 없는 상황을 방지하여 개발자 경험과 유저 경험을 향상 시켰습니다.
+에러핸들링을 해줌으로써 이미지 업로드를 하는 비동기 작업간에 에러가 난다면 AWS S3 bucket에 업로드 하는 과정에서 에러가 났는지, 서버 측의 다른 부분에서 에러가 났는지 확실히 알 수 없기 때문에 클라이언트로 유의미한 에러를 전달하였고, 정확한 에러핸들링을 할 수 있게끔 하였습니다. 이로 인해 에러조차 알 수 없는 상황을 방지하여 개발자 경험과 유저 경험을 향상 시켰습니다. 에러에 대한 분기처리를 해주지 않았을 땐 원인모를 에러를 계속 찾았고, 결국 디버깅에 많은 시간을 썼어야 하는걸 직접 느꼈기 때문에 코드 작성에 있어서 에러핸들링은 매우 중요하다는 점을 배웠습니다.
 
-## 클라이언트와 서버와의 API 통신간 예상치 못한 에러 핸들링
-
-### 문제:
-
-클라이언트와 서버와의 API 통신간 예상치 못한 에러 핸들링
-
-### 해결과정:
-
-- ...
-
-### 결과:
-
-- ...
+<br>
 
 ## 유저 경험과 인터페이스는 어떤 부분을 신경썼을까?
 
-- 설문 결과 분석 페이지 뷰 섹션화 (데이터 차트화와 테이블 형식의 인터페이스 제공)
+<p align="center">
+
+</p>
+
+### 설문 결과 분석 페이지 뷰 섹션화 (데이터 차트화와 테이블 형식의 인터페이스 제공)
+
+<img width="700" height="400" alt="스크린샷 2024-05-17 06 03 57" src="https://github.com/seohag/survey101-client/assets/126459089/0557f844-3876-4fd1-9088-a7b137cdd406">
 
 - 설문을 커스터마이징 하는 각 섹션마다 임시저장 버튼을 추가했으며, 설문에 대한 질문을 생성할 때 질문추가 버튼을 리모컨 형식으로 만들어 스크롤바를 내릴 때 마다 리모컨이 따라오게끔 구현했습니다.
+
+<img width="700" height="400" alt="스크린샷 2024-05-17 06 03 57" src="https://github.com/seohag/survey101-client/assets/126459089/4ca9467e-570a-4d64-9153-0172c2acf50b">
+
+- 사용자가 설문 결과에 대한 결과를 보기 쉽게끔 테이블 형식으로 뷰를 제공했고, 인사이트를 얻기 위한 차트는 Chart.js를 이용해서 다음과 같이 구현하였습니다.
 
 <br>
 <br>
@@ -539,7 +610,7 @@ const { mutateAsync: fetchSurvey } = useMutation({
 
 ### 설문 이미지 수정이 되지 않는다.
 
-Survey101 에서는 설문을 생성할 때 이미지 파일을 첨부할 수 있는 기능이 있습니다. 클라이언트에서 formData에 이미지 파일을 담아 서버로 요청을 보내게 되면 서버에선 파일데이터들을 AWS S3에 업로드 하는 방식으로 진행했었습니다.
+Survey101 에서는 설문을 생성할 때 이미지 파일을 첨부할 수 있는 기능이 있습니다. 클라이언트에서 formData에 이미지 파일을 담아 서버로 요청을 보내게 되면 서버에선 파일 데이터들을 AWS S3에 업로드 하는 방식으로 진행했었습니다.
 
 그러나 클라이언트에서 질문에 대한 선택지 옵션(이미지 파일)을 추가하는 기능은 잘 작동하는데, 기존에 있던 선택지 옵션을 수정하는 기능은 정상작동 하지 않았습니다.
 

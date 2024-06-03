@@ -24,7 +24,7 @@ function TextChoiceOption({
           onClick={() =>
             handleDeleteOption(question.questionId, option.optionId)
           }
-          className="bg-red-500 text-white px-1 rounded"
+          className="bg-red-500 text-white px-1 rounded ml-1"
         >
           X
         </button>

@@ -1,6 +1,5 @@
-import { useEffect } from "react";
-
 import useFormEditorStore from "../../store/useFormEditorStore";
+
 import TextChoiceQuestion from "./TextChoiceQuestion";
 import ImageChoiceQuestion from "./ImageChoiceQuestion";
 import TextInputQuestion from "./TextInputQuestion";
@@ -25,40 +24,32 @@ const questionComponents = {
   rangeInput: RangeInputQuestion,
 };
 
-function QuestionPreview({ selectedQuestionId, setSelectedQuestionId }) {
+function QuestionPreview({ selectedQuestionId }) {
   const { questions, styleData } = useFormEditorStore();
-
-  useEffect(() => {
-    if (questions.length > 0) {
-      setSelectedQuestionId(questions[0].questionId);
-    }
-  }, []);
-
   const selectedQuestion = questions.find(
     (question) => question.questionId === selectedQuestionId,
   );
 
-  if (!selectedQuestion) {
-    return null;
-  }
-
   const SpecificQuestionComponent =
-    questionComponents[selectedQuestion.questionType];
+    selectedQuestion && questionComponents[selectedQuestion.questionType];
 
   return (
-    <div className="bg-gray-200 rounded-lg shadow-lg p-4 flex justify-center items-center min-h-[642px]">
+    <div className="bg-gray-200 rounded-lg shadow-lg p-4 flex justify-center items-center min-h-[80vh]">
       <div className="text-center">
-        <div className="p-4 border border-gray-300 rounded min-h-[572px] min-w-[351px]">
-          <h3 className="text-xl font-bold mb-4">
-            {selectedQuestion.questionText}
-          </h3>
-          {SpecificQuestionComponent && (
+        {selectedQuestion && (
+          <div className="p-4 border border-gray-300 rounded min-h-[80vh] min-w-[30vw]">
+            <h3
+              className="text-xl font-bold mb-4"
+              style={{ color: styleData.themeColor }}
+            >
+              {selectedQuestion.questionText}
+            </h3>
             <SpecificQuestionComponent
               styleData={styleData}
               options={selectedQuestion.options}
             />
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
