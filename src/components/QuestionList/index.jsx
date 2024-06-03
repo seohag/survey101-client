@@ -35,7 +35,7 @@ function QuestionList({ setSelectedQuestionId, handleAddQuestionPopup }) {
 
       setTimeout(() => {
         menuButton.style.top = `${newTop}px`;
-      }, 500);
+      }, 70);
     };
 
     const handleResize = () => {

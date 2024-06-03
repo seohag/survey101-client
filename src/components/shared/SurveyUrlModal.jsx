@@ -8,6 +8,7 @@ function SurveyUrlModal({ url, onClose }) {
     try {
       await navigator.clipboard.writeText(url);
       setCopySuccess(true);
+
       setTimeout(() => {
         setCopySuccess(false);
       }, 2000);
