@@ -46,23 +46,37 @@ function FormEditorHeader({ activeSection, onSectionChange, isNewForm }) {
         <SurveyUrlModal url={surveyUrl} onClose={() => setShowModal(false)} />
       )}
       <div className="flex flex-col md:flex-row justify-between items-center">
-        <span
-          className="flex items-center cursor-pointer mb-2 md:mb-0"
-          onClick={() => navigate("/dash")}
-          role="presentation"
-        >
-          <img src="/assets/survey-icon.png" alt="Logo" className="w-8 h-8" />
-          <span className="text-xl font-bold ml-2">Survey101</span>
-        </span>
-        <div className="flex-1 flex flex-wrap justify-center items-center space-x-2 md:space-x-6 max-w-[800px]">
+        <div className="flex items-center mb-2 md:mb-0">
+          <span
+            className="flex items-center cursor-pointer"
+            onClick={() => navigate("/dash")}
+            role="presentation"
+          >
+            <img src="/assets/survey-icon.png" alt="Logo" className="w-8 h-8" />
+            <span className="text-xl font-bold ml-2">Survey101</span>
+          </span>
+          <div className="ml-2 md:hidden">
+            {isNewForm ? null : (
+              <button
+                type="button"
+                aria-label="save-button"
+                className="bg-[#C9E2FF] text-[#004EFF] px-2 py-1 rounded-md"
+                onClick={handleSubmit}
+              >
+                <FontAwesomeIcon icon={faSave} className="text-xl" />
+              </button>
+            )}
+          </div>
+        </div>
+        <div className="flex flex-wrap justify-center items-center space-x-2 md:space-x-7">
           <button
-            className={`flex items-center space-x-2 px-2 md:px-4 py-2 rounded-md text-sm md:text-base ${
+            className={`flex items-center space-x-2 px-2 md:px-4 py-2 rounded-md text-xs md:text-base whitespace-nowrap ${
               activeSection === "cover" ? "bg-[#C9E2FF]" : ""
             }`}
             onClick={() => onSectionChange("cover")}
           >
             <span
-              className={`w-2 h-2 rounded-full ${
+              className={`w-2 h-2 rounded-full hidden md:block ${
                 activeSection === "cover" ? "bg-[#004EFF]" : "bg-white"
               }`}
             ></span>
@@ -72,13 +86,13 @@ function FormEditorHeader({ activeSection, onSectionChange, isNewForm }) {
             <FontAwesomeIcon icon={faArrowRight} className="text-black" />
           </span>
           <button
-            className={`flex items-center space-x-2 px-2 md:px-4 py-2 rounded-md text-sm md:text-base ${
+            className={`flex items-center space-x-2 px-2 md:px-4 py-2 rounded-md text-xs md:text-base whitespace-nowrap ${
               activeSection === "style" ? "bg-[#C9E2FF]" : ""
             }`}
             onClick={() => onSectionChange("style")}
           >
             <span
-              className={`w-2 h-2 rounded-full ${
+              className={`w-2 h-2 rounded-full hidden md:block ${
                 activeSection === "style" ? "bg-[#004EFF]" : "bg-white"
               }`}
             ></span>
@@ -88,13 +102,13 @@ function FormEditorHeader({ activeSection, onSectionChange, isNewForm }) {
             <FontAwesomeIcon icon={faArrowRight} className="text-black" />
           </span>
           <button
-            className={`flex items-center space-x-2 px-2 md:px-4 py-2 rounded-md text-sm md:text-base ${
+            className={`flex items-center space-x-2 px-2 md:px-4 py-2 rounded-md text-xs md:text-base whitespace-nowrap ${
               activeSection === "question" ? "bg-[#C9E2FF]" : ""
             }`}
             onClick={() => onSectionChange("question")}
           >
             <span
-              className={`w-2 h-2 rounded-full ${
+              className={`w-2 h-2 rounded-full hidden md:block ${
                 activeSection === "question" ? "bg-[#004EFF]" : "bg-white"
               }`}
             ></span>
@@ -104,20 +118,20 @@ function FormEditorHeader({ activeSection, onSectionChange, isNewForm }) {
             <FontAwesomeIcon icon={faArrowRight} className="text-black" />
           </span>
           <button
-            className={`flex items-center space-x-2 px-2 md:px-4 py-2 rounded-md text-sm md:text-base ${
+            className={`flex items-center space-x-2 px-2 md:px-4 py-2 rounded-md text-xs md:text-base whitespace-nowrap ${
               activeSection === "ending" ? "bg-[#C9E2FF]" : ""
             }`}
             onClick={() => onSectionChange("ending")}
           >
             <span
-              className={`w-2 h-2 rounded-full ${
+              className={`w-2 h-2 rounded-full hidden md:block ${
                 activeSection === "ending" ? "bg-[#004EFF]" : "bg-white"
               }`}
             ></span>
             <span className="whitespace-nowrap">설문 마무리</span>
           </button>
         </div>
-        <div className="w-24 mt-2 md:mt-0">
+        <div className="hidden md:block">
           {isNewForm ? null : (
             <button
               type="button"

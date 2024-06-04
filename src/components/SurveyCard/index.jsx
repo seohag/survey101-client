@@ -42,7 +42,7 @@ function SurveyCard({ survey, openDropdownId, setOpenDropdownId }) {
       key={survey._id}
       onClick={handleCardClick}
       role="presentation"
-      className="group transition-all duration-300 bg-white rounded-md border border-gray-200 p-4 hover:shadow-lg hover:border-[#3182F6] hover:shadow-outline"
+      className="group transition-all duration-300 bg-white rounded-md border border-gray-200 p-4 hover:shadow-2xl hover:border-[#3182F6] hover:shadow-outline"
     >
       <div className="flex justify-center items-center">
         <h2 className="text-xl font-semibold">{survey.title}</h2>
@@ -52,7 +52,7 @@ function SurveyCard({ survey, openDropdownId, setOpenDropdownId }) {
           src={survey.coverImage?.imageUrl || "/assets/default-coverimg.png"}
           alt="Cover"
           className="object-contain"
-          style={{ width: "200px", height: "147px" }}
+          style={{ width: "200px", height: "145px" }}
         />
       </div>
       <DropdownMenu

@@ -31,32 +31,36 @@ function AnalyticsPage() {
   return (
     <main className="h-screen w-screen box-border">
       <header className="bg-[#495667] text-white p-2 border-b">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center flex-wrap">
           <span
-            className="flex items-center cursor-pointer ml-7"
+            className="flex items-center cursor-pointer ml-2 sm:ml-7"
             onClick={() => navigate("/dash")}
             role="presentation"
           >
-            <img src="/assets/survey-icon.png" alt="Logo" className="w-8 h-8" />
-            <span className="text-xl font-bold">Survey101</span>
+            <img
+              src="/assets/survey-icon.png"
+              alt="Logo"
+              className="w-6 h-6 sm:w-8 sm:h-8"
+            />
+            <span className="text-lg sm:text-xl font-bold">Survey101</span>
           </span>
-          <div className="flex items-center space-x-4 mr-4">
+          <div className="flex items-center space-x-2 sm:space-x-4 mt-2 sm:mt-0">
             <button
               onClick={navigateToDash}
-              className="bg-transparent text-white px-4 py-2 rounded-md hover:bg-[#8B9093]"
+              className="bg-transparent text-white px-4 py-2 mb-2 rounded-md hover:bg-[#8B9093]"
             >
-              메인페이지로
+              <span className="whitespace-nowrap">메인페이지로</span>
             </button>
             <button
               onClick={openModal}
-              className="bg-transparent text-white px-4 py-2 rounded-md hover:bg-[#8B9093]"
+              className="bg-transparent text-white px-4 py-2 mb-2 rounded-md hover:bg-[#8B9093]"
             >
-              로그아웃
+              <span className="whitespace-nowrap">로그아웃</span>
             </button>
           </div>
         </div>
       </header>
-      <section className="flex h-full w-full items-center justify-center mt-10">
+      <section className="flex h-full w-full items-center justify-center">
         <aside className="flex w-1/4 h-full">
           <div className="h-full w-full overflow-y-auto">
             {isLoading ? (
@@ -64,7 +68,7 @@ function AnalyticsPage() {
             ) : (
               <div>
                 {surveys.length === 0 ? (
-                  <div className="text-center text-gray-400 mt-72">
+                  <div className="text-center  text-gray-400 mt-72">
                     아직 생성된 설문이 없습니다.
                   </div>
                 ) : (
@@ -73,10 +77,10 @@ function AnalyticsPage() {
                       <button
                         key={survey._id}
                         onClick={() => showDetail(survey._id)}
-                        className="group transition-all duration-300 bg-white rounded-md border border-gray-200 p-4 hover:shadow-lg hover:border-[#3182F6] hover:shadow-outline"
+                        className="group transition-all duration-300 bg-white rounded-md border border-gray-200 p-4 hover:shadow-2xl hover:border-[#3182F6] hover:shadow-outline"
                         type="button"
                       >
-                        <h3 className="text-xl font-semibold">
+                        <h3 className="md:text-xl sm:text-sm font-semibold ">
                           {survey.title}
                         </h3>
                         <p className="text-gray-600">{survey.description}</p>
@@ -90,11 +94,11 @@ function AnalyticsPage() {
         </aside>
         {!selectedSurveyId ? (
           <aside className="flex flex-col items-center justify-start w-full h-full">
-            <div className="font-semibold text-xl mb-4 text-gray-700">
+            <div className="font-semibold mb-4 text-gray-700 md:text-xl sm:text-sm">
               설문을 클릭하여 데이터를 확인하세요!
             </div>
-            <div className="flex flex-col items-center justify-center w-full h-full bg-gray-200 rounded-lg p-8">
-              <span className="text-gray-700 text-lg">
+            <div className="flex flex-col items-center justify-center w-full h-full bg-gray-200 rounded-lg p-8 ">
+              <span className="text-gray-700 md:text-xl sm:text-sm ">
                 왼쪽 리스트에서 설문을 클릭해 데이터를 확인해보세요!
               </span>
             </div>

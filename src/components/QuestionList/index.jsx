@@ -233,10 +233,10 @@ function QuestionList({ setSelectedQuestionId, handleAddQuestionPopup }) {
       ref={containerRef}
       className="relative max-h-[85vh] overflow-auto container"
     >
-      <div id="menuButton" className="absolute right-4 top-4 m-2 z-10">
+      <div id="menuButton" className="absolute md:right-10 z-10">
         <button
           type="button"
-          className="bg-gray-300 text-[#4E5968] px-2 py-2.5 rounded-md hover:bg-gray-200 whitespace-pre-wrap sm:whitespace-normal"
+          className="bg-gray-300 text-[#4E5968] px-2 py-2.5 rounded-md hover:bg-gray-200 sm: ml"
           onClick={handleAddQuestionPopup}
           aria-label="Question Button"
         >

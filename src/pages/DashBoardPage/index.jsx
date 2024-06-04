@@ -118,14 +118,14 @@ function DashBoardPage() {
           </span>
           <div className="flex items-center space-x-2 sm:space-x-4 mt-2 sm:mt-0">
             <button
-              className="bg-transparent text-gray-600 px-2 sm:px-4 py-2 rounded-md hover:bg-gray-300"
+              className="bg-transparent text-gray-600 px-2 sm:px-4 py-2 mb-2 rounded-md hover:bg-gray-300"
               onClick={() => navigate("/analytics")}
             >
               응답 및 인사이트 보기
             </button>
             <button
               onClick={openModal}
-              className="bg-transparent text-gray-600 px-2 sm:px-4 py-2 rounded-md hover:bg-gray-300"
+              className="bg-transparent text-gray-600 px-2 sm:px-4 py-2 mb-2 rounded-md hover:bg-gray-300"
             >
               로그아웃
             </button>
@@ -134,7 +134,7 @@ function DashBoardPage() {
       </section>
       <section className="mt-5 px-5">
         <div className="flex items-center">
-          <span className="text-lg sm:text-2xl ml-1 sm:ml-5 mb-2">
+          <span className="text-lg sm:text-2xl ml-1 sm:ml-5 mb-2 whitespace-nowrap">
             전체 설문
           </span>
           <button
