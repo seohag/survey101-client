@@ -10,7 +10,7 @@ function ImageChoiceOption({
   return (
     <div key={option.optionId} className="mb-4 mx-2 relative">
       <label className="block cursor-pointer">
-        <div className="border border-gray-300 rounded flex justify-center items-center lg:w-24 h-24 xs:w-20 h-20">
+        <div className="border border-gray-300 rounded flex justify-center items-center lg:w-24 xs:w-20 h-24">
           {option.image ? (
             <img
               src={
