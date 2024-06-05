@@ -52,9 +52,9 @@ function StyleEditor() {
                 onChange={handleStyleChange}
                 className="w-full p-2 border border-gray-300 rounded"
               >
-                <option value="rounded">둥근</option>
+                <option value="rounded-full">둥근</option>
+                <option value="rounded">부드러운</option>
                 <option value="square">각진</option>
-                <option value="rounded-full">완전 둥근</option>
               </select>
             </label>
           </div>

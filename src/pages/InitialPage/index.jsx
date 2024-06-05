@@ -9,7 +9,7 @@ function InitialPage() {
   return (
     <div>
       <div className="flex flex-col justify-center items-center h-screen">
-        <div className="text-4xl font-semibold z-10">Survey101</div>
+        <div className="text-4xl text-sky-950 font-semibold">Survey101</div>
         <img
           src="/assets/survey-icon.png"
           alt="survey-icon"

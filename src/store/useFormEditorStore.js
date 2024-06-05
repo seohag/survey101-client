@@ -12,7 +12,7 @@ const useFormEditorStore = create((set) => ({
   },
   styleData: {
     themeColor: "#000000",
-    buttonShape: "rounded",
+    buttonShape: "rounded-full",
     animation: "fade",
   },
   endingData: {
@@ -55,7 +55,7 @@ const useFormEditorStore = create((set) => ({
       },
       styleData: {
         themeColor: "#000000",
-        buttonShape: "rounded",
+        buttonShape: "rounded-full",
         animation: "fade",
       },
       endingData: {

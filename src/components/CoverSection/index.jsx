@@ -11,7 +11,7 @@ function CoverSection({ surveyData, onStartButtonClick }) {
   } = surveyData;
 
   return (
-    <div className="cover-section flex flex-col items-center">
+    <div className="flex flex-col">
       <h1 className="text-center text-xl">{title}</h1>
       <h3 className="text-center">{subtitle}</h3>
       {coverImage && coverImage.imageUrl && (

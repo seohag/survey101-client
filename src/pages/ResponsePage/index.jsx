@@ -22,21 +22,19 @@ function ResponsePage() {
   }
 
   return (
-    <div className="bg-white shadow-lg rounded-lg h-screen min-w-96 flex flex-col justify-center items-center text-center overflow-auto">
-      <div className="bg-white shadow-lg rounded-lg h-screen min-w-96 flex flex-col justify-center items-center overflow-auto">
-        {showQuestionSection ? (
-          <QuestionSection
-            surveyData={surveyData}
-            surveyAnswers={surveyAnswers}
-            setSurveyAnswers={setSurveyAnswers}
-          />
-        ) : (
-          <CoverSection
-            surveyData={surveyData}
-            onStartButtonClick={handleStartButtonClick}
-          />
-        )}
-      </div>
+    <div className="flex flex-col items-center text-center justify-center min-h-screen bg-gray-100 p-4">
+      {showQuestionSection ? (
+        <QuestionSection
+          surveyData={surveyData}
+          surveyAnswers={surveyAnswers}
+          setSurveyAnswers={setSurveyAnswers}
+        />
+      ) : (
+        <CoverSection
+          surveyData={surveyData}
+          onStartButtonClick={handleStartButtonClick}
+        />
+      )}
     </div>
   );
 }

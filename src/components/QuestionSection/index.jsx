@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import CustomButton from "../CustomButton";
-
 import EndingSection from "../EndingSection";
+
 
 function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
   const { themeColor, buttonShape, questions } = surveyData;
@@ -30,7 +32,9 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
   }, [animationOption]);
 
   const totalQuestions = questions.length;
-  const progressPercent = ((currentQuestionIndex + 1) / totalQuestions) * 100;
+  const progressPercent = Math.round(
+    ((currentQuestionIndex + 1) / totalQuestions) * 100,
+  );
 
   function handleAnswer(answer) {
     setSurveyAnswers((prevAnswers) => ({
@@ -76,7 +80,7 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
-    <div className="h-screen min-w-96 flex flex-col justify-center items-center text-center overflow-auto">
+    <div>
       {currentQuestionIndex < totalQuestions ? (
         <div
           className={`w-full max-w-md ${
@@ -103,29 +107,34 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
             setIsPrevAnimating(false);
           }}
         >
-          {progressPercent} %
-          <div className="mb-4 w-full h-4 bg-gray-300 rounded-full">
-            <div
-              className="h-full bg-blue-500 rounded-full"
-              style={{ width: `${progressPercent}%` }}
-            ></div>
-          </div>
-          <div className=" bg-gray-200 p-4 border rounded min-h-[650px] min-w-[320px]">
-            <h3 className="text-l font-bold" style={{ color: themeColor }}>
-              <span className="flex justify-between">
-                {currentQuestionIndex > 0 && (
-                  <button
-                    onClick={() => {
-                      setIsPrevAnimating(true);
-                      handlePreviousQuestion();
-                    }}
-                  >
-                    {"<"}
-                    <br />
-                    <br />
-                  </button>
-                )}
-              </span>
+          <div className="flex flex-col bg-gray-200 p-4 border items-center rounded min-h-screen min-w-screen">
+            <div className="relative mb-4 w-full h-4 bg-gray-300 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-blue-500 rounded-full transition-all duration-100"
+                style={{ width: `${progressPercent}%` }}
+              ></div>
+              <div className="absolute inset-0 flex justify-center items-center text-white font-bold">
+                {progressPercent}%
+              </div>
+            </div>
+            <div className="flex justify-between items-center w-full mb-4">
+              {currentQuestionIndex > 0 && (
+                <button
+                  type="button"
+                  aria-label="Question Prev Button"
+                  onClick={() => {
+                    setIsPrevAnimating(true);
+                    handlePreviousQuestion();
+                  }}
+                >
+                  <FontAwesomeIcon icon={faArrowLeft} className="text-l" />
+                </button>
+              )}
+            </div>
+            <h3
+              className="text-l font-bold text-center"
+              style={{ color: themeColor }}
+            >
               {currentQuestion.questionText}
             </h3>
             {currentQuestion.questionType === "textChoice" && (
@@ -142,9 +151,9 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
               </div>
             )}
             {currentQuestion.questionType === "imageChoice" && (
-              <div className="mt-4 flex min-h-[450px] min-w-[350px]">
+              <div className="mt-4 flex flex-wrap justify-center">
                 {currentQuestion.options.map((option, index) => (
-                  <div key={option.optionId}>
+                  <div className="m-2" key={option.optionId}>
                     <button
                       onClick={() => handleAnswer(`${index + 1}번째 이미지`)}
                     >
@@ -260,7 +269,6 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                   placeholder="날짜를 입력해주세요"
                   onChange={(event) =>
                     setSurveyAnswers((prevAnswers) => ({
-                      ...prevAnswers,
                       [currentQuestion.questionId]: event.target.value,
                     }))
                   }

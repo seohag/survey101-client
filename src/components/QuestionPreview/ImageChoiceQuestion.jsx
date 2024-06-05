@@ -6,7 +6,7 @@ function ImageChoiceQuestion({ options }) {
     <div className="flex flex-wrap justify-center mt-4">
       {options.map((option) => (
         <label key={option.optionId} className="block cursor-pointer">
-          <div className="w-24 h-24 border border-gray-300 rounded flex justify-center items-center">
+          <div className="w-24 h-24 border border-gray-300 rounded flex justify-center items-center m-2">
             {option.image ? (
               <img
                 src={
