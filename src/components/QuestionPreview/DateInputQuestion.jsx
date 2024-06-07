@@ -2,7 +2,6 @@ import CustomButton from "../CustomButton";
 import QuestionHeader from "../shared/QuestionPreviewHeader";
 
 function DateInputQuestion({ questionText, questionIndex, styleData }) {
-  console.log(styleData);
   return (
     <div className="flex flex-col items-center">
       <QuestionHeader

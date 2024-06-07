@@ -77,7 +77,7 @@ function AnalyticsPage() {
                       <button
                         key={survey._id}
                         onClick={() => showDetail(survey._id)}
-                        className="group transition-all duration-300 bg-white rounded-md border border-gray-200 p-4 hover:shadow-2xl hover:border-[#3182F6] hover:shadow-outline"
+                        className="group transition-all duration-300 bg-white rounded-md border-2 border-gray-200 p-4 hover:shadow-2xl hover:border-[#3182F6] hover:shadow-outline"
                         type="button"
                       >
                         <h3 className="md:text-xl sm:text-sm font-semibold ">

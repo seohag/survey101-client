@@ -7,9 +7,13 @@ import Question from "../Question";
 import QuestionOptions from "../QuestionOptions";
 import QuestionControls from "../QuestionControls";
 import useFormEditorStore from "../../store/useFormEditorStore";
+import AddQuestionPopup from "../AddQuestionPopup";
 
-function QuestionList({ setSelectedQuestionId, handleAddQuestionPopup }) {
+function QuestionList({ setSelectedQuestionId }) {
   const [errorMessage, setErrorMessage] = useState("");
+  const [isButtonShow, setIsButtonShow] = useState(true);
+  const [showAddQuestionPopup, setShowAddQuestionPopup] = useState(false);
+
   const { questions, setQuestions } = useFormEditorStore();
   const containerRef = useRef(null);
 
@@ -51,6 +55,100 @@ function QuestionList({ setSelectedQuestionId, handleAddQuestionPopup }) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    setIsButtonShow(!showAddQuestionPopup);
+  }, [showAddQuestionPopup]);
+
+  function handleAddQuestionPopup() {
+    setShowAddQuestionPopup(true);
+  }
+
+  function handleAddQuestion(questionType) {
+    setShowAddQuestionPopup(false);
+
+    const newQuestionId = uuidv4();
+    let newQuestion;
+
+    switch (questionType) {
+      case "textChoice":
+        newQuestion = {
+          questionId: newQuestionId,
+          questionType: "textChoice",
+          questionText: "",
+          options: [{ optionId: uuidv4(), text: "" }],
+        };
+        break;
+      case "imageChoice":
+        newQuestion = {
+          questionId: newQuestionId,
+          questionType: "imageChoice",
+          questionText: "",
+          options: [{ optionId: uuidv4(), image: null }],
+        };
+        break;
+      case "textInput":
+        newQuestion = {
+          questionId: newQuestionId,
+          questionType: "textInput",
+          questionText: "",
+        };
+        break;
+      case "emailInput":
+        newQuestion = {
+          questionId: newQuestionId,
+          questionType: "emailInput",
+          questionText: "",
+        };
+        break;
+      case "phoneInput":
+        newQuestion = {
+          questionId: newQuestionId,
+          questionType: "phoneInput",
+          questionText: "",
+        };
+        break;
+      case "dateInput":
+        newQuestion = {
+          questionId: newQuestionId,
+          questionType: "dateInput",
+          questionText: "",
+        };
+        break;
+      case "timeInput":
+        newQuestion = {
+          questionId: newQuestionId,
+          questionType: "timeInput",
+          questionText: "",
+        };
+        break;
+      case "numberInput":
+        newQuestion = {
+          questionId: newQuestionId,
+          questionType: "numberInput",
+          questionText: "",
+        };
+        break;
+      case "rangeInput":
+        newQuestion = {
+          questionId: newQuestionId,
+          questionType: "rangeInput",
+          questionText: "",
+        };
+        break;
+      case "radioInput":
+        newQuestion = {
+          questionId: newQuestionId,
+          questionType: "radioInput",
+          questionText: "",
+        };
+        break;
+      default:
+        break;
+    }
+
+    setQuestions([...questions, newQuestion]);
+  }
 
   function handleDeleteQuestion(questionId) {
     if (questions.length <= 1) {
@@ -233,21 +331,23 @@ function QuestionList({ setSelectedQuestionId, handleAddQuestionPopup }) {
       ref={containerRef}
       className="relative max-h-[85vh] overflow-auto container"
     >
-      <div id="menuButton" className="absolute md:right-10 z-10">
-        <button
-          type="button"
-          className="bg-gray-300 text-[#4E5968] px-2 py-2.5 rounded-md hover:bg-gray-200 sm: ml"
-          onClick={handleAddQuestionPopup}
-          aria-label="Question Button"
-        >
-          질문<br></br>추가
-          <br />
-          <FontAwesomeIcon
-            icon={faPlusCircle}
-            className="text-xl ml-0.5 mt-1"
-          />
-        </button>
-      </div>
+      {isButtonShow && (
+        <div id="menuButton" className="absolute md:right-10 z-10">
+          <button
+            type="button"
+            className="bg-gray-300 text-[#4E5968] px-2 py-2.5 rounded-md hover:bg-gray-200 sm: ml"
+            onClick={handleAddQuestionPopup}
+            aria-label="Question Button"
+          >
+            질문<br></br>추가
+            <br />
+            <FontAwesomeIcon
+              icon={faPlusCircle}
+              className="text-xl ml-0.5 mt-1"
+            />
+          </button>
+        </div>
+      )}
       {questions.map((question) => (
         <div
           key={question.questionId}
@@ -287,6 +387,12 @@ function QuestionList({ setSelectedQuestionId, handleAddQuestionPopup }) {
           />
         </div>
       ))}
+      {showAddQuestionPopup && (
+        <AddQuestionPopup
+          handleAddQuestion={handleAddQuestion}
+          handleClosePopup={() => setShowAddQuestionPopup(false)}
+        />
+      )}
     </div>
   );
 }

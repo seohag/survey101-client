@@ -5,7 +5,7 @@ function QuestionHeader({ questionIndex, questionText, themeColor }) {
         Q{questionIndex + 1}.
       </h4>
       <h3 className="text-l font-bold mb-4" style={{ color: themeColor }}>
-        {questionText}
+        {questionText || "\b"}
       </h3>
     </div>
   );

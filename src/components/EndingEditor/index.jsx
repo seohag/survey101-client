@@ -97,7 +97,7 @@ function EndingEditor() {
             value={endingData.content}
             onChange={(content) => setEndingData({ ...endingData, content })}
             modules={modules}
-            className="lg:h-[54vh] md:h-[40vh] xr:h-[35vh] xs:h-[29vh]"
+            className="lg:h-[50vh] md:h-[40vh] xr:h-[35vh] xs:h-[29vh]"
           />
         </div>
         <div className="text-center mb-2">
