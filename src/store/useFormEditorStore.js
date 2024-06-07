@@ -22,12 +22,6 @@ const useFormEditorStore = create((set) => ({
   questions: [
     {
       questionId: uuidv4(),
-      questionType: "imageChoice",
-      questionText: "",
-      options: [{ optionId: uuidv4(), image: null }],
-    },
-    {
-      questionId: uuidv4(),
       questionType: "textChoice",
       questionText: "",
       options: [{ optionId: uuidv4(), text: "" }],
@@ -35,6 +29,11 @@ const useFormEditorStore = create((set) => ({
     {
       questionId: uuidv4(),
       questionType: "textInput",
+      questionText: "",
+    },
+    {
+      questionId: uuidv4(),
+      questionType: "radioInput",
       questionText: "",
     },
   ],
@@ -65,12 +64,6 @@ const useFormEditorStore = create((set) => ({
       questions: [
         {
           questionId: uuidv4(),
-          questionType: "imageChoice",
-          questionText: "",
-          options: [{ optionId: uuidv4(), image: null }],
-        },
-        {
-          questionId: uuidv4(),
           questionType: "textChoice",
           questionText: "",
           options: [{ optionId: uuidv4(), text: "" }],
@@ -78,6 +71,11 @@ const useFormEditorStore = create((set) => ({
         {
           questionId: uuidv4(),
           questionType: "textInput",
+          questionText: "",
+        },
+        {
+          questionId: uuidv4(),
+          questionType: "radioInput",
           questionText: "",
         },
       ],

@@ -240,7 +240,7 @@ function QuestionList({ setSelectedQuestionId, handleAddQuestionPopup }) {
           onClick={handleAddQuestionPopup}
           aria-label="Question Button"
         >
-          추가
+          질문<br></br>추가
           <br />
           <FontAwesomeIcon
             icon={faPlusCircle}
@@ -251,7 +251,7 @@ function QuestionList({ setSelectedQuestionId, handleAddQuestionPopup }) {
       {questions.map((question) => (
         <div
           key={question.questionId}
-          className="cursor-pointer bg-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 mb-4 max-w-[67%] mx-auto"
+          className="cursor-pointer bg-white p-4 rounded-xl border-2 hover:border-blue-700 hover:shadow-outline transition-transform transform mb-4 max-w-[67%] mx-auto"
           onClick={() => setSelectedQuestionId(question.questionId)}
           role="presentation"
         >

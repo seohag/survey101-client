@@ -20,8 +20,8 @@ function CustomButton({ text, themeColor, buttonShape, onClick }) {
       style={{
         backgroundColor: themeColor,
         color: buttonTextColor,
-        width: "330px",
-        height: "45px",
+        width: "23vw",
+        minHeight: "45px",
       }}
       onClick={onClick}
     >

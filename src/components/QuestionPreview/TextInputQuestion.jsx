@@ -1,8 +1,14 @@
 import CustomButton from "../CustomButton";
+import QuestionHeader from "../shared/QuestionPreviewHeader";
 
-function TextInputQuestion({ styleData }) {
+function TextInputQuestion({ questionText, questionIndex, styleData }) {
   return (
-    <div className="mt-4 flex flex-col items-center">
+    <div className="flex flex-col items-center">
+      <QuestionHeader
+        questionIndex={questionIndex}
+        questionText={questionText}
+        themeColor={styleData.themeColor}
+      />
       <input
         type="text"
         className="w-full p-2 border border-gray-300 rounded"

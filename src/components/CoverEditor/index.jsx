@@ -60,8 +60,8 @@ function CoverEditor() {
         ></CoverStylePreview>
       </section>
 
-      <section className="md:w-full p-4 max-w-full md:max-w-[55%] mx-auto">
-        <div className="bg-white rounded-lg shadow-lg p-4 mb-4 text-center">
+      <section className="md:w-full p-4 max-w-full md:max-w-[55%]  mx-auto">
+        <div className="bg-white border-2 rounded-lg shadow-lg p-4 mb-4 text-center">
           {errorMessage && (
             <div className="text-red-500 mb-4">{errorMessage}</div>
           )}

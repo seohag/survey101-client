@@ -23,7 +23,7 @@ function StyleEditor() {
       </section>
 
       <section className="md:w-full p-4 max-w-[55%] mx-auto">
-        <div className="bg-white rounded-lg shadow-lg p-4 mb-4 text-center">
+        <div className="bg-white border-2 rounded-lg shadow-lg p-4 mb-4 text-center">
           <h2 className="text-lg font-bold mb-2">설문 스타일 편집</h2>
           <div className="form-group mb-4">
             <label htmlFor="themeColor" className="block mb-2">

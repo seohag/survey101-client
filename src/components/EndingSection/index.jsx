@@ -15,7 +15,7 @@ function EndingSection({ surveyData, surveyAnswers }) {
   return (
     <div className="bg-gray-200 rounded-lg shadow-lg p-4 flex justify-center items-center">
       <div className="text-center">
-        <div className="p-4 border rounded min-h-[572px] min-w-[361px]">
+        <div className="p-4 border rounded min-h-[550px] min-w-[361px]">
           <h3 className="text-xl font-bold mb-4" style={{ color: themeColor }}>
             {endingTitle}
           </h3>
@@ -26,13 +26,19 @@ function EndingSection({ surveyData, surveyAnswers }) {
             modules={{
               toolbar: [],
             }}
-            style={{ height: "300px" }}
+            style={{ height: "400px" }}
           />
         </div>
         <CustomButton
           themeColor={themeColor}
           onClick={handlePostAnswers}
           text="답변 제출하기"
+        />
+        <br></br>
+        <CustomButton
+          themeColor={themeColor}
+          onClick={() => window.location.reload()}
+          text="다시 시작하기"
         />
       </div>
     </div>

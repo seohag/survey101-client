@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import useFormEditorStore from "../../store/useFormEditorStore";
 
 import TextChoiceQuestion from "./TextChoiceQuestion";
@@ -24,9 +25,20 @@ const questionComponents = {
   rangeInput: RangeInputQuestion,
 };
 
-function QuestionPreview({ selectedQuestionId }) {
+function QuestionPreview({ selectedQuestionId, setSelectedQuestionId }) {
   const { questions, styleData } = useFormEditorStore();
+
+  useEffect(() => {
+    if (!selectedQuestionId && questions.length > 0) {
+      setSelectedQuestionId(questions[0].questionId);
+    }
+  }, [selectedQuestionId, questions, setSelectedQuestionId]);
+
   const selectedQuestion = questions.find(
+    (question) => question.questionId === selectedQuestionId,
+  );
+
+  const questionIndex = questions.findIndex(
     (question) => question.questionId === selectedQuestionId,
   );
 
@@ -34,17 +46,18 @@ function QuestionPreview({ selectedQuestionId }) {
     selectedQuestion && questionComponents[selectedQuestion.questionType];
 
   return (
-    <div className="bg-gray-200 rounded-lg shadow-lg p-4 flex justify-center items-center min-h-[80vh]">
-      <div className="text-center">
+    <div className="flex flex-col justify-center items-center p-4 rounded-lg bg-gray-200">
+      <span className="mb-4 text-center font-bold">미리보기</span>
+      <div
+        className={`bg-white rounded-lg shadow-lg flex flex-col items-center min-h-[76vh] max-h-[76vh] max-w-[25vw] ${
+          selectedQuestion ? "border-4 border-black" : ""
+        }`}
+      >
         {selectedQuestion && (
-          <div className="p-4 border border-gray-300 rounded min-h-[80vh] min-w-[30vw]">
-            <h3
-              className="text-xl font-bold mb-4"
-              style={{ color: styleData.themeColor }}
-            >
-              {selectedQuestion.questionText}
-            </h3>
+          <div className="flex flex-col items-center p-4 w-full overflow-auto max-h-full scrollbar-hide">
             <SpecificQuestionComponent
+              questionText={selectedQuestion.questionText}
+              questionIndex={questionIndex}
               styleData={styleData}
               options={selectedQuestion.options}
             />

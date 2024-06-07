@@ -16,7 +16,7 @@ import SurveyUrlModal from "../shared/SurveyUrlModal";
 function EndingEditor() {
   const { userId } = useUserIdStore();
   const { surveyId } = useParams();
-  const { coverData, styleData, endingData, questions, setEndingData } =
+  const { coverData, styleData, endingData, setEndingData, questions } =
     useFormEditorStore();
   const { surveyUrl, showModal, setSurveyUrl, setShowModal } =
     useSurveyUrlStore();
@@ -81,22 +81,16 @@ function EndingEditor() {
         <EndingPreview endingData={endingData} styleData={styleData} />
       </section>
 
-      <section className="w-full p-4 max-w-[58%] mx-auto">
-        <div className="text-center mb-2">
-          <button
-            className="bg-gray-300 text-[#4E5968] px-4 py-2 rounded-md hover:bg-gray-200"
-            onClick={handleSubmit}
-          >
-            {surveyId ? "설문 저장" : "설문 생성"}
-          </button>
-        </div>
-        <div className="bg-white rounded-lg shadow-lg p-4 mb-4 text-center h-[70vh]">
+      <section className="w-full p-4 max-w-[58%] mx-auto rounded-lg">
+        <div className="bg-white rounded-lg shadow-lg p-4 mb-4 text-center h-[70vh] border-2">
           <input
             id="endingtitle"
             type="text"
             className="w-full p-2 mt-3 border border-gray-300 rounded text-center"
             value={endingData.title}
-            readOnly
+            onChange={(ev) =>
+              setEndingData({ ...endingData, title: ev.target.value })
+            }
           />
           <ReactQuill
             theme="snow"
@@ -105,6 +99,14 @@ function EndingEditor() {
             modules={modules}
             className="lg:h-[54vh] md:h-[40vh] xr:h-[35vh] xs:h-[29vh]"
           />
+        </div>
+        <div className="text-center mb-2">
+          <button
+            className="bg-gray-300 text-[#4E5968] px-4 py-2 rounded-md hover:bg-gray-200"
+            onClick={handleSubmit}
+          >
+            {surveyId ? "설문 저장" : "설문 생성"}
+          </button>
         </div>
       </section>
     </div>

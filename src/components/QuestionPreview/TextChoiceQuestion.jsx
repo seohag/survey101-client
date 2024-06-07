@@ -1,8 +1,19 @@
 import CustomButton from "../CustomButton";
+import QuestionHeader from "../shared/QuestionPreviewHeader";
 
-function TextChoiceQuestion({ options, styleData }) {
+function TextChoiceQuestion({
+  questionText,
+  questionIndex,
+  options,
+  styleData,
+}) {
   return (
-    <div className="mt-4 flex flex-col items-center">
+    <div className="flex flex-col items-center">
+      <QuestionHeader
+        questionIndex={questionIndex}
+        questionText={questionText}
+        themeColor={styleData.themeColor}
+      />
       {options.map((option) => (
         <CustomButton
           key={option.optionId}
