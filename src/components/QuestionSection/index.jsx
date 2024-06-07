@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import CustomButton from "../CustomButton";
+import ResponseCustomButton from "../ResponseCustomButton";
 import EndingSection from "../EndingSection";
-
 
 function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
   const { themeColor, buttonShape, questions } = surveyData;
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [hoveredRating, setHoveredRating] = useState(null);
-  const [selectedRating, setSelectedRating] = useState(null);
+  const [hoveredRating, setHoveredRating] = useState({});
+  const [selectedRating, setSelectedRating] = useState({});
   const [animationOption, setAnimationOption] = useState("");
   const [isAnimating, setIsAnimating] = useState(false);
   const [isPrevAnimating, setIsPrevAnimating] = useState(false);
+  const [rangeValue, setRangeValue] = useState(50);
 
   useEffect(() => {
     switch (surveyData.animation) {
@@ -65,22 +65,31 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
     }
   }
 
-  function handleMouseEnter(rating) {
-    setHoveredRating(rating);
+  function handleMouseEnter(questionId, rating) {
+    setHoveredRating((prevRatings) => ({
+      ...prevRatings,
+      [questionId]: rating,
+    }));
   }
 
-  function handleMouseLeave() {
-    setHoveredRating(null);
+  function handleMouseLeave(questionId) {
+    setHoveredRating((prevRatings) => ({
+      ...prevRatings,
+      [questionId]: null,
+    }));
   }
 
-  function handleRatingClick(rating) {
-    setSelectedRating(rating);
+  function handleRatingClick(questionId, rating) {
+    setSelectedRating((prevRatings) => ({
+      ...prevRatings,
+      [questionId]: rating,
+    }));
   }
 
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
-    <div>
+    <div className="flex flex-col bg-gray-200 p-4 border items-center rounded-xl min-h-screen min-w-screen overflow-y-auto scrollbar-hide">
       {currentQuestionIndex < totalQuestions ? (
         <div
           className={`w-full max-w-md ${
@@ -107,16 +116,17 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
             setIsPrevAnimating(false);
           }}
         >
-          <div className="flex flex-col bg-gray-200 p-4 border items-center rounded min-h-screen min-w-screen">
-            <div className="relative mb-4 w-full h-4 bg-gray-300 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-blue-500 rounded-full transition-all duration-100"
-                style={{ width: `${progressPercent}%` }}
-              ></div>
-              <div className="absolute inset-0 flex justify-center items-center text-white font-bold">
-                {progressPercent}%
-              </div>
+          <div className="relative mb-4 w-full h-4 bg-gray-300 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-blue-500 rounded-full transition-all duration-100"
+              style={{ width: `${progressPercent}%` }}
+            ></div>
+            <div className="absolute inset-0 flex justify-center items-center text-white font-bold">
+              {progressPercent}%
             </div>
+          </div>
+
+          <div>
             <div className="flex justify-between items-center w-full mb-4">
               {currentQuestionIndex > 0 && (
                 <button
@@ -140,7 +150,7 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
             {currentQuestion.questionType === "textChoice" && (
               <div className="mt-4 flex flex-col items-center">
                 {currentQuestion.options.map((option) => (
-                  <CustomButton
+                  <ResponseCustomButton
                     key={option.optionId}
                     text={option.text}
                     themeColor={themeColor}
@@ -150,6 +160,7 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                 ))}
               </div>
             )}
+
             {currentQuestion.questionType === "imageChoice" && (
               <div className="mt-4 flex flex-wrap justify-center">
                 {currentQuestion.options.map((option, index) => (
@@ -173,6 +184,7 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                 ))}
               </div>
             )}
+
             {currentQuestion.questionType === "textInput" && (
               <div className="mt-4 flex flex-col items-center">
                 <input
@@ -186,7 +198,7 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                     }))
                   }
                 />
-                <CustomButton
+                <ResponseCustomButton
                   text="다음"
                   themeColor={themeColor}
                   buttonShape={buttonShape}
@@ -194,6 +206,7 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                 />
               </div>
             )}
+
             {currentQuestion.questionType === "emailInput" && (
               <div className="mt-4 flex flex-col items-center">
                 <input
@@ -207,7 +220,7 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                     }))
                   }
                 />
-                <CustomButton
+                <ResponseCustomButton
                   text="다음"
                   themeColor={themeColor}
                   buttonShape={buttonShape}
@@ -215,6 +228,7 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                 />
               </div>
             )}
+
             {currentQuestion.questionType === "phoneInput" && (
               <div className="mt-4 flex flex-col items-center">
                 <input
@@ -229,7 +243,7 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                     }))
                   }
                 />
-                <CustomButton
+                <ResponseCustomButton
                   text="다음"
                   themeColor={themeColor}
                   buttonShape={buttonShape}
@@ -237,6 +251,7 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                 />
               </div>
             )}
+
             {currentQuestion.questionType === "numberInput" && (
               <div className="mt-4 flex flex-col items-center">
                 <input
@@ -253,7 +268,7 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                     }))
                   }
                 />
-                <CustomButton
+                <ResponseCustomButton
                   text="다음"
                   themeColor={themeColor}
                   buttonShape={buttonShape}
@@ -261,6 +276,7 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                 />
               </div>
             )}
+
             {currentQuestion.questionType === "dateInput" && (
               <div className="mt-4 flex flex-col items-center">
                 <input
@@ -269,11 +285,12 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                   placeholder="날짜를 입력해주세요"
                   onChange={(event) =>
                     setSurveyAnswers((prevAnswers) => ({
+                      ...prevAnswers,
                       [currentQuestion.questionId]: event.target.value,
                     }))
                   }
                 />
-                <CustomButton
+                <ResponseCustomButton
                   text="다음"
                   themeColor={themeColor}
                   buttonShape={buttonShape}
@@ -281,6 +298,7 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                 />
               </div>
             )}
+
             {currentQuestion.questionType === "timeInput" && (
               <div className="mt-4 flex flex-col items-center">
                 <input
@@ -294,7 +312,7 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                     }))
                   }
                 />
-                <CustomButton
+                <ResponseCustomButton
                   text="다음"
                   themeColor={themeColor}
                   buttonShape={buttonShape}
@@ -302,20 +320,33 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                 />
               </div>
             )}
+
             {currentQuestion.questionType === "rangeInput" && (
               <div className="mt-4 flex flex-col items-center">
                 <input
                   type="range"
-                  className="w-full p-2 border border-gray-300 rounded"
-                  onChange={(event) =>
+                  className="w-full h-2 bg-[#AFB8C1] rounded-lg appearance-none cursor-pointer"
+                  min="0"
+                  max="100"
+                  style={{ accentColor: themeColor }}
+                  onChange={(event) => {
+                    const newValue = event.target.value;
+
+                    setRangeValue(newValue);
                     setSurveyAnswers((prevAnswers) => ({
                       ...prevAnswers,
-                      [currentQuestion.questionId]: event.target.value,
-                    }))
-                  }
+                      [currentQuestion.questionId]: newValue,
+                    }));
+                  }}
                 />
+                <div
+                  className="mt-2 text-lg font-bold"
+                  style={{ color: themeColor }}
+                >
+                  {rangeValue}
+                </div>
                 <div className="mt-4">
-                  <CustomButton
+                  <ResponseCustomButton
                     text="다음"
                     themeColor={themeColor}
                     buttonShape={buttonShape}
@@ -324,6 +355,7 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                 </div>
               </div>
             )}
+
             {currentQuestion.questionType === "radioInput" && (
               <div className="mt-4 flex flex-col">
                 <div className="flex justify-center items-center">
@@ -331,25 +363,36 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                     <div
                       key={rating}
                       className="mr-2"
-                      onMouseEnter={() => handleMouseEnter(rating)}
-                      onMouseLeave={handleMouseLeave}
+                      onMouseEnter={() =>
+                        handleMouseEnter(currentQuestion.questionId, rating)
+                      }
+                      onMouseLeave={() =>
+                        handleMouseLeave(currentQuestion.questionId)
+                      }
                     >
                       <input
                         type="radio"
                         value={rating}
-                        checked={selectedRating === rating}
+                        checked={
+                          selectedRating[currentQuestion.questionId] === rating
+                        }
                         onChange={() => {
-                          handleRatingClick(rating);
+                          handleRatingClick(currentQuestion.questionId, rating);
                           handleAnswer(rating.toString());
                         }}
-                        id={`rating-${rating}`}
+                        id={`rating-${currentQuestion.questionId}-${rating}`}
                         className="hidden"
                       />
                       <label
-                        htmlFor={`rating-${rating}`}
+                        htmlFor={`rating-${currentQuestion.questionId}-${rating}`}
                         className={`text-3xl cursor-pointer text-gray-300 ${
-                          (hoveredRating !== null && rating <= hoveredRating) ||
-                          (selectedRating !== null && rating <= selectedRating)
+                          (hoveredRating[currentQuestion.questionId] !== null &&
+                            rating <=
+                              hoveredRating[currentQuestion.questionId]) ||
+                          (selectedRating[currentQuestion.questionId] !==
+                            null &&
+                            rating <=
+                              selectedRating[currentQuestion.questionId])
                             ? "text-yellow-500"
                             : ""
                         }`}
@@ -360,7 +403,7 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                     </div>
                   ))}
                 </div>
-                <CustomButton
+                <ResponseCustomButton
                   text="다음"
                   themeColor={themeColor}
                   buttonShape={buttonShape}

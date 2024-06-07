@@ -5,9 +5,9 @@ import QuestionHeader from "../shared/QuestionPreviewHeader";
 function RangeInputQuestion({ questionText, questionIndex, styleData }) {
   const [rangeValue, setRangeValue] = useState(50);
 
-  const handleRangeChange = (event) => {
+  function handleRangeChange(event) {
     setRangeValue(event.target.value);
-  };
+  }
 
   return (
     <div className="flex flex-col items-center">
