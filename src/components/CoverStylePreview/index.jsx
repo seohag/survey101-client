@@ -1,13 +1,15 @@
 import CustomButton from "../CustomButton";
 import useFormEditorStore from "../../store/useFormEditorStore";
 
-function CoverStylePreview() {
+function CoverStylePreview({ animationClass }) {
   const { coverData, styleData } = useFormEditorStore();
 
   return (
     <div className="flex flex-col rounded-lg justify-center items-center min-h-[85vh] max-h-[85vh] p-4 bg-gray-200">
       <span className="mb-4 text-center font-bold">미리보기</span>
-      <div className="bg-white rounded-lg shadow-lg flex flex-col items-center border-4 border-black min-h-[75vh] max-w-[25vw]">
+      <div
+        className={`bg-white rounded-lg shadow-lg flex flex-col items-center border-4 border-black min-h-[75vh] max-w-[25vw] ${animationClass}`}
+      >
         <div className="flex flex-col items-center p-4 w-full h-full">
           <div className="flex flex-col items-center w-full mb-4">
             <h3

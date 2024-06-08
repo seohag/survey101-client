@@ -1,8 +1,10 @@
+import { useState } from "react";
 import CoverStylePreview from "../CoverStylePreview";
 import useFormEditorStore from "../../store/useFormEditorStore";
 
 function StyleEditor() {
   const { coverData, setStyleData, styleData } = useFormEditorStore();
+  const [animationClass, setAnimationClass] = useState("");
 
   function handleStyleChange(event) {
     const { name, value } = event.target;
@@ -11,6 +13,10 @@ function StyleEditor() {
       ...styleData,
       [name]: value,
     });
+
+    if (name === "animation") {
+      setAnimationClass(`animate-${value}-in`);
+    }
   }
 
   return (
@@ -19,7 +25,8 @@ function StyleEditor() {
         <CoverStylePreview
           coverData={coverData}
           styleData={styleData}
-        ></CoverStylePreview>
+          animationClass={animationClass}
+        />
       </section>
 
       <section className="md:w-full p-4 max-w-[55%] mx-auto">
