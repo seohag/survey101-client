@@ -357,11 +357,11 @@ function QuestionList({ setSelectedQuestionId }) {
   return (
     <div
       ref={containerRef}
-      className="relative max-h-[85vh] overflow-auto container"
+      className="relative max-h-[85vh] overflow-auto container lg:mt-0 md:mt-0 xs:-mt-14"
     >
       <div
         id="menuButton"
-        className="absolute mt-5 md:right-10 z-10"
+        className="absolute md:right-10 z-10"
         style={{ opacity: showAddQuestionPopup ? 0 : 1 }}
       >
         <button
