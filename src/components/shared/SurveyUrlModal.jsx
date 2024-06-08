@@ -50,18 +50,18 @@ function SurveyUrlModal({ url, onClose }) {
             <button
               onClick={onClose}
               type="button"
-              className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-[#004CFE] text-base font-medium text-white hover:bg-[#0289FF] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm relative"
+              className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-[#004CFE] text-base font-medium text-white hover:bg-[#0289FF] focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm mb-2 sm:mb-0"
             >
               닫기
             </button>
             <button
               onClick={copyToClipboard}
-              className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-gray-300 text-black font-medium hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm relative"
+              className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-gray-300 text-black font-medium hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm mb-2 sm:mb-0 relative"
             >
               링크 복사
             </button>
             {copySuccess && (
-              <span className="text-xs text-green-500 flex items-center ml-2">
+              <span className="text-xs text-green-500 flex lg:items-center md:items-center ml-2 sm:ml-0 sm:mt-0 mt-2">
                 복사 완료!
               </span>
             )}
