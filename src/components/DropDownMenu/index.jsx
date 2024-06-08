@@ -34,7 +34,7 @@ function DropdownMenu({ handleOptionClick, isOpen, toggle }) {
         <FontAwesomeIcon icon={faAngleDown} className="text-xl" />
       </button>
       {isOpen && (
-        <div className="absolute mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 left-1/2 transform -translate-x-1/2 z-50">
+        <div className="absolute mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 left-1/2 transform -translate-x-1/2 z-10">
           <div className="py-1">
             <button
               onClick={handleOptionClick}
