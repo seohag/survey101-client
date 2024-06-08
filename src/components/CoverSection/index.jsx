@@ -22,7 +22,7 @@ function CoverSection({ surveyData, onStartButtonClick }) {
               : URL.createObjectURL(coverImage.imageUrl)
           }
           alt="Cover"
-          className="mt-7 w-full max-w-sm h-auto object-cover"
+          className="mt-7 w-full max-h-[50vh] max-w-sm h-auto object-cover"
         />
       )}
       <ResponseCustomButton

@@ -8,6 +8,8 @@ function AnalyticsDetail() {
   const [respondentsCount, setRespondentsCount] = useState(0);
   const [showInsights, setShowInsights] = useState(false);
 
+  console.log(surveyResponses);
+
   useEffect(() => {
     if (!isLoading && surveyResponses.responses.length > 0) {
       const totalCount = Math.max(
@@ -52,7 +54,7 @@ function AnalyticsDetail() {
   }
 
   return (
-    <aside className="flex flex-col items-center justify-center w-full h-full overflow-auto">
+    <aside className="flex flex-col items-center justify-center w-full h-full overflow-auto xs:ml-7 xxs:ml-7 ">
       {showInsights ? (
         <AnalyticsInsights
           surveyData={processedSurveyResponses}
