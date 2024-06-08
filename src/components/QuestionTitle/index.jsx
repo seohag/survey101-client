@@ -1,4 +1,4 @@
-function Question({ question, handleQuestionTextChange }) {
+function QuestionTitle({ question, handleQuestionTextChange }) {
   return (
     <div className="mb-4">
       <label
@@ -20,4 +20,4 @@ function Question({ question, handleQuestionTextChange }) {
   );
 }
 
-export default Question;
+export default QuestionTitle;

@@ -31,6 +31,7 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
     }
   }, [animationOption]);
 
+  const thumbSize = 16 + (rangeValue / 100) * 16;
   const totalQuestions = questions.length;
   const progressPercent = Math.round(
     ((currentQuestionIndex + 1) / totalQuestions) * 100,
@@ -162,7 +163,7 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
             )}
 
             {currentQuestion.questionType === "imageChoice" && (
-              <div className="mt-4 flex flex-wrap justify-center">
+              <div className="mt-4 max-w-[44.5vh] flex flex-wrap justify-center">
                 {currentQuestion.options.map((option, index) => (
                   <div className="m-2" key={option.optionId}>
                     <button
@@ -328,7 +329,10 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                   className="w-full h-2 bg-[#AFB8C1] rounded-lg appearance-none cursor-pointer"
                   min="0"
                   max="100"
-                  style={{ accentColor: themeColor }}
+                  style={{
+                    accentColor: themeColor,
+                    "--thumb-size": `${thumbSize}px`,
+                  }}
                   onChange={(event) => {
                     const newValue = event.target.value;
 
@@ -339,6 +343,24 @@ function QuestionSection({ surveyData, surveyAnswers, setSurveyAnswers }) {
                     }));
                   }}
                 />
+                <style jsx="true">{`
+                  input[type="range"]::-webkit-slider-thumb {
+                    appearance: none;
+                    width: var(--thumb-size);
+                    height: var(--thumb-size);
+                    border-radius: 50%;
+                    background: ${themeColor};
+                    cursor: pointer;
+                  }
+
+                  input[type="range"]::-moz-range-thumb {
+                    width: var(--thumb-size);
+                    height: var(--thumb-size);
+                    border-radius: 50%;
+                    background: ${themeColor};
+                    cursor: pointer;
+                  }
+                `}</style>
                 <div
                   className="mt-2 text-lg font-bold"
                   style={{ color: themeColor }}

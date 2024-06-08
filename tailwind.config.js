@@ -33,6 +33,7 @@ export default {
         "fade-out": "fade-out 0.5s ease-in-out forwards",
         "zoom-in": "zoom-in 0.5s ease-in-out forwards",
         "zoom-out": "zoom-out 0.5s ease-in-out forwards",
+        resizeThumb: "resizeThumn 1s linear infinite",
       },
       keyframes: {
         "slide-in": {
@@ -58,6 +59,10 @@ export default {
         "zoom-out": {
           from: { transform: "scale(1)", opacity: 1 },
           to: { transform: "scale(0.5)", opacity: 0 },
+        },
+        resizeThumb: {
+          "0%": { transform: "scale(0.5)" },
+          "100%": { transform: "scale(1.5)" },
         },
       },
     },

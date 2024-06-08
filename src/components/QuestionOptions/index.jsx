@@ -10,6 +10,7 @@ function QuestionOptions({
   handleDeleteOption,
   handleQuestionOptionChange,
   handleImageChange,
+  handleOptionOrderChange,
   errorMessage,
 }) {
   return (
@@ -23,6 +24,7 @@ function QuestionOptions({
               option={option}
               handleQuestionOptionChange={handleQuestionOptionChange}
               handleDeleteOption={handleDeleteOption}
+              handleOptionOrderChange={handleOptionOrderChange}
             />
           ))}
           <div className="w-full text-center">
@@ -45,6 +47,7 @@ function QuestionOptions({
               question={question}
               option={option}
               handleImageChange={handleImageChange}
+              handleOptionOrderChange={handleOptionOrderChange}
               handleDeleteOption={handleDeleteOption}
             />
           ))}

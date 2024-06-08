@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 function QuestionControls({ questionId, handleArrowButtonClick }) {
   return (
@@ -10,7 +10,7 @@ function QuestionControls({ questionId, handleArrowButtonClick }) {
         onClick={() => handleArrowButtonClick(questionId, "up")}
         aria-label="arrow-up"
       >
-        <FontAwesomeIcon icon={faArrowUp} className="text-xl mt-7 px-2" />
+        <FontAwesomeIcon icon={faArrowUp} className="text-xl mt-7 mb-7 px-2" />
       </button>
       <button
         type="button"
@@ -18,7 +18,10 @@ function QuestionControls({ questionId, handleArrowButtonClick }) {
         onClick={() => handleArrowButtonClick(questionId, "down")}
         aria-label="arrow-down"
       >
-        <FontAwesomeIcon icon={faArrowDown} className="text-xl mt-3 py-7" />
+        <FontAwesomeIcon
+          icon={faArrowDown}
+          className="text-xl mt-7 mb-7 px-2"
+        />
       </button>
     </div>
   );

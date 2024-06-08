@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
-import Question from "../Question";
+import QuestionTitle from "../QuestionTitle";
 import QuestionOptions from "../QuestionOptions";
 import QuestionControls from "../QuestionControls";
 import useFormEditorStore from "../../store/useFormEditorStore";
@@ -326,6 +326,39 @@ function QuestionList({ setSelectedQuestionId }) {
     }
   }
 
+  function handleOptionOrderChange(questionId, optionId, direction) {
+    const newQuestions = questions.map((question) => {
+      if (question.questionId === questionId) {
+        const optionIndex = question.options.findIndex(
+          (opt) => opt.optionId === optionId,
+        );
+
+        if (optionIndex === -1) return question;
+
+        const newOptions = [...question.options];
+
+        if (direction === "up" && optionIndex > 0) {
+          const temp = newOptions[optionIndex - 1];
+          newOptions[optionIndex - 1] = newOptions[optionIndex];
+          newOptions[optionIndex] = temp;
+        } else if (
+          direction === "down" &&
+          optionIndex < newOptions.length - 1
+        ) {
+          const temp = newOptions[optionIndex + 1];
+          newOptions[optionIndex + 1] = newOptions[optionIndex];
+          newOptions[optionIndex] = temp;
+        }
+
+        return { ...question, options: newOptions };
+      }
+
+      return question;
+    });
+
+    setQuestions(newQuestions);
+  }
+
   return (
     <div
       ref={containerRef}
@@ -372,7 +405,7 @@ function QuestionList({ setSelectedQuestionId }) {
             questionId={question.questionId}
             handleArrowButtonClick={handleArrowButtonClick}
           />
-          <Question
+          <QuestionTitle
             question={question}
             handleQuestionTextChange={handleQuestionTextChange}
           />
@@ -383,6 +416,7 @@ function QuestionList({ setSelectedQuestionId }) {
             handleImageChange={handleImageChange}
             handleQuestionOptionChange={handleQuestionOptionChange}
             handleDeleteOption={handleDeleteOption}
+            handleOptionOrderChange={handleOptionOrderChange}
             errorMessage={errorMessage}
           />
         </div>
