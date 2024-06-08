@@ -11,7 +11,6 @@ import AddQuestionPopup from "../AddQuestionPopup";
 
 function QuestionList({ setSelectedQuestionId }) {
   const [errorMessage, setErrorMessage] = useState("");
-  const [isButtonShow, setIsButtonShow] = useState(true);
   const [showAddQuestionPopup, setShowAddQuestionPopup] = useState(false);
 
   const { questions, setQuestions } = useFormEditorStore();
@@ -55,10 +54,6 @@ function QuestionList({ setSelectedQuestionId }) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  useEffect(() => {
-    setIsButtonShow(!showAddQuestionPopup);
-  }, [showAddQuestionPopup]);
 
   function handleAddQuestionPopup() {
     setShowAddQuestionPopup(true);
@@ -364,23 +359,25 @@ function QuestionList({ setSelectedQuestionId }) {
       ref={containerRef}
       className="relative max-h-[85vh] overflow-auto container"
     >
-      {isButtonShow && (
-        <div id="menuButton" className="absolute md:right-10 z-10">
-          <button
-            type="button"
-            className="bg-gray-300 text-[#4E5968] px-2 py-2.5 rounded-md hover:bg-gray-200 sm: ml"
-            onClick={handleAddQuestionPopup}
-            aria-label="Question Button"
-          >
-            질문<br></br>추가
-            <br />
-            <FontAwesomeIcon
-              icon={faPlusCircle}
-              className="text-xl ml-0.5 mt-1"
-            />
-          </button>
-        </div>
-      )}
+      <div
+        id="menuButton"
+        className="absolute mt-5 md:right-10 z-10"
+        style={{ opacity: showAddQuestionPopup ? 0 : 1 }}
+      >
+        <button
+          type="button"
+          className="bg-gray-300 text-[#4E5968] px-2 py-2.5 rounded-md hover:bg-gray-200"
+          onClick={handleAddQuestionPopup}
+          aria-label="Question Button"
+        >
+          질문<br></br>추가
+          <br />
+          <FontAwesomeIcon
+            icon={faPlusCircle}
+            className="text-xl ml-0.5 mt-1"
+          />
+        </button>
+      </div>
       {questions.map((question) => (
         <div
           key={question.questionId}
