@@ -20,7 +20,7 @@ function ImageChoiceOption({
 
   return (
     <div key={option.optionId} className="mb-4 mx-2 relative flex items-center">
-      <div className="flex flex-col md:hidden mr-3">
+      <div className="flex flex-col lg:hidden md:hidden smmd:hidden mr-3">
         <button
           onClick={() =>
             handleOptionOrderChange(question.questionId, option.optionId, "up")
@@ -44,7 +44,7 @@ function ImageChoiceOption({
           <FontAwesomeIcon icon={faArrowCircleDown} className="text-xl" />
         </button>
       </div>
-      <div className="hidden md:flex">
+      <div className="flex flex-col sm:hidden xs:hidden smmd:flex md:flex">
         <button
           onClick={() =>
             handleOptionOrderChange(question.questionId, option.optionId, "up")
@@ -54,6 +54,20 @@ function ImageChoiceOption({
           className="mr-2"
         >
           <FontAwesomeIcon icon={faArrowCircleLeft} className="text-xl" />
+        </button>
+        <button
+          onClick={() =>
+            handleOptionOrderChange(
+              question.questionId,
+              option.optionId,
+              "down",
+            )
+          }
+          disabled={optionIndex === question.options.length - 1}
+          aria-label="arrow-right"
+          className="mr-2"
+        >
+          <FontAwesomeIcon icon={faArrowCircleRight} className="text-xl" />
         </button>
       </div>
       <div className="relative">
@@ -93,23 +107,6 @@ function ImageChoiceOption({
             X
           </button>
         )}
-      </div>
-
-      <div className="hidden md:flex">
-        <button
-          onClick={() =>
-            handleOptionOrderChange(
-              question.questionId,
-              option.optionId,
-              "down",
-            )
-          }
-          disabled={optionIndex === question.options.length - 1}
-          aria-label="arrow-right"
-          className="ml-2"
-        >
-          <FontAwesomeIcon icon={faArrowCircleRight} className="text-xl" />
-        </button>
       </div>
       {question.options.length > 1 && (
         <button
