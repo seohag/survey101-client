@@ -30,7 +30,7 @@ function AnalyticsPage() {
 
   return (
     <main className="h-screen w-screen box-border">
-      <header className="bg-[#495667] text-white p-2 border-b">
+      <header className="bg-[#495667] text-white p-2 border-b fixed top-0 left-0 w-full z-10">
         <div className="flex justify-between items-center flex-wrap">
           <span
             className="flex items-center cursor-pointer ml-2 sm:ml-7"
@@ -68,22 +68,25 @@ function AnalyticsPage() {
             ) : (
               <div>
                 {surveys.length === 0 ? (
-                  <div className="text-center  text-gray-400 mt-72">
+                  <div className="text-center text-gray-400 mt-72">
                     아직 생성된 설문이 없습니다.
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 gap-4">
+                  <div className="grid grid-cols-1 gap-4 md:mt-20 xxs:mt-20 xs:mt-20">
                     {surveys.map((survey) => (
                       <button
                         key={survey._id}
                         onClick={() => showDetail(survey._id)}
-                        className="group transition-all duration-300 bg-white rounded-md border-2 border-gray-200 p-4 hover:shadow-lg hover:border-[#3182F6] hover:shadow-outline"
+                        className={`group transition-all duration-300 bg-white rounded-md border-2 p-4 hover:shadow-lg hover:border-[#3182F6] hover:shadow-outline ${
+                          selectedSurveyId === survey._id
+                            ? "border-[#3182F6] shadow-lg"
+                            : "border-gray-200"
+                        }`}
                         type="button"
                       >
-                        <h3 className="md:text-xl sm:text-sm font-semibold ">
+                        <h3 className="text-center md:text-xl sm:text-xs xs:text-xs font-semibold overflow-hidden text-overflow-ellipsis">
                           {survey.title}
                         </h3>
-                        <p className="text-gray-600">{survey.description}</p>
                       </button>
                     ))}
                   </div>

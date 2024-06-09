@@ -3,7 +3,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function AnalyticsInsights({ surveyData, onBack }) {
+function AnalyticsInsights({ processedChartData, onBack }) {
   const chartData = (question, answers) => {
     const answerCounts = answers.reduce((acc, answer) => {
       acc[answer] = (acc[answer] || 0) + 1;
@@ -37,7 +37,7 @@ function AnalyticsInsights({ surveyData, onBack }) {
         질문별 테이블
       </button>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-items-center w-full px-4">
-        {Object.entries(surveyData).map(([question, answers]) => (
+        {Object.entries(processedChartData).map(([question, answers]) => (
           <div key={question} className="m-4 w-full max-w-xs text-center">
             <h3 className="text-xl font-semibold mb-2">{question}</h3>
             <Pie data={chartData(question, answers)} />

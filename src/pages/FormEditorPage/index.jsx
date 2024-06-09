@@ -53,7 +53,9 @@ function FormEditorPage() {
         onSectionChange={handleSectionChange}
         isNewForm
       />
-      <div className="mt-7">{renderActiveSection()}</div>
+      <div className="lg:mt-20 md:mt-20 sm:mt-28 xs:mt-28 xxs:mt-20">
+        {renderActiveSection()}
+      </div>
     </>
   );
 }

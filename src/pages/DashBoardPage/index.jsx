@@ -102,7 +102,7 @@ function DashBoardPage() {
       {showModal && (
         <SurveyUrlModal url={surveyUrl} onClose={() => setShowModal(false)} />
       )}
-      <section className="text-black p-2 border-b border-[[#4E5968]]">
+      <section className="fixed top-0 left-0 w-full bg-white text-black p-2 border-b border-[[#4E5968]] z-10">
         <div className="flex justify-between items-center flex-wrap">
           <span
             className="flex items-center cursor-pointer ml-2 sm:ml-7"
@@ -132,7 +132,7 @@ function DashBoardPage() {
           </div>
         </div>
       </section>
-      <section className="mt-5 px-5">
+      <section className="mt-24 px-5">
         <div className="flex items-center">
           <span className="text-lg sm:text-2xl ml-1 sm:ml-5 mb-2 whitespace-nowrap">
             전체 설문

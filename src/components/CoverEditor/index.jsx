@@ -52,7 +52,7 @@ function CoverEditor() {
   }
 
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row lg:mt-20 md:mt-20 sm:mt-28 xs:mt-28 xxs:mt-20">
       <section className="md:w-2/5 p-4 hidden md:block">
         <CoverStylePreview
           coverData={coverData}
@@ -60,7 +60,7 @@ function CoverEditor() {
         ></CoverStylePreview>
       </section>
 
-      <section className="md:w-full p-4 max-w-full md:max-w-[55%]  mx-auto">
+      <section className="md:w-full p-4 max-w-full md:max-w-[55%] mx-auto">
         <div className="bg-white border-2 rounded-lg shadow-lg p-4 mb-4 text-center">
           {errorMessage && (
             <div className="text-red-500 mb-4">{errorMessage}</div>

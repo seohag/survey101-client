@@ -41,7 +41,7 @@ function FormEditorHeader({ activeSection, onSectionChange, isNewForm }) {
   }
 
   return (
-    <section className="text-black p-2 border-b border-[[#4E5968]]">
+    <section className="fixed top-0 left-0 w-full bg-white text-black p-2 border-b border-[[#4E5968]] z-10">
       {showModal && (
         <SurveyUrlModal url={surveyUrl} onClose={() => setShowModal(false)} />
       )}
