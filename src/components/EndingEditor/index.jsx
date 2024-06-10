@@ -81,7 +81,7 @@ function EndingEditor() {
         <EndingPreview endingData={endingData} styleData={styleData} />
       </section>
 
-      <section className="w-full p-4 max-w-[58%] mx-auto rounded-lg ">
+      <section className="w-full p-2 mt-2 xl:max-w-[58%] lg:max-w-[58%] mx-auto rounded-lg ">
         <div className="bg-white rounded-lg shadow-lg p-4 mb-4 text-center h-[70vh] border-2">
           <input
             id="endingtitle"
@@ -97,7 +97,7 @@ function EndingEditor() {
             value={endingData.content}
             onChange={(content) => setEndingData({ ...endingData, content })}
             modules={modules}
-            className="lg:h-[50vh] md:h-[40vh] xr:h-[35vh] xs:h-[29vh]"
+            className="xl:h-[50vh] lg:h-[50vh] md:h-[50vh] xr:h-[45vh] xs:h-[40vh] xxs:h-[40vh]"
           />
         </div>
         <div className="text-center mb-2">

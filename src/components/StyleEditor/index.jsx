@@ -20,7 +20,7 @@ function StyleEditor() {
   }
 
   return (
-    <div className="flex flex-col md:flex-row lg:mt-20 md:mt-20 sm:mt-28 xs:mt-28 xxs:mt-20">
+    <div className="flex flex-col md:flex-row xl:mt-20 lg:mt-20 md:mt-20 sm:mt-28 xs:mt-28 xxs:mt-20">
       <section className="md:w-2/5 p-4 hidden md:block">
         <CoverStylePreview
           coverData={coverData}
@@ -29,7 +29,7 @@ function StyleEditor() {
         />
       </section>
 
-      <section className="md:w-full p-4 max-w-[55%] mx-auto">
+      <section className="w-full p-4 xl:mt-0 lg:mt-0 md:mt-0 smmd:mt-0 sm:mt-5 xxs:mt-7 max-w-full md:max-w-[55%] mx-auto">
         <div className="bg-white border-2 rounded-lg shadow-lg p-4 mb-4 text-center">
           <h2 className="text-lg font-bold mb-2">설문 스타일 편집</h2>
           <div className="form-group mb-4">

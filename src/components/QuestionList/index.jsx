@@ -357,16 +357,16 @@ function QuestionList({ setSelectedQuestionId }) {
   return (
     <div
       ref={containerRef}
-      className="relative max-h-[85vh] overflow-auto container lg:mt-0 md:mt-0 xs:-mt-14"
+      className="relative max-h-[85vh] overflow-auto container lg:mt-0 md:mt-0 xs:-mt-14 scrollbar-hide"
     >
       <div
         id="menuButton"
-        className="absolute md:right-10 z-10"
+        className="absolute xl:right-10 z-10"
         style={{ opacity: showAddQuestionPopup ? 0 : 1 }}
       >
         <button
           type="button"
-          className="bg-gray-300 text-[#4E5968] px-2 py-2.5 rounded-md hover:bg-gray-200"
+          className="mt-2 bg-gray-300 text-[#4E5968] px-2 py-2.5 rounded-md hover:bg-gray-200"
           onClick={handleAddQuestionPopup}
           aria-label="Question Button"
         >
@@ -381,7 +381,7 @@ function QuestionList({ setSelectedQuestionId }) {
       {questions.map((question) => (
         <div
           key={question.questionId}
-          className="cursor-pointer bg-white p-4 rounded-xl border-2 hover:border-blue-700 hover:shadow-outline transition-transform transform mb-4 max-w-[67%] mx-auto"
+          className="cursor-pointer bg-white p-4 rounded-xl border-2 hover:border-blue-700 hover:shadow-outline transition-transform transform mb-4 lg:max-w-[75%] xs:max-w-[90%] xs:ml-20 sm:ml-[104px] mx-auto "
           onClick={() => setSelectedQuestionId(question.questionId)}
           role="presentation"
         >
@@ -392,7 +392,7 @@ function QuestionList({ setSelectedQuestionId }) {
             <button
               type="button"
               onClick={() => handleDeleteQuestion(question.questionId)}
-              className="bg-red-500 text-white px-2 py-1 rounded ml-2 text-end absolute right-0"
+              className="bg-red-500 text-white  px-2 sm:px-1 xs:px-0.5 py-0.5 rounded ml-2 text-end absolute right-0"
               aria-label="trash-button"
             >
               <FontAwesomeIcon icon={faTrash} className="text-xl" />

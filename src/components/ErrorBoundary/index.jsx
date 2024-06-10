@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class ErrorBoundary extends Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    console.error("Uncaught error:", error, errorInfo);
+    console.error("에러가 발생했습니다:", error, errorInfo);
   }
 
   render() {
@@ -19,7 +19,12 @@ class ErrorBoundary extends Component {
     const { children } = this.props;
 
     if (hasError) {
-      return <h1>에러가 발생했습니다.</h1>;
+      return (
+        <h1>
+          설문 데이터를 불러오는 중 에러가 발생했습니다.<br></br>
+          잠시 후 다시 시도해주세요!
+        </h1>
+      );
     }
 
     return children;
