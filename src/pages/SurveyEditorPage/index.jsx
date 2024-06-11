@@ -11,10 +11,12 @@ import useFormEditorStore from "../../store/useFormEditorStore";
 import useGetSurvey from "../../apis/useGetSurvey";
 
 import Loading from "../../components/shared/Loading";
+import useGetAuthUser from "../../apis/useGetAuthUser";
 
 import { formatSurveyData } from "../../utils/utils";
 
 function SurveyEditorPage() {
+  useGetAuthUser();
   const { surveyId } = useParams();
   const {
     activeSection,

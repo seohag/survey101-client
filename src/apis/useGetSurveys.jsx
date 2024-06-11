@@ -17,7 +17,7 @@ function useGetSurveys() {
     }
   }
 
-  const { data: surveys = [], error } = useQuery({
+  const { data: surveys = [] } = useQuery({
     queryKey: ["surveys"],
     queryFn: getSurveyList,
     refetchOnMount: true,
@@ -27,7 +27,7 @@ function useGetSurveys() {
     suspense: true,
   });
 
-  return { surveys, error };
+  return { surveys };
 }
 
 export default useGetSurveys;

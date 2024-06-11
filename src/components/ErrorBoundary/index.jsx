@@ -1,34 +1,44 @@
 import { Component } from "react";
+import { useNavigate } from "react-router-dom";
 
 class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false };
+    this.state = {
+      hasError: false,
+      error: null,
+    };
   }
 
   static getDerivedStateFromError(error) {
-    return { hasError: true };
+    return { hasError: true, error };
   }
 
   componentDidCatch(error, errorInfo) {
     console.error("에러가 발생했습니다:", error, errorInfo);
   }
 
-  render() {
-    const { hasError } = this.state;
-    const { children } = this.props;
+  resetError = () => {
+    this.setState({ hasError: false, error: null });
+  };
 
-    if (hasError) {
-      return (
-        <h1>
-          설문 데이터를 불러오는 중 에러가 발생했습니다.<br></br>
-          잠시 후 다시 시도해주세요!
-        </h1>
-      );
+  render() {
+    const { hasError, error } = this.state;
+    const { children, errorFallback: ErrorFallback } = this.props;
+
+    if (hasError && error !== null) {
+      return <ErrorFallback error={error} resetError={this.resetError} />;
     }
 
     return children;
   }
 }
 
-export default ErrorBoundary;
+function withNavigate(Components) {
+  return function WrappedComponent(props) {
+    const navigate = useNavigate();
+    return <Components {...props} navigate={navigate} />;
+  };
+}
+
+export default withNavigate(ErrorBoundary);

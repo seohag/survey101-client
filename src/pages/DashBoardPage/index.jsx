@@ -10,43 +10,18 @@ import useGoogleLogout from "../../apis/useGoogleLogout";
 import SurveyCard from "../../components/SurveyCard";
 import SurveyUrlModal from "../../components/shared/SurveyUrlModal";
 
-import useUserIdStore from "../../store/useUserIdStore";
 import useSurveyUrlStore from "../../store/useSurveyUrlStore";
-import authUser from "../../utils/authUser";
+import useGetAuthUser from "../../apis/useGetAuthUser";
 
 function DashBoardPage() {
+  useGetAuthUser();
   const { openModal, modal } = useGoogleLogout();
   const navigate = useNavigate();
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [openDropdownId, setOpenDropdownId] = useState(null);
   const { surveys } = useGetSurveys();
-  const { setUser, setIsLoggedIn } = useUserIdStore();
   const { surveyUrl, showModal, setShowModal } = useSurveyUrlStore();
-
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const response = await authUser();
-        const { result, user } = response;
-
-        if (result) {
-          setIsLoggedIn(true);
-          setUser(user);
-        } else {
-          setIsLoggedIn(false);
-          setUser("");
-          navigate("/");
-        }
-      } catch (err) {
-        setUser("");
-        setIsLoggedIn(false);
-        navigate("/");
-      }
-    };
-
-    checkAuth();
-  }, [navigate, setIsLoggedIn, setUser]);
 
   function debounce(func, wait) {
     let timeout;

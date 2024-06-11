@@ -10,7 +10,7 @@ import ResponsePage from "./pages/ResponsePage";
 import AnalyticsPage from "./pages/AnalyticsPage";
 import AnalyticsDetail from "./components/AnalyticsDetail";
 
-import ErrorBoundary from "./components/ErrorBoundary";
+import AsyncBoundary from "./components/AsyncBoundary";
 import Loading from "./components/shared/Loading";
 
 function App() {
@@ -20,60 +20,50 @@ function App() {
       <Route
         path="/dash"
         element={
-          <ErrorBoundary>
-            <Suspense fallback={<Loading />}>
-              <DashBoardPage />
-            </Suspense>
-          </ErrorBoundary>
+          <AsyncBoundary>
+            <DashBoardPage />
+          </AsyncBoundary>
         }
       />
       <Route
         path="/analytics"
         element={
-          <ErrorBoundary>
-            <Suspense fallback={<Loading />}>
-              <AnalyticsPage />
-            </Suspense>
-          </ErrorBoundary>
+          <AsyncBoundary>
+            <AnalyticsPage />
+          </AsyncBoundary>
         }
       >
         <Route
           path=":surveyId"
           element={
-            <ErrorBoundary>
-              <Suspense fallback={<Loading />}>
-                <AnalyticsDetail />
-              </Suspense>
-            </ErrorBoundary>
+            <AsyncBoundary>
+              <AnalyticsDetail />
+            </AsyncBoundary>
           }
         />
       </Route>
       <Route
         path="/editor/new-form"
         element={
-          <ErrorBoundary>
+          <AsyncBoundary>
             <FormEditorPage />
-          </ErrorBoundary>
+          </AsyncBoundary>
         }
       />
       <Route
         path="/editor/:surveyId"
         element={
-          <ErrorBoundary>
-            <Suspense fallback={<Loading />}>
-              <SurveyEditorPage />
-            </Suspense>
-          </ErrorBoundary>
+          <AsyncBoundary>
+            <SurveyEditorPage />
+          </AsyncBoundary>
         }
       />
       <Route
         path="/form/:surveyId"
         element={
-          <ErrorBoundary>
-            <Suspense fallback={<Loading />}>
-              <ResponsePage />
-            </Suspense>
-          </ErrorBoundary>
+          <AsyncBoundary>
+            <ResponsePage />
+          </AsyncBoundary>
         }
       />
       <Route path="*" element={<ErrorPage />} />

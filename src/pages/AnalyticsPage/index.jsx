@@ -4,7 +4,10 @@ import { Outlet, useNavigate, useParams } from "react-router-dom";
 import useGetSurveys from "../../apis/useGetSurveys";
 import useGoogleLogout from "../../apis/useGoogleLogout";
 
+import useGetAuthUser from "../../apis/useGetAuthUser";
+
 function AnalyticsPage() {
+  useGetAuthUser();
   const { surveyId } = useParams();
   const { surveys } = useGetSurveys();
   const [selectedSurveyId, setSelectedSurveyId] = useState(null);

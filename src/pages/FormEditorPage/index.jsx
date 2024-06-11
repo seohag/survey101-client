@@ -6,9 +6,11 @@ import StyleEditor from "../../components/StyleEditor";
 import QuestionEditor from "../../components/QuestionEditor";
 import EndingEditor from "../../components/EndingEditor";
 
+import useGetAuthUser from "../../apis/useGetAuthUser";
 import useFormEditorStore from "../../store/useFormEditorStore";
 
 function FormEditorPage() {
+  useGetAuthUser();
   const { activeSection, setActiveSection, reset } = useFormEditorStore();
 
   useEffect(() => {
