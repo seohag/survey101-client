@@ -81,7 +81,7 @@ function EndingEditor() {
         <EndingPreview endingData={endingData} styleData={styleData} />
       </section>
 
-      <section className="w-full p-2 mt-2 xl:max-w-[58%] lg:max-w-[58%] mx-auto rounded-lg ">
+      <section className="w-full p-2 mt-2 xl:max-w-[58%] lg:max-w-[58%] mx-auto rounded-lg">
         <div className="bg-white rounded-lg shadow-lg p-4 mb-4 text-center h-[70vh] border-2">
           <input
             id="endingtitle"

@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import useGetSurveyReponses from "../../apis/useGetSurveyReponses";
-import Loading from "../shared/Loading";
 import AnalyticsInsights from "../AnalyticsInsights";
 
 function AnalyticsDetail() {
-  const { surveyResponses, isLoading } = useGetSurveyReponses();
+  const { surveyResponses } = useGetSurveyReponses();
   const [showInsights, setShowInsights] = useState(false);
   const [processedData, setProcessedData] = useState([]);
   const [respondentsCount, setRespondentsCount] = useState(0);
@@ -63,11 +62,7 @@ function AnalyticsDetail() {
     }
   }, [surveyResponses]);
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (!surveyResponses.responses.length) {
+  if (!surveyResponses?.responses.length) {
     return (
       <aside className="flex flex-col items-center justify-center w-full h-full lg:mt-36 md:mt-20 sm:mt-28 xs:mt-28 xxs:mt-20">
         <div className="text-center text-gray-400 mb-32">

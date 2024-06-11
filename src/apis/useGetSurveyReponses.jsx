@@ -20,15 +20,18 @@ function useGetSurveyReponses() {
     }
   }
 
-  const { data: surveyResponses, isLoading } = useQuery({
+  const { data: surveyResponses } = useQuery({
     queryKey: ["surveyResponses", surveyId],
     queryFn: getSurveyResponses,
     refetchOnMount: true,
     refetchInterval: true,
     refetchOnWindowFocus: true,
+    suspense: true,
+    staleTime: 60 * 1000,
+    cacheTime: 1000 * 60 * 5,
   });
 
-  return { surveyResponses, isLoading };
+  return { surveyResponses };
 }
 
 export default useGetSurveyReponses;

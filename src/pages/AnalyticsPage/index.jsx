@@ -3,11 +3,10 @@ import { Outlet, useNavigate, useParams } from "react-router-dom";
 
 import useGetSurveys from "../../apis/useGetSurveys";
 import useGoogleLogout from "../../apis/useGoogleLogout";
-import Loading from "../../components/shared/Loading";
 
 function AnalyticsPage() {
   const { surveyId } = useParams();
-  const { surveys, isLoading } = useGetSurveys();
+  const { surveys } = useGetSurveys();
   const [selectedSurveyId, setSelectedSurveyId] = useState(null);
 
   const navigate = useNavigate();
@@ -63,36 +62,32 @@ function AnalyticsPage() {
       <section className="flex h-full w-full items-center justify-center">
         <aside className="flex w-1/4 h-full">
           <div className="h-full w-full overflow-y-auto">
-            {isLoading ? (
-              <Loading />
-            ) : (
-              <div>
-                {surveys.length === 0 ? (
-                  <div className="text-center text-gray-400 mt-72">
-                    아직 생성된 설문이 없습니다.
-                  </div>
-                ) : (
-                  <div className="grid grid-cols-1 gap-4 md:mt-20 xxs:mt-20 xs:mt-20">
-                    {surveys.map((survey) => (
-                      <button
-                        key={survey._id}
-                        onClick={() => showDetail(survey._id)}
-                        className={`group transition-all duration-300 bg-white rounded-md border-2 p-4 hover:shadow-lg hover:border-[#3182F6] hover:shadow-outline ${
-                          selectedSurveyId === survey._id
-                            ? "border-[#3182F6] shadow-lg"
-                            : "border-gray-200"
-                        }`}
-                        type="button"
-                      >
-                        <h3 className="text-center md:text-xl sm:text-xs xs:text-xs font-semibold overflow-hidden text-overflow-ellipsis">
-                          {survey.title}
-                        </h3>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
+            <div>
+              {surveys.length === 0 ? (
+                <div className="text-center text-gray-400 mt-72">
+                  아직 생성된 설문이 없습니다.
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 gap-4 md:mt-20 xxs:mt-20 xs:mt-20">
+                  {surveys.map((survey) => (
+                    <button
+                      key={survey._id}
+                      onClick={() => showDetail(survey._id)}
+                      className={`group transition-all duration-300 bg-white rounded-md border-2 p-4 hover:shadow-lg hover:border-[#3182F6] hover:shadow-outline ${
+                        selectedSurveyId === survey._id
+                          ? "border-[#3182F6] shadow-lg"
+                          : "border-gray-200"
+                      }`}
+                      type="button"
+                    >
+                      <h3 className="text-center md:text-xl sm:text-xs xs:text-xs font-semibold overflow-hidden text-overflow-ellipsis">
+                        {survey.title}
+                      </h3>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </aside>
         {!selectedSurveyId ? (

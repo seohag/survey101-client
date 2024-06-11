@@ -361,7 +361,7 @@ function QuestionList({ setSelectedQuestionId }) {
     >
       <div
         id="menuButton"
-        className="absolute xl:right-10 z-10"
+        className="absolute xl:right-6 z-10"
         style={{ opacity: showAddQuestionPopup ? 0 : 1 }}
       >
         <button
@@ -392,7 +392,7 @@ function QuestionList({ setSelectedQuestionId }) {
             <button
               type="button"
               onClick={() => handleDeleteQuestion(question.questionId)}
-              className="bg-red-500 text-white  px-2 sm:px-1 xs:px-0.5 py-0.5 rounded ml-2 text-end absolute right-0"
+              className="bg-red-500 text-white px-2 sm:px-1 xs:px-0.5 py-0.5 rounded ml-2 text-end absolute right-0"
               aria-label="trash-button"
             >
               <FontAwesomeIcon icon={faTrash} className="text-xl" />

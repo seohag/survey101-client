@@ -7,12 +7,12 @@ function AddQuestionPopup({ handleClosePopup, handleAddQuestion }) {
 
   return (
     <div
-      className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center modal-background"
+      className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center modal-background z-10"
       onClick={handleClickOutside}
       role="presentation"
     >
       <div className="bg-white p-4 rounded-lg w-80 max-h-96 overflow-y-auto relative">
-        <div className="sticky -top-4 left-0 right-0 bg-white p-2 rounded-t-lg border-b z-10">
+        <div className="sticky -top-4 left-0 right-0 bg-white p-2 rounded-t-lg border-b">
           <div className="flex justify-between items-center">
             <h3 className="text-lg font-bold">질문 추가</h3>
             <button

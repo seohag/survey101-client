@@ -23,16 +23,16 @@ function useGetSurvey(surveyId) {
     }
   }
 
-  const { data: surveyData = {}, isLoading } = useQuery({
+  const { data: surveyData = {}, error } = useQuery({
     queryKey: ["survey", surveyId],
     queryFn: getSurveyData,
     refetchOnWindowFocus: false,
     refetchOnMount: true,
-
+    suspense: true,
     staleTime: 60 * 3000,
   });
 
-  return { surveyData, isLoading };
+  return { surveyData, error };
 }
 
 export default useGetSurvey;

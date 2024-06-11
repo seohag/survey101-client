@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import InitialPage from "./pages/InitialPage";
@@ -10,6 +11,7 @@ import AnalyticsPage from "./pages/AnalyticsPage";
 import AnalyticsDetail from "./components/AnalyticsDetail";
 
 import ErrorBoundary from "./components/ErrorBoundary";
+import Loading from "./components/shared/Loading";
 
 function App() {
   return (
@@ -19,7 +21,9 @@ function App() {
         path="/dash"
         element={
           <ErrorBoundary>
-            <DashBoardPage />
+            <Suspense fallback={<Loading />}>
+              <DashBoardPage />
+            </Suspense>
           </ErrorBoundary>
         }
       />
@@ -27,7 +31,9 @@ function App() {
         path="/analytics"
         element={
           <ErrorBoundary>
-            <AnalyticsPage />
+            <Suspense fallback={<Loading />}>
+              <AnalyticsPage />
+            </Suspense>
           </ErrorBoundary>
         }
       >
@@ -35,7 +41,9 @@ function App() {
           path=":surveyId"
           element={
             <ErrorBoundary>
-              <AnalyticsDetail />
+              <Suspense fallback={<Loading />}>
+                <AnalyticsDetail />
+              </Suspense>
             </ErrorBoundary>
           }
         />
@@ -52,7 +60,9 @@ function App() {
         path="/editor/:surveyId"
         element={
           <ErrorBoundary>
-            <SurveyEditorPage />
+            <Suspense fallback={<Loading />}>
+              <SurveyEditorPage />
+            </Suspense>
           </ErrorBoundary>
         }
       />
@@ -60,7 +70,9 @@ function App() {
         path="/form/:surveyId"
         element={
           <ErrorBoundary>
-            <ResponsePage />
+            <Suspense fallback={<Loading />}>
+              <ResponsePage />
+            </Suspense>
           </ErrorBoundary>
         }
       />
