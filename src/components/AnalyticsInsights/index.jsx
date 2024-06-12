@@ -10,8 +10,6 @@ function AnalyticsInsights({ processedChartData, onBack }) {
       return acc;
     }, {});
 
-    console.log(answerCounts);
-
     return {
       labels: Object.keys(answerCounts),
       datasets: [

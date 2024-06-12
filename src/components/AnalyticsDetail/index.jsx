@@ -5,7 +5,7 @@ import AnalyticsInsights from "../AnalyticsInsights";
 function AnalyticsDetail() {
   const { surveyResponses } = useGetSurveyReponses();
   const [showInsights, setShowInsights] = useState(false);
-  const [processedData, setProcessedData] = useState([]);
+  const [tableData, setTableData] = useState([]);
   const [respondentsCount, setRespondentsCount] = useState(0);
   const [chartData, setChartData] = useState({});
 
@@ -44,7 +44,7 @@ function AnalyticsDetail() {
       });
 
       processed?.sort((a, b) => b.createdAt - a.createdAt);
-      setProcessedData({ headers: sortedQuestions, rows: processed });
+      setTableData({ headers: sortedQuestions, rows: processed });
 
       const maxRespondents = Math.max(
         ...Object.values(groupedData).map((arr) => arr.length),
@@ -99,8 +99,8 @@ function AnalyticsDetail() {
                     <th className="px-2 py-3 text-xs sm:text-sm lg:text-base whitespace-nowrap border border-gray-400 w-1/5">
                       답변 날짜 및 시간
                     </th>
-                    {processedData.headers &&
-                      processedData.headers.map((header, index) => (
+                    {tableData.headers &&
+                      tableData.headers.map((header, index) => (
                         <th
                           key={index}
                           className="px-2 py-3 text-xs sm:text-sm lg:text-base whitespace-nowrap border border-gray-400 w-1/5"
@@ -111,8 +111,8 @@ function AnalyticsDetail() {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {processedData.rows &&
-                    processedData.rows?.map((row, rowIndex) => {
+                  {tableData.rows &&
+                    tableData.rows?.map((row, rowIndex) => {
                       const date = row.createdAt
                         .toISOString()
                         .slice(0, 10)
@@ -124,7 +124,7 @@ function AnalyticsDetail() {
                           <td className="px-2 py-4 text-center text-xs sm:text-sm lg:text-base whitespace-nowrap border border-gray-200">
                             {date} <br /> {time}
                           </td>
-                          {processedData.headers.map((header, colIndex) => (
+                          {tableData.headers.map((header, colIndex) => (
                             <td
                               key={colIndex}
                               className="px-2 py-4 text-center text-xs sm:text-sm lg:text-base whitespace-nowrap border border-gray-200 w-1/5"
