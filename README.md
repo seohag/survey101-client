@@ -180,8 +180,8 @@
 리액트만의 장점은 아니지만 SPA, CSR은 리액트의 주요한 장점이긴 합니다. SSR을 사용할 때에는 변화가 있을 때마다 새롭게 전체 페이지를 다시 로드해야해서 비효율적이란 단점이 있었지만, CSR은 SSR과 달리 서버로부터 데이터를 받아서 클라이언트에서 렌더링 하는 방식이기 때문에 바뀐 부분의 데이터가 있는 화면만 새롭게 렌더링함으로서 사용자 경험을 높여주는 장점이 있습니다. 또한 리액트는 CSR과 SSR을 함께 사용할 수 있다는게 다른 프레임워크보다 인기 있었던 이유 중 하나 입니다.
 
 <p>
-<img width="300" height="215" alt="스크린샷 2024-06-12 17 15 13" src="https://github.com/seohag/survey101-server/assets/126459089/e1114327-3ede-4977-ac53-4f5024b0c8b1">
-<img width="300" alt="스크린샷 2024-06-12 17 12 21" src="https://github.com/seohag/survey101-server/assets/126459089/e22f89cc-aaea-48a0-a414-1b48fd6fc376">
+<img width="400" height="315" alt="스크린샷 2024-06-12 17 15 13" src="https://github.com/seohag/survey101-server/assets/126459089/e1114327-3ede-4977-ac53-4f5024b0c8b1">
+<img width="400" alt="스크린샷 2024-06-12 17 12 21" src="https://github.com/seohag/survey101-server/assets/126459089/e22f89cc-aaea-48a0-a414-1b48fd6fc376">
 </p>
 
 <br>
@@ -301,8 +301,10 @@ Tanstack Query(React Query)는 다음과 같은 장점들이 있습니다.
 
 <br>
 
-<img width="300" height="150" alt="스크린샷 2024-05-17 06 03 57" src="https://github.com/seohag/survey101-client/assets/126459089/175d3efc-ea4b-4f1f-9ed6-999273468e35">
-<img width="300" height="150" alt="스크린샷 2024-05-17 06 04 27" src="https://github.com/seohag/survey101-client/assets/126459089/0d4ef465-50c4-44b0-940f-d2aa38e18115">
+<p>
+<img width="400" height="250" alt="스크린샷 2024-05-17 06 03 57" src="https://github.com/seohag/survey101-client/assets/126459089/175d3efc-ea4b-4f1f-9ed6-999273468e35">
+<img width="400" height="250" alt="스크린샷 2024-05-17 06 04 27" src="https://github.com/seohag/survey101-client/assets/126459089/0d4ef465-50c4-44b0-940f-d2aa38e18115">
+</p>
 
 <br>
 <br>
@@ -791,7 +793,7 @@ function App() {
 
 <br>
 
-<img width="600" height="210" alt="스크린샷 2024-06-12 15 06 59" src="https://github.com/seohag/survey101-client/assets/126459089/becf3209-7592-4b7c-8e95-f59644f6b1b6">
+<img width="600" height="220" alt="스크린샷 2024-06-12 15 06 59" src="https://github.com/seohag/survey101-client/assets/126459089/becf3209-7592-4b7c-8e95-f59644f6b1b6">
 
 <br>
 
