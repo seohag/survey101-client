@@ -180,7 +180,7 @@
 리액트만의 장점은 아니지만 SPA, CSR은 리액트의 주요한 장점이긴 합니다. SSR을 사용할 때에는 변화가 있을 때마다 새롭게 전체 페이지를 다시 로드해야해서 비효율적이란 단점이 있었지만, CSR은 SSR과 달리 서버로부터 데이터를 받아서 클라이언트에서 렌더링 하는 방식이기 때문에 바뀐 부분의 데이터가 있는 화면만 새롭게 렌더링함으로서 사용자 경험을 높여주는 장점이 있습니다. 또한 리액트는 CSR과 SSR을 함께 사용할 수 있다는게 다른 프레임워크보다 인기 있었던 이유 중 하나 입니다.
 
 <p>
-<img width="400" height="290" alt="스크린샷 2024-06-12 17 15 13" src="https://github.com/seohag/survey101-server/assets/126459089/e1114327-3ede-4977-ac53-4f5024b0c8b1">
+<img width="400" height="285" alt="스크린샷 2024-06-12 17 15 13" src="https://github.com/seohag/survey101-server/assets/126459089/e1114327-3ede-4977-ac53-4f5024b0c8b1">
 <img width="400" alt="스크린샷 2024-06-12 17 12 21" src="https://github.com/seohag/survey101-server/assets/126459089/e22f89cc-aaea-48a0-a414-1b48fd6fc376">
 </p>
 
@@ -213,7 +213,7 @@
 모듈 번들러는 분리된 코드 조각들을 하나로 병합하는 개발 도구이며 핵심 작업은 JS 파일, CSS 파일 등 여러 리소스를 하나로 결합하여 단일 파일을 만드는 것입니다. 한 번의 요청으로 파일을 받아올 수 있기 때문에 로딩 속도에서의 이점이 있고 JS 압축, CSS 전처리기 변환과 같은 작업 등을 자동화 해줍니다. 모듈 번들러는 Webpack, Rollup 처럼 다양한 도구가 존재하고, Webpack과 Vite에 대해서 조사해 보았습니다.
 
 <img width="400" alt="스크린샷 2024-06-12 04 29 21" src="https://github.com/seohag/survey101-server/assets/126459089/e178e30c-bf9d-46a2-b638-b600603d669e">
-<img width="400" height="180" alt="스크린샷 2024-06-12 04 51 37" src="https://github.com/seohag/survey101-server/assets/126459089/d0957578-97b9-49f8-a85f-aac47d89ef30">
+<img width="400" height="170" alt="스크린샷 2024-06-12 04 51 37" src="https://github.com/seohag/survey101-server/assets/126459089/d0957578-97b9-49f8-a85f-aac47d89ef30">
 
 <br>
 
@@ -902,10 +902,10 @@ export default {
   theme: {
     screens: {
       xxs: "344px",
-      // => @media (min-width: 344px) {... }
+      // => @media (min-width: 344px) { ... }
 
       xs: "375px",
-      // => @media (min-width: 375px) {... }
+      // => @media (min-width: 375px) { ... }
 
       xr: "414px",
       // => @media (min-width: 414px) { ... }
@@ -997,14 +997,14 @@ function handleImageChange(event, questionId, optionId) {
 }
 ```
 
-이렇게 설문 이미지 파일에 대한 관리를 적절하게 처리해줌으로써 설문 이미지 수정이 되고 있지 않는 이슈를 해결하였습니다.
+이렇게 설문 이미지 파일에 대한 관리를 적절하게 처리해서 설문 이미지 수정이 되고 있지 않는 이슈를 해결하였습니다.
 
-<br>
 <br>
 
 ### 배포환경에서 이미지 파일을 수정할 때 파일 크기 초과 에러 발생.
 
 로컬 개발 환경에서는 이상이 없었지만 AWS Elastic Beanstalk 으로 배포한 환경에서 파일 크기를 초과했다는 에러가 발생했습니다. 로그 에서 확인한 에러 내용은 다음과 같았습니다.
+
 <br>
 
 `[error] 32211#32211: *9131 client intended to send too large body: 6115831 bytes`
