@@ -16,7 +16,7 @@ const useFormEditorStore = create((set) => ({
     animation: "fade",
   },
   endingData: {
-    title: "설문 완료",
+    title: "설문 응답이 기록되었습니다",
     content: "결과에 대한 내용을 입력해주세요.",
   },
   questions: [
@@ -58,7 +58,7 @@ const useFormEditorStore = create((set) => ({
         animation: "fade",
       },
       endingData: {
-        title: "설문 완료",
+        title: "설문 응답이 기록되었습니다",
         content: "결과에 대한 내용을 입력해주세요.",
       },
       questions: [
