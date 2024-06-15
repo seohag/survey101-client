@@ -38,7 +38,7 @@ function DashBoardPage() {
   }
 
   useEffect(() => {
-    const debouncedSearch = debounce((term) => {}, 300);
+    const debouncedSearch = debounce(() => {}, 300);
 
     const timeout = setTimeout(() => {
       debouncedSearch(searchTerm);

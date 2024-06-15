@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import InitialPage from "./pages/InitialPage";
@@ -11,63 +10,64 @@ import AnalyticsPage from "./pages/AnalyticsPage";
 import AnalyticsDetail from "./components/AnalyticsDetail";
 
 import AsyncBoundary from "./components/AsyncBoundary";
-import Loading from "./components/shared/Loading";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" exact element={<InitialPage />} />
-      <Route
-        path="/dash"
-        element={
-          <AsyncBoundary>
-            <DashBoardPage />
-          </AsyncBoundary>
-        }
-      />
-      <Route
-        path="/analytics"
-        element={
-          <AsyncBoundary>
-            <AnalyticsPage />
-          </AsyncBoundary>
-        }
-      >
+    <AsyncBoundary>
+      <Routes>
+        <Route path="/" exact element={<InitialPage />} />
         <Route
-          path=":surveyId"
+          path="/dash"
           element={
             <AsyncBoundary>
-              <AnalyticsDetail />
+              <DashBoardPage />
             </AsyncBoundary>
           }
         />
-      </Route>
-      <Route
-        path="/editor/new-form"
-        element={
-          <AsyncBoundary>
-            <FormEditorPage />
-          </AsyncBoundary>
-        }
-      />
-      <Route
-        path="/editor/:surveyId"
-        element={
-          <AsyncBoundary>
-            <SurveyEditorPage />
-          </AsyncBoundary>
-        }
-      />
-      <Route
-        path="/form/:surveyId"
-        element={
-          <AsyncBoundary>
-            <ResponsePage />
-          </AsyncBoundary>
-        }
-      />
-      <Route path="*" element={<ErrorPage />} />
-    </Routes>
+        <Route
+          path="/analytics"
+          element={
+            <AsyncBoundary>
+              <AnalyticsPage />
+            </AsyncBoundary>
+          }
+        >
+          <Route
+            path=":surveyId"
+            element={
+              <AsyncBoundary>
+                <AnalyticsDetail />
+              </AsyncBoundary>
+            }
+          />
+        </Route>
+        <Route
+          path="/editor/new-form"
+          element={
+            <AsyncBoundary>
+              <FormEditorPage />
+            </AsyncBoundary>
+          }
+        />
+        <Route
+          path="/editor/:surveyId"
+          element={
+            <AsyncBoundary>
+              <SurveyEditorPage />
+            </AsyncBoundary>
+          }
+        />
+        <Route
+          path="/form/:surveyId"
+          element={
+            <AsyncBoundary>
+              <ResponsePage />
+            </AsyncBoundary>
+          }
+        />
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+    </AsyncBoundary>
   );
 }
 

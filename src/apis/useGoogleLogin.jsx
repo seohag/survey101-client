@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { signInWithPopup } from "firebase/auth";
@@ -9,6 +10,7 @@ import useUserIdStore from "../store/useUserIdStore";
 function useGoogleLogin() {
   const navigate = useNavigate();
   const { setUser, setUserId, setIsLoggedIn } = useUserIdStore();
+  const [errors, setErrors] = useState(null);
 
   async function handleLogin() {
     try {
@@ -28,8 +30,13 @@ function useGoogleLogin() {
         navigate("/dash");
       }
     } catch (error) {
+      setErrors(error);
       console.error(error);
     }
+  }
+
+  if (errors) {
+    throw errors;
   }
 
   return handleLogin;

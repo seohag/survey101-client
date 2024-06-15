@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -6,6 +7,7 @@ import fetchData from "../utils/axios";
 function usePostAnswers(surveyAnswers) {
   const navigate = useNavigate();
   const { surveyId } = useParams();
+  const [errors, setErrors] = useState(null);
 
   async function handleFetchAnswers() {
     try {
@@ -20,7 +22,7 @@ function usePostAnswers(surveyAnswers) {
       return response.data;
     } catch (error) {
       console.error(error);
-      throw error;
+      return setErrors(error);
     }
   }
 
@@ -32,6 +34,10 @@ function usePostAnswers(surveyAnswers) {
       navigate("/");
     },
   });
+
+  if (errors) {
+    throw errors;
+  }
 
   return { fetchAnswers };
 }

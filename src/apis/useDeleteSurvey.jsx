@@ -6,6 +6,7 @@ import useUserIdStore from "../store/useUserIdStore";
 import ConfirmModal from "../components/shared/ConfirmModal";
 
 function useDeleteSurvey(surveyId) {
+  const [errors, setErrors] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { userId } = useUserIdStore();
 
@@ -50,6 +51,10 @@ function useDeleteSurvey(surveyId) {
       }}
     />
   );
+
+  if (errors) {
+    throw errors;
+  }
 
   return { openModal, modal };
 }

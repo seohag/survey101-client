@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import fetchData from "../utils/axios";
 
@@ -5,6 +6,7 @@ import useUserIdStore from "../store/useUserIdStore";
 
 function useGetSurvey(surveyId) {
   const { userId } = useUserIdStore();
+  const [errors, setErrors] = useState(null);
 
   async function getSurveyData() {
     try {
@@ -19,7 +21,7 @@ function useGetSurvey(surveyId) {
       return response.data;
     } catch (error) {
       console.error(error);
-      throw error;
+      return setErrors(error);
     }
   }
 
@@ -28,9 +30,13 @@ function useGetSurvey(surveyId) {
     queryFn: getSurveyData,
     refetchOnWindowFocus: false,
     refetchOnMount: true,
+    useErrorBoundary: true,
     suspense: true,
-    staleTime: 60 * 3000,
   });
+
+  if (errors) {
+    throw errors;
+  }
 
   return { surveyData };
 }

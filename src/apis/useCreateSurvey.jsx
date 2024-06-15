@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
@@ -5,6 +6,7 @@ import fetchData from "../utils/axios";
 import useUserIdStore from "../store/useUserIdStore";
 
 function useCreateSurvey(surveyData, setSurveyUrl) {
+  const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
   const { userId } = useUserIdStore();
 
@@ -94,7 +96,7 @@ function useCreateSurvey(surveyData, setSurveyUrl) {
       return response.data.url;
     } catch (error) {
       console.error(error);
-      throw error;
+      return setErrors(error);
     }
   }
 
@@ -107,6 +109,10 @@ function useCreateSurvey(surveyData, setSurveyUrl) {
       navigate("/dash");
     },
   });
+
+  if (errors) {
+    throw errors;
+  }
 
   return fetchSurvey;
 }

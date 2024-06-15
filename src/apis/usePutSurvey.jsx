@@ -1,12 +1,12 @@
+import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
 
 import fetchData from "../utils/axios";
 import useUserIdStore from "../store/useUserIdStore";
 
 function usePutSurvey(surveyData, surveyId, setSurveyUrl) {
-  const navigate = useNavigate();
   const { userId } = useUserIdStore();
+  const [errors, setErrors] = useState(null);
 
   async function handleFetchSurvey() {
     try {
@@ -94,8 +94,12 @@ function usePutSurvey(surveyData, surveyId, setSurveyUrl) {
       return response.data.url;
     } catch (error) {
       console.error(error);
-      throw error;
+      return setErrors(error);
     }
+  }
+
+  if (errors) {
+    throw errors;
   }
 
   const { mutateAsync: fetchPutSurvey } = useMutation({

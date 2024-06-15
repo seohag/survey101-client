@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
@@ -5,6 +6,7 @@ import fetchData from "../utils/axios";
 
 function useGetSurveyReponses() {
   const { surveyId } = useParams();
+  const [errors, setErrors] = useState(null);
 
   async function getSurveyResponses() {
     try {
@@ -16,7 +18,7 @@ function useGetSurveyReponses() {
       return surveyResponses.data;
     } catch (error) {
       console.error(error);
-      throw error;
+      return setErrors(error);
     }
   }
 
@@ -26,10 +28,15 @@ function useGetSurveyReponses() {
     refetchOnMount: true,
     refetchInterval: true,
     refetchOnWindowFocus: true,
+    useErrorBoundary: true,
     suspense: true,
     staleTime: 60 * 1000,
     cacheTime: 1000 * 60 * 5,
   });
+
+  if (errors) {
+    throw errors;
+  }
 
   return { surveyResponses };
 }
