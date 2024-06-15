@@ -793,7 +793,7 @@ function App() {
 
 <br>
 
-<img width="600" height="230" alt="스크린샷 2024-06-12 15 06 59" src="https://github.com/seohag/survey101-server/assets/126459089/e6ce1031-f8f4-4cf7-bfaa-a758a279407d">
+<img width="600" height="230" alt="스크린샷 2024-06-12 15 06 59" src="https://github.com/seohag/survey101-server/assets/126459089/f88b9175-a46a-43ad-92a8-5320930f62fe">
 
 <br>
 <br>
