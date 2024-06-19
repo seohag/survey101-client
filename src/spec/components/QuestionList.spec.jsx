@@ -3,7 +3,6 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { v4 as uuidv4 } from "uuid";
 import QuestionList from "../../components/QuestionList";
 
-// Mock the child components
 vi.mock("../../components/QuestionTitle", () => ({
   default: vi.fn(({ question, handleQuestionTextChange }) => (
     <input

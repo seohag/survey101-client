@@ -71,7 +71,6 @@ describe("QuestionSection 컴포넌트", () => {
       />,
     );
 
-    // 기본적인 렌더링 확인
     expect(screen.getByText("텍스트 선택 질문")).toBeInTheDocument();
   });
 
@@ -97,7 +96,7 @@ describe("QuestionSection 컴포넌트", () => {
       />,
     );
 
-    fireEvent.click(screen.getByText("옵션 1")); // 첫 번째 질문에 답변하여 두 번째 질문으로 넘어감
+    fireEvent.click(screen.getByText("옵션 1"));
 
     expect(
       screen.getByPlaceholderText("텍스트를 입력해주세요"),
@@ -113,11 +112,11 @@ describe("QuestionSection 컴포넌트", () => {
       />,
     );
 
-    fireEvent.click(screen.getByText("옵션 1")); // 첫 번째 질문에 답변하여 두 번째 질문으로 넘어감
+    fireEvent.click(screen.getByText("옵션 1"));
     fireEvent.change(screen.getByPlaceholderText("텍스트를 입력해주세요"), {
       target: { value: "Test Input" },
     });
-    fireEvent.click(screen.getByText("다음")); // 두 번째 질문에 답변하여 세 번째 질문으로 넘어감
+    fireEvent.click(screen.getByText("다음"));
 
     const images = screen.getAllByRole("img");
     expect(images.length).toBe(2);
@@ -164,7 +163,7 @@ describe("QuestionSection 컴포넌트", () => {
     fireEvent.change(screen.getByPlaceholderText("날짜를 입력해주세요"), {
       target: { value: "2023-01-01" },
     });
-    fireEvent.click(screen.getByText("다음")); // 네 번째 질문에 답변하여 다섯 번째 질문으로 넘어감
+    fireEvent.click(screen.getByText("다음"));
 
     expect(
       screen.getByPlaceholderText("시간을 입력해주세요"),
