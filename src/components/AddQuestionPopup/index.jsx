@@ -1,3 +1,5 @@
+import AddQuestionPopupButton from "../AddQuestionPopupButton";
+
 function AddQuestionPopup({ handleClosePopup, handleAddQuestion }) {
   function handleClickOutside(event) {
     if (event.target.classList.contains("modal-background")) {
@@ -27,71 +29,61 @@ function AddQuestionPopup({ handleClosePopup, handleAddQuestion }) {
           <div>
             <h4 className="text-md font-bold mb-2">선택</h4>
             <div className="flex flex-col mb-4">
-              <button
-                className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+              <AddQuestionPopupButton
                 onClick={() => handleAddQuestion("textChoice")}
               >
                 텍스트
-              </button>
-              <button
-                className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+              </AddQuestionPopupButton>
+              <AddQuestionPopupButton
                 onClick={() => handleAddQuestion("imageChoice")}
               >
                 이미지
-              </button>
+              </AddQuestionPopupButton>
             </div>
           </div>
           <div>
             <h4 className="text-md font-bold mb-2">입력</h4>
             <div className="flex flex-col">
-              <button
-                className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+              <AddQuestionPopupButton
                 onClick={() => handleAddQuestion("textInput")}
               >
                 텍스트 입력
-              </button>
-              <button
-                className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+              </AddQuestionPopupButton>
+              <AddQuestionPopupButton
                 onClick={() => handleAddQuestion("emailInput")}
               >
                 이메일 입력
-              </button>
-              <button
-                className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+              </AddQuestionPopupButton>
+              <AddQuestionPopupButton
                 onClick={() => handleAddQuestion("phoneInput")}
               >
                 전화번호 입력
-              </button>
-              <button
-                className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+              </AddQuestionPopupButton>
+              <AddQuestionPopupButton
                 onClick={() => handleAddQuestion("numberInput")}
               >
                 숫자 입력
-              </button>
-              <button
-                className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+              </AddQuestionPopupButton>
+              <AddQuestionPopupButton
                 onClick={() => handleAddQuestion("timeInput")}
               >
                 시간 입력
-              </button>
-              <button
-                className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+              </AddQuestionPopupButton>
+              <AddQuestionPopupButton
                 onClick={() => handleAddQuestion("dateInput")}
               >
                 날짜 입력
-              </button>
-              <button
-                className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+              </AddQuestionPopupButton>
+              <AddQuestionPopupButton
                 onClick={() => handleAddQuestion("rangeInput")}
               >
                 슬라이더
-              </button>
-              <button
-                className="bg-gray-300 text-[#4E5968] px-4 py-2 mb-2 rounded-md hover:bg-gray-200"
+              </AddQuestionPopupButton>
+              <AddQuestionPopupButton
                 onClick={() => handleAddQuestion("radioInput")}
               >
                 별점
-              </button>
+              </AddQuestionPopupButton>
             </div>
           </div>
         </div>

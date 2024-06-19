@@ -54,10 +54,7 @@ function CoverEditor() {
   return (
     <div className="flex flex-col md:flex-row xl:mt-20 lg:mt-20 md:mt-20 sm:mt-28 xs:mt-28 xxs:mt-20">
       <section className="md:w-2/5 p-4 hidden md:block">
-        <CoverStylePreview
-          coverData={coverData}
-          styleData={styleData}
-        ></CoverStylePreview>
+        <CoverStylePreview></CoverStylePreview>
       </section>
 
       <section className="w-full p-4 xl:mt-0 lg:mt-0 md:mt-0 smmd:mt-0 sm:mt-5 xxs:mt-7 max-w-full md:max-w-[55%] mx-auto">

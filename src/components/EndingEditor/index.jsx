@@ -78,7 +78,7 @@ function EndingEditor() {
         <SurveyUrlModal url={surveyUrl} onClose={() => setShowModal(false)} />
       )}
       <section className="w-full md:w-2/5 p-4 hidden md:block">
-        <EndingPreview endingData={endingData} styleData={styleData} />
+        <EndingPreview />
       </section>
 
       <section className="w-full p-2 mt-2 xl:max-w-[58%] lg:max-w-[58%] mx-auto rounded-lg">
