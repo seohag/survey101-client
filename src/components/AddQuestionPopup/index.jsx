@@ -7,6 +7,11 @@ function AddQuestionPopup({ handleClosePopup, handleAddQuestion }) {
     }
   }
 
+  function handleAddQuestionAndClose(questionType) {
+    handleAddQuestion(questionType);
+    handleClosePopup();
+  }
+
   return (
     <div
       className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center modal-background z-10"
@@ -14,7 +19,7 @@ function AddQuestionPopup({ handleClosePopup, handleAddQuestion }) {
       role="presentation"
     >
       <div className="bg-white p-4 rounded-lg w-80 max-h-96 overflow-y-auto relative">
-        <div className="sticky -top-4 left-0 right-0 bg-white p-2 rounded-t-lg border-b">
+        <div className="sticky -top-4 left-0 right-0 bg-white p-2 border-b">
           <div className="flex justify-between items-center">
             <h3 className="text-lg font-bold">질문 추가</h3>
             <button
@@ -30,12 +35,12 @@ function AddQuestionPopup({ handleClosePopup, handleAddQuestion }) {
             <h4 className="text-md font-bold mb-2">선택</h4>
             <div className="flex flex-col mb-4">
               <AddQuestionPopupButton
-                onClick={() => handleAddQuestion("textChoice")}
+                onClick={() => handleAddQuestionAndClose("textChoice")}
               >
                 텍스트
               </AddQuestionPopupButton>
               <AddQuestionPopupButton
-                onClick={() => handleAddQuestion("imageChoice")}
+                onClick={() => handleAddQuestionAndClose("imageChoice")}
               >
                 이미지
               </AddQuestionPopupButton>
@@ -45,42 +50,42 @@ function AddQuestionPopup({ handleClosePopup, handleAddQuestion }) {
             <h4 className="text-md font-bold mb-2">입력</h4>
             <div className="flex flex-col">
               <AddQuestionPopupButton
-                onClick={() => handleAddQuestion("textInput")}
+                onClick={() => handleAddQuestionAndClose("textInput")}
               >
                 텍스트 입력
               </AddQuestionPopupButton>
               <AddQuestionPopupButton
-                onClick={() => handleAddQuestion("emailInput")}
+                onClick={() => handleAddQuestionAndClose("emailInput")}
               >
                 이메일 입력
               </AddQuestionPopupButton>
               <AddQuestionPopupButton
-                onClick={() => handleAddQuestion("phoneInput")}
+                onClick={() => handleAddQuestionAndClose("phoneInput")}
               >
                 전화번호 입력
               </AddQuestionPopupButton>
               <AddQuestionPopupButton
-                onClick={() => handleAddQuestion("numberInput")}
+                onClick={() => handleAddQuestionAndClose("numberInput")}
               >
                 숫자 입력
               </AddQuestionPopupButton>
               <AddQuestionPopupButton
-                onClick={() => handleAddQuestion("timeInput")}
+                onClick={() => handleAddQuestionAndClose("timeInput")}
               >
                 시간 입력
               </AddQuestionPopupButton>
               <AddQuestionPopupButton
-                onClick={() => handleAddQuestion("dateInput")}
+                onClick={() => handleAddQuestionAndClose("dateInput")}
               >
                 날짜 입력
               </AddQuestionPopupButton>
               <AddQuestionPopupButton
-                onClick={() => handleAddQuestion("rangeInput")}
+                onClick={() => handleAddQuestionAndClose("rangeInput")}
               >
                 슬라이더
               </AddQuestionPopupButton>
               <AddQuestionPopupButton
-                onClick={() => handleAddQuestion("radioInput")}
+                onClick={() => handleAddQuestionAndClose("radioInput")}
               >
                 별점
               </AddQuestionPopupButton>

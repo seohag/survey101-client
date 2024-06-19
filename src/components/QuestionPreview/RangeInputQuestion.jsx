@@ -31,24 +31,26 @@ function RangeInputQuestion({ questionText, questionIndex, styleData }) {
             "--thumb-size": `${thumbSize}px`,
           }}
         />
-        <style jsx>{`
-          input[type="range"]::-webkit-slider-thumb {
-            appearance: none;
-            width: var(--thumb-size);
-            height: var(--thumb-size);
-            border-radius: 50%;
-            background: ${styleData.themeColor};
-            cursor: pointer;
-          }
+        <style>
+          {`
+            input[type="range"]::-webkit-slider-thumb {
+              appearance: none;
+              width: ${thumbSize}px;
+              height: ${thumbSize}px;
+              border-radius: 50%;
+              background: ${styleData.themeColor};
+              cursor: pointer;
+            }
 
-          input[type="range"]::-moz-range-thumb {
-            width: var(--thumb-size);
-            height: var(--thumb-size);
-            border-radius: 50%;
-            background: ${styleData.themeColor};
-            cursor: pointer;
-          }
-        `}</style>
+            input[type="range"]::-moz-range-thumb {
+              width: ${thumbSize}px;
+              height: ${thumbSize}px;
+              border-radius: 50%;
+              background: ${styleData.themeColor};
+              cursor: pointer;
+            }
+          `}
+        </style>
         <div
           className="mt-2 text-lg font-bold"
           style={{ color: styleData.themeColor }}
