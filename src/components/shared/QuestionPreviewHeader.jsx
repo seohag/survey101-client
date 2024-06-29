@@ -1,4 +1,4 @@
-function QuestionHeader({ questionIndex, questionText, themeColor }) {
+function QuestionPreviewHeader({ questionIndex, questionText, themeColor }) {
   return (
     <div className="text-center">
       <h4 className="text-lg font-bold mb-7" style={{ color: themeColor }}>
@@ -11,4 +11,4 @@ function QuestionHeader({ questionIndex, questionText, themeColor }) {
   );
 }
 
-export default QuestionHeader;
+export default QuestionPreviewHeader;

@@ -1,32 +1,44 @@
 import { useEffect } from "react";
 import useFormEditorStore from "../../store/useFormEditorStore";
 
-import TextChoiceQuestion from "./TextChoiceQuestion";
-import ImageChoiceQuestion from "./ImageChoiceQuestion";
-import TextInputQuestion from "./TextInputQuestion";
-import EmailInputQuestion from "./EmailInputQuestion";
-import PhoneInputQuestion from "./PhoneInputQuestion";
-import NumberInputQuestion from "./NumberInputQuestion";
-import DateInputQuestion from "./DateInputQuestion";
-import TimeInputQuestion from "./TimeInputQuestion";
-import RadioInputQuestion from "./RadioInputQuestion";
-import RangeInputQuestion from "./RangeInputQuestion";
+import PreviewQuestionComponent from "./PreviewQuestionComponent";
+import TextChoiceField from "./TextChoiceField";
+import ImageChoiceField from "./ImageChoiceField";
+import TextInputField from "./TextInputField";
+import EmailInputField from "./EmailInputField";
+import DateInputField from "./DateInputField";
+import PhoneInputField from "./PhoneInputField";
+import NumberInputField from "./NumberInputField";
+import TimeInputField from "./TimeInputField";
+import RadioInputField from "./RadioInputField";
+import RangeInputField from "./RangeInputField";
 
-const questionComponents = {
-  textChoice: TextChoiceQuestion,
-  imageChoice: ImageChoiceQuestion,
-  textInput: TextInputQuestion,
-  emailInput: EmailInputQuestion,
-  phoneInput: PhoneInputQuestion,
-  numberInput: NumberInputQuestion,
-  dateInput: DateInputQuestion,
-  timeInput: TimeInputQuestion,
-  radioInput: RadioInputQuestion,
-  rangeInput: RangeInputQuestion,
+const inputFields = {
+  textChoice: TextChoiceField,
+  imageChoice: ImageChoiceField,
+  textInput: TextInputField,
+  emailInput: EmailInputField,
+  phoneInput: PhoneInputField,
+  numberInput: NumberInputField,
+  dateInput: DateInputField,
+  timeInput: TimeInputField,
+  radioInput: RadioInputField,
+  rangeInput: RangeInputField,
 };
 
+const inputQuestionTypes = [
+  "textInput",
+  "emailInput",
+  "phoneInput",
+  "numberInput",
+  "dateInput",
+  "timeInput",
+  "radioInput",
+  "rangeInput",
+];
+
 function QuestionPreview({ selectedQuestionId, setSelectedQuestionId }) {
-  const { questions, styleData } = useFormEditorStore();
+  const { questions } = useFormEditorStore();
 
   useEffect(() => {
     if (!selectedQuestionId && questions.length > 0) {
@@ -42,8 +54,12 @@ function QuestionPreview({ selectedQuestionId, setSelectedQuestionId }) {
     (question) => question.questionId === selectedQuestionId,
   );
 
-  const SpecificQuestionComponent =
-    selectedQuestion && questionComponents[selectedQuestion.questionType];
+  const InputField =
+    selectedQuestion && inputFields[selectedQuestion.questionType];
+
+  const showNextButton = inputQuestionTypes.includes(
+    selectedQuestion?.questionType,
+  );
 
   return (
     <div className="flex flex-col justify-center items-center p-4 rounded-lg bg-gray-200">
@@ -55,11 +71,12 @@ function QuestionPreview({ selectedQuestionId, setSelectedQuestionId }) {
       >
         {selectedQuestion && (
           <div className="flex flex-col items-center p-4 w-full overflow-auto max-h-full scrollbar-hide">
-            <SpecificQuestionComponent
+            <PreviewQuestionComponent
               questionText={selectedQuestion.questionText}
               questionIndex={questionIndex}
-              styleData={styleData}
+              inputField={InputField}
               options={selectedQuestion.options}
+              showNextButton={showNextButton}
             />
           </div>
         )}
