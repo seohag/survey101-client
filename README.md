@@ -24,12 +24,12 @@
 - [기능 미리보기 및 간단한 설명](#-기능-미리보기-및-설명)
 - [테크 스택](#-테크-스택)
   - [Vite](#vite-사용이유)
-  - [Zustand/Tanstack Query](#zustand와-tanstack-query를-사용한-이유)
   - [FormData](#html-navive-form이나-form에-관한-라이브러리가-아닌-formdata를-사용한-이유)
 - [기술적 챌린지](#-기술적-챌린지)
   - [컴포넌트 모듈화](#컴포넌트-모듈화)
     - [가독성이 좋지 않은 코드와 동일한 코드 반복 작성](#가독성이-좋지-않은-코드와-동일한-코드-반복-작성)
-    - [팩토리 패턴으로 컴포넌트 분리](#팩토리-패턴으로-컴포넌트-분리)
+    - [질문 타입에 따라 컴포넌트 분리](#질문-타입에-따라-컴포넌트-분리)
+    - [합성 패턴을 이용한 관심사 분리](#합성-컴포넌트-패턴을-이용한-관심사-분리)
     - [컴포넌트를 분리한 결과](#컴포넌트를-분리한-결과)
   - [설문 데이터의 구조 설계](#설문-데이터-구조-설계)
     - [프로젝트에 적합한 데이터 구조는 무엇일까?](#프로젝트에-적합한-데이터-구조는-무엇일까)
@@ -209,53 +209,6 @@ Vite가 타 비교군에 비해 많은 장점을 가지는 조사한 내용들�
 
 <br>
 
-### Zustand와 Tanstack Query를 사용한 이유
-
-설문을 커스터마이징 하고, 커스터마이징한 설문을 데이터베이스에 저장하고 불러오는 등의 작업들을 하다보면 클라이언트와 서버와의 상호작용이 잦았습니다. 설문 양식을 생성, 수정, 삭제 하는 등 CRUD 작업이 많은 프로젝트였기에 클라이언트에 저장되는 데이터들은 변화되기 쉬운 성격을 가지고 있었습니다. 그렇기에 중앙에서 상태를 관리함으로써 상태의 일관성을 유지하고, 상태 업데이트 로직을 한 곳에서 관리하며 상태관리에 대해 복잡성을 줄이기 위해 상태관리 툴을 조사 후 도입해 보았습니다.
-
-<img width="600" alt="스크린샷 2024-06-12 17 31 01" src="https://github.com/seohag/survey101-server/assets/126459089/4676cbe8-1c95-4315-96b6-132f27e79154">
-
-</br>
-</br>
-
-Survey101에서는 다양한 형태의 질문, 각 질문에 대한 옵션, 응답 데이터 등을 관리해야 했고, 복잡한 상태를 클라이언트 측에서 효율적으로 관리할 상태관리 툴이 필요했습니다. 여러 툴들 중 Zustand에 대해서 다음과 같이 조사해 보았습니다.
-
-- Zustand는 중앙집중화된 하나의 store 안에 여러 상태들을 담고, Top-down 방식으로 Flux 원칙을 적용한 상태관리를 적용하며 간단한 상태 관리 방법을 제공해줍니다. 또한 PubSub(발행/구독) 모델을 기반으로 만들어졌으며, 스토어의 상태 변경이 일어날 때 리스너 함수를 모았다가 상태가 변경되면 그때 리스너들에게 상태가 변경되었다고 알려줍니다.
-
-- 사용자가 설문에 대한 질문을 추가하거나 수정할 때 다른 부분의 상태와 충돌 없이 일관된 상태를 유지해야 하는 이유도 있었고, 설문조사를 커스터마이징 하는 화면에서 여러 컴포넌트가 동일한 상태를 공유하고 업데이트 해야했기에, Zustand를 사용해서 전역상태로 공유하였습니다. 상태의 변경,조회,구독 등을 통해서만 스토어를 다루고, 실제 상태는 컴포넌트 생명주기 내에 의도치 않게 변경되는 것을 막아줍니다.
-
-- selector 함수로 가져온 상태는 store에 중앙집권화 되어있는 상태와 독립적으로 관리되기 때문에 컴포넌트가 필요한 상태에 집중할 수 있고, 상태의 변경에 따라 필요한 부분만 업데이트 되는 이유와, 별도의 리듀서, 액션, 미들웨어 없이 상태관리가 가능하고, 컴포넌트 간의 상태 공유를 용이하게 해주는 장점이 있다고 조사했습니다.
-
-- persist라는 기능도 제공하고 있었습니다. 상태를 로컬 스토리지나 세션스토리지에 저장하고 복원하는데 사용되는데, Survey101의 특성 상 로그인을 한 유저의 정보를 새로고침 했을 때도 사라지지 않게 유지하기 위해 해당 기능을 사용했습니다.
-
-<img width="600" alt="스크린샷 2024-06-12 17 32 11" src="https://github.com/seohag/survey101-server/assets/126459089/a4a24a3d-8f86-441b-96f1-ed095067eba8">
-
-</br>
-</br>
-
-서버와 클라이언트 간의 데이터가 같은 데이터임에도 시점 차이로 인한 클라이언트와 서버와의 데이터가 달라질 수 있는 상황이 있을 가능성이 있었습니다. 데이터의 정확성과 일관성 유지를 위해 클라이언트와 서버의 상태를 분리해서 관리했고, **Tanstack Query**의 상태관리의 이점들을 활용하고자 선택하였습니다.
-
-Tanstack Query(React Query)는 다음과 같은 장점들이 있습니다.
-
-1. 간편한 데이터 관리: 데이터 가져오기, 캐싱, 동기화 및 업데이트 처리를 간편하게 할 수 있게 해줍니다.
-2. 실시간 업데이트 및 동기화: 실시간 데이터 업데이트와 자동 동기화를 지원하여 서버와 클라이언트 데이터의 일관성을 유지할 수 있습니다.
-3. 서버 상태 관리: 서버 상태 관리 (로딩, 에러, 성공 등의 상태) 를 제공하는 옵션들을 통해 간편하게 처리할 수 있습니다.
-4. 설치 후 최상위 컴포넌트를 QueryClientProvider로 감싸줌으로써 간단한 설정으로도 사용 가능합니다.
-
-<br>
-
-- 데이터 캐싱 기능 또한 제공 해주는데, 서버에서 가져온 데이터를 queryClient에 담아 클라이언트에서 서버 측으로 다른 요청이 없는 한 다시 서버로 재요청하지 않고, 캐싱되어있던 데이터를 다시 반환해주기 때문에 불필요한 요청을 최소화할 수 있는 장점도 있었습니다.
-- fresh / stale 시간을 기준으로 데이터의 상태가 최초에 서버로부터 전달받아 캐싱되어 있던 상태라는 가정하에 만료되었다면 재요청하고, 만료되지 않았다면 캐싱된 데이터를 반환하는 기능을 가지고 있습니다. 따라서 캐싱이 필요한 컴포넌트마다 Tanstack Query 의 queryClient와 만료시간을 활용해서 재요청을 최소화 하는 용도로 사용하였습니다.
-
-<img width="600" height="auto" alt="스크린샷 2024-06-12 17 35 23" src="https://github.com/seohag/survey101-server/assets/126459089/2931099a-e3d8-4368-b5cb-6747565aaff5">
-
-</br>
-</br>
-
-조사한 내용들을 바탕으로 `Tanstack Query`로는 서버로의 데이터 페칭 및 데이터 캐싱을 담당하게 했고, `Zustand`로는 클라이언트 상태 관리 및 UI 업데이트를 담당하며 명확한 책임 분리를 하여 상태관리를 하였습니다.
-
-<br>
-
 ### HTML Navive form이나 Form에 관한 라이브러리가 아닌 FormData를 사용한 이유
 
 가장 큰 이유는 사용자 경험적인 측면 때문이였습니다. 기존에 HTML에 내장된 form으로 작업을 했을 땐 form이 제출될 때 페이지가 리로드 되는 현상이 있었습니다. 그러나 FormData는 페이지 리로드 없이 서버로 데이터를 전송할 수 있었습니다. 또다른 이유는 저의 프로젝트의 데이터 구조상 FormData가 적합했습니다. 서버에 전송하는 데이터 구조가 아래의 사진과 같았기에 (중첩된 구조), 파일 객체들과 옵션 ID를 자바스크립트로 조작할 수 있는 FormData를 선택 후 사용하였습니다.
@@ -300,13 +253,11 @@ Tanstack Query(React Query)는 다음과 같은 장점들이 있습니다.
 
 프로젝트를 진행하던 중, 설문 미리보기, 그리고 답변 페이지가 비슷한 UI를 사용함에도 불구하고 동일한 코드를 반복해서 한 페이지 내에 조건부 렌더링으로 처리하고 있었습니다. 이러한 처리 방식은 코드 중복 작성을 초래했고, 유지 보수성을 떨어뜨리며 가독성을 저하시키는 문제점이 있었습니다.
 
-### 팩토리 패턴으로 컴포넌트 분리
+### 질문 타입에 따라 컴포넌트 분리
 
-컴포넌트 분리에 대해 여러 정보들을 찾아보던 중 팩토리 패턴을 이용한 분리 방법이 문제를 해결하기에 적합하다는 판단하에 프로젝트에 적용해 보았습니다.
+컴포넌트 분리에 대해 여러 정보들을 찾아보던 중 팩토리 패턴을 이용해서 "질문 타입에 따라 다른 inputField를 생성 해보자" 라는 생각으로 `inputFields` 라는 객체를 한개 만들어 객체 생성의 책임을 위임하고, 그리고 질문 타입에 따라 그에 맞는 `InputField` 를 렌더링 하게끔 맵핑하였습니다.
 
-`SpecificQuestionComponent` 라는 객체를 한개 만들어 객체 생성의 책임을 위임했습니다. 질문 타입에 따라 그에 맞는 컴포넌트를 렌더링 하게끔 로직을 작성했습니다.
-
-아래 예시 코드를 보았을 때, `QuestionPreview` 라는 컴포넌트 내에서 (textChoice, imageChoice 등)을 조건부 렌더링으로 처리하면서 코드가 복잡해지고, 특정 질문 타입을 수정할 때마다 컴포넌트 내의 모든 코드를 읽으며 특정 질문 타입을 찾아서 직접적으로 수정해야만 했습니다.
+우선 아래 예시 코드를 보면, `QuestionPreview` 컴포넌트 내에서 (textChoice, imageChoice 등) 을 조건부 렌더링으로 처리하면서 코드가 복잡하고, 특정 질문 타입을 수정할 때마다 컴포넌트 내의 모든 코드를 읽으며 특정 질문 타입을 찾아서 수정해야만 하는 번거로움이 있었습니다.
 
 <br>
 
@@ -371,41 +322,46 @@ export default QuestionPreview;
 <br>
 
 ```jsx
-
-import TextChoiceQuestion from "./TextChoiceQuestion";
-import ImageChoiceQuestion from "./ImageChoiceQuestion";
-import TextInputQuestion from "./TextInputQuestion";
+import PreviewQuestionComponent from "./PreviewQuestionComponent";
+import TextChoiceField from "./TextChoiceField";
+import TextInputField from "./TextInputField";
 ...
 
-const questionComponents = {
-  textChoice: TextChoiceQuestion,
-  imageChoice: ImageChoiceQuestion,
-  textInput: TextInputQuestion,
+const inputFields = {
+  textChoice: TextChoiceField,
+  textInput: TextInputField,
   ...
 };
 
+const inputQuestionTypes = [
+  "textInput",
+  "emailInput",
+  ...
+];
+
 function QuestionPreview({ selectedQuestionId }) {
-  const { questions, styleData } = useFormEditorStore();
+  const { questions } = useFormEditorStore();
+
   const selectedQuestion = questions.find(
     (question) => question.questionId === selectedQuestionId,
   );
 
-  if (!selectedQuestion) {
-    return null;
-  }
+  const questionIndex = questions.findIndex(
+    (question) => question.questionId === selectedQuestionId,
+  );
 
-  const SpecificQuestionComponent = questionComponents[selectedQuestion.questionType];
+  const InputField =
+    selectedQuestion && inputFields[selectedQuestion.questionType];
 
   return (
     <>
       <div className="text-center">
         <div className="p-4 border border-gray-300">
-          <h3 className="text-xl font-bold mb-4">
-            {selectedQuestion.questionText}
-          </h3>
-          {SpecificQuestionComponent && (
-            <SpecificQuestionComponent
-              styleData={styleData}
+          {selectedQuestion && (
+            <PreviewQuestionComponent
+              questionText={selectedQuestion.questionText}
+              questionIndex={questionIndex}
+              inputField={InputField}
               options={selectedQuestion.options}
             />
           )}
@@ -423,19 +379,24 @@ export default QuestionPreview;
 <br>
 
 ```plaintext
-QuestionPreview
+├── import TextChoiceField from "./TextChoiceField"
+├── import ImageChoiceField from "./ImageChoiceField"
+├── import TextInputField from "./TextInputField"
+│   ...
 │
-├── import TextChoiceQuestion from "./TextChoiceQuestion"
-├── import ImageChoiceQuestion from "./ImageChoiceQuestion"
-├── import TextInputQuestion from "./TextInputQuestion"
-...
-│
-├── const questionComponents = {
-│   ├── textChoice: TextChoiceQuestion
-│   ├── imageChoice: ImageChoiceQuestion
-│   ├── textInput: TextInputQuestion
+├── const inputFields = {
+│   ├── textChoice: TextChoiceField
+│   ├── imageChoice: ImageChoiceField
+│   ├── textInput: TextInputField
 │   ...
 │   }
+│
+├── const inputQuestionTypes = [
+│   ├── "textInput"
+│   ├── "emailInput"
+│   ├── "phoneInput"
+│   ...
+│   ]
 │
 ├── function QuestionPreview({ selectedQuestionId })
 │   ├── useFormEditorStore()
@@ -446,21 +407,34 @@ QuestionPreview
 │   │     └── (question) => question.questionId === selectedQuestionId
 │   │   )
 │   │
-│   ├── const SpecificQuestionComponent = questionComponents[selectedQuestion.questionType]
+│   ├── const questionIndex = questions.findIndex(
+│   │     └── (question) => question.questionId === selectedQuestionId
+│   │   )
+│   │
+│   ├── const InputField = selectedQuestion && inputFields[selectedQuestion.questionType]
+│   │
+│   ├── const showNextButton = inputQuestionTypes.includes(
+│   │     └── selectedQuestion?.questionType
+│   │   )
 │   │
 │   └── return (
 │       ├── <div>
+│           ├── <span>미리보기</span>
 │           ├── <div>
-│               ├── <div>
-│                   ├── <h3>
-│                   │   └── {selectedQuestion.questionText}
-│                   │
-│                   ├── {SpecificQuestionComponent && (
-│                   │   ├── <SpecificQuestionComponent
-│                   │   │   ├── styleData={styleData}
-│                   │   │   └── options={selectedQuestion.options}
-│                   │   └── )}
-│                   └── )}
+│               ├── {selectedQuestion && (
+│                   ├── <div>
+│                       ├── <PreviewQuestionComponent
+│                       │   ├── questionText={selectedQuestion.questionText}
+│                       │   ├── questionIndex={questionIndex}
+│                       │   ├── inputField={InputField}
+│                       │   ├── options={selectedQuestion.options}
+│                       │   └── showNextButton={showNextButton}
+│                       └── />
+│                   └── </div>
+│               └── )}
+│           └── </div>
+│       └── </div>
+│   )
 │
 └── export default QuestionPreview
 ```
@@ -469,9 +443,61 @@ QuestionPreview
 
 <br>
 
+분리한 코드에서는 각 질문 타입에 해당되는 컴포넌트에 역할을 위임하며 이를 통해 질문 타입들마다 컴포넌트를 독립적으로 관리할 수 있게 하며 가독성을 향상 시켰습니다. 또한 기존의 코드에선 하나의 컴포넌트 (`QuestionPreview`) 에서 많은 책임을 지고 있었고, 유지보수 할 때 모든 코드를 살펴봐야 했지만 컴포넌트를 분리함으로써 책임을 다른 컴포넌트로도 분산 시켰습니다.
+
+<br>
+
+## 합성 컴포넌트 패턴을 이용한 관심사 분리
+
+`PreviewQuestionComponent` 내부를 보면 `QuestionPreviewHeader`, `InputField`, 그리고 `CustonButton`로 이루어져 있고, QuestionType(inputType)에 따라 `inputField`를 동적으로 바뀌게끔 컴포넌트를 설계했습니다.
+
+```jsx
+import CustomButton from "../CustomButton";
+import QuestionPreviewHeader from "../shared/QuestionPreviewHeader";
+
+function PreviewQuestionComponent({
+  questionText,
+  questionIndex,
+  inputField: InputField,
+  options,
+  showNextButton,
+}) {
+  const { styleData } = useFormEditorStore();
+
+  return (
+    <div className="flex flex-col items-center">
+      <QuestionPreviewHeader
+        questionIndex={questionIndex}
+        questionText={questionText}
+        themeColor={styleData.themeColor}
+      />
+      <InputField options={options} />
+      {showNextButton && (
+        <CustomButton
+          text="다음"
+          themeColor={styleData.themeColor}
+          buttonShape={styleData.buttonShape}
+        />
+      )}
+    </div>
+  );
+}
+
+export default PreviewQuestionComponent;
+```
+
+<p>
+<img alt="스크린샷 2024-05-17 06 03 57" width="350" height="400" src="https://github.com/seohag/survey101-client/assets/126459089/7cb4cf85-852a-4827-bcc4-7281bc3b6df4">
+<img alt="스크린샷 2024-05-17 06 04 27" width="350" height="400" src="https://github.com/seohag/survey101-client/assets/126459089/8106137f-c5e7-45df-bd5d-2eef8439ac73">
+</p>
+
+이제 각 컴포넌트는 자신만의 역할을 가지고 있으며 서로 독립적으로 재사용할 수 있습니다. `PreviewQuestionComponent` 를 `QuestionPreviewHeader`, `CustionButton` 그리고 `InputField` 들로 조합해서 하나의 컴포넌트 형태로 설계하면서 재사용성을 향상 시켰고, 각 컴포넌트는 단일 책임 원칙을 지키게끔 수정했습니다. 이렇게 컴포넌트가 설계되면 요구사항에 따라 유연하게 각 역할을 하고 있는 컴포넌트를 수정하며 쉽게 변경 가능한 장점이 있습니다.
+
+<br>
+
 ### 컴포넌트를 분리한 결과
 
-코드를 분리함으로써 다음과 같은 이점을 얻을 수 있었습니다.
+코드를 모듈화 하면서 다음과 같은 이점을 얻을 수 있었습니다.
 
 - **재사용성 향상 및 코드 중복 최소화 (다양한 곳에서 재사용한 컴포넌트 생성 가능)**
 - **유지보수 용이 (질문에 대한 개별 컴포넌트를 쉽게 업데이트 가능)**
@@ -481,9 +507,7 @@ QuestionPreview
 
 <br>
 
-분리한 코드에서는 각 질문 타입에 해당되는 컴포넌트에 역할을 위임하며 이를 통해 질문 타입들마다 컴포넌트를 독립적으로 관리할 수 있고, 기존코드에 비해 가독성을 향상 시켰습니다. 또한 질문 미리보기와 비슷한 설문에 대한 답변을 하는 컴포넌트에서도 동일한 패턴을 이용해서 코드를 모듈화하며 재사용성과 유연성을 향상 시킬 수 있었습니다. 기존의 코드에선 하나의 컴포넌트(QuestionPreview)에서 많은 책임을 지고 있었기에 유지보수 할 때 모든 코드를 살펴봐야 했지만, 컴포넌트를 분리함으로써 단일 책임 원칙을 지킬 수 있게끔 하였습니다.
-
-그리고 여러개의 작은 컴포넌트들을 조합해서 더 큰 컴포넌트를 구성하는 방법 **"컴포지션"** 개념에 대해 더 조사해보았습니다. 객체지향 프로그래밍에서 코드를 재사용하기 위한 방법으로는 크게 **상속(Inheritance), 합성(Composition)** 등이 있습니다.
+여러개의 작은 컴포넌트들을 조합해서 더 큰 컴포넌트를 구성하는 방법 **"컴포지션"** 개념에 대해 더 조사해보니 객체지향 프로그래밍에서 코드를 재사용하기 위한 방법으로는 크게 **상속(Inheritance), 합성(Composition)** 등이 있다는 내용을 알게 되었습니다.
 
 상속은 간략히 이야기하면 is-a 관계로 상위 클래스에 중복 로직을 구현해두고 이를 물려받아 코드를 재사용하는 방법입니다. (부모 클래스에 정의된 메소드를 물려받아 사용)
 
